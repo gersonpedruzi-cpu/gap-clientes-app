@@ -5,6 +5,8 @@ name: Montar app Android
 on:
   push: { branches: [main] }
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   android:
     runs-on: ubuntu-latest
@@ -35,3 +37,10 @@ jobs:
           path: |
             android/app/build/outputs/bundle/release/*.aab
             android/app/build/outputs/apk/debug/*.apk
+      # o .apk de teste também vai para "Releases" (versão "teste"), para baixar direto no celular pelo GitHub
+      - name: APK de teste em Releases
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk gap-clientes-teste.apk
+          gh release delete teste --yes --cleanup-tag 2>/dev/null || true
+          gh release create teste gap-clientes-teste.apk --prerelease --title "APK de teste (montagem ${{ github.run_number }})" --notes "Instale no celular para testar. Para a Play Store use o .aab dos Artifacts."
