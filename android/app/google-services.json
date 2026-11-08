@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "617990340886",
+    "project_id": "gap-clientes",
+    "storage_bucket": "gap-clientes.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617990340886:android:358057424b88f76d8f9037",
+        "android_client_info": {
+          "package_name": "br.com.gapengenharia.clientes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRnsvqdIK30CHJ8LaryTGhMp2sM3Jzyag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
