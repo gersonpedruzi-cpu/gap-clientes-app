@@ -238,6 +238,10 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .cena .c3-noite{opacity:0}.cena[data-estado="noite"] .c3-noite{opacity:1}
 .cena svg.c3-svg{position:absolute;inset:0;width:100%;height:100%}
 .c3-fio{fill:none;stroke:#2b2b2b;stroke-width:3.2;stroke-linecap:round;opacity:.85}
+.c3-qd .cx{fill:#9aa3ad;stroke:#5d6670;stroke-width:.8}.c3-qd .pt{fill:#d9dee3;stroke:#8a939d;stroke-width:.6}.c3-qd .jn{fill:#3a4048}.c3-qd .dj{fill:#f2f4f6}.c3-qd .tr{fill:#6b747e}
+.c3-qd .rl{fill:none;stroke:#e9a400;stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
+.cena[data-estado="noite"] .c3-qd .cx{fill:#4b5563;stroke:#2f3640}.cena[data-estado="noite"] .c3-qd .pt{fill:#6b7684;stroke:#4b5563}.cena[data-estado="noite"] .c3-qd .dj{fill:#c9cfd6}
+.cena.combat .c3-qd{display:none}
 .c3-fx{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-dasharray:.1 13;opacity:0;transition:opacity 1.2s ease;animation:corre3 1.1s linear infinite}
 .c3-fx.on{opacity:1}.c3-fx.rev{animation-direction:reverse}
 .c3-fx.sol{stroke:#ffd84a;filter:drop-shadow(0 0 3px #ffb300)}
@@ -423,8 +427,12 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
             <path class="c3-fx sol" id="fSol" d="M357 178 L386 198 L387 268"/>
             <path class="c3-fx bat" id="fBat" d="M387 324 L387 350"/>
             <path class="c3-fx rede" id="fRede" d="M411 295.5 C414.2 295.1 423.5 293.9 430 293 C436.5 292.1 444.0 291.1 450 290 C456.0 288.9 459.3 288.2 466 286.5 C472.7 284.8 483.0 282.4 490 280 C497.0 277.6 503.0 274.8 508 272 C513.0 269.2 516.7 266.3 520 263 C523.3 259.7 525.9 256.2 528 252 C530.1 247.8 531.4 243.0 532.5 238 C533.6 233.0 534.1 227.5 534.6 222 C535.1 216.5 535.4 207.8 535.6 205"/>
-            <path class="c3-fio" d="M368 316 C360 332 346 340 336 356 C326 374 316 388 296 393 L254 394"/>   <!-- (08/11 17h32) fio preto parado até a garagem; o fluxo amarelo anda por cima -->
-            <path class="c3-fx casa" id="fCasa" d="M368 316 C360 332 346 340 336 356 C326 374 316 388 296 393 L254 394"/>
+            <path class="c3-fio" d="M368 316 C360 332 346 340 336 356 C326 374 312 386 286 391"/>   <!-- (08/11 17h32) fio preto parado até a garagem; o fluxo amarelo anda por cima -->
+            <!-- (08/11 19h, Gerson) quadro de disjuntores da casa no pilar da garagem: o fio chega nele (on-grid; no híbrido o cartão da casa fica aqui) -->
+            <g class="c3-qd" id="qDisj" transform="translate(273.5 393.5) scale(1.3) translate(-273.5 -393.5)"><rect class="cx" x="261" y="377" width="25" height="33" rx="2.2"/><rect class="pt" x="263.2" y="379.2" width="20.6" height="28.6" rx="1.4"/>
+              <rect class="jn" x="266" y="385" width="15" height="9" rx="1"/><rect class="dj" x="267.6" y="386.6" width="2.6" height="5.8" rx=".6"/><rect class="dj" x="272.2" y="386.6" width="2.6" height="5.8" rx=".6"/><rect class="dj" x="276.8" y="386.6" width="2.6" height="5.8" rx=".6"/>
+              <rect class="tr" x="281" y="397" width="1.6" height="5" rx=".8"/><path class="rl" d="M266.5 400.5 l2.6 -4 l0 3 l2.6 -4"/></g>
+            <path class="c3-fx casa" id="fCasa" d="M368 316 C360 332 346 340 336 356 C326 374 312 386 286 391"/>
             <g transform="translate(383.5 296.5) skewY(-11)"><rect class="c3-visor-bg" x="0" y="0" width="18.5" height="11" rx="1.6"/><rect class="c3-visor-bar" id="visorBar" x="1.6" y="4.2" width="0.8" height="2.6" rx="1.3"/></g>
             <circle class="c3-anel" cx="386" cy="296" r="30"/>
             <g class="c3-xal"><circle cx="412" cy="266" r="11" fill="#dc2626" stroke="#fff" stroke-width="2.4"/><path d="M407.5 261.5 L416.5 270.5 M416.5 261.5 L407.5 270.5" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/></g>
@@ -758,8 +766,11 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     pn.addListener('registration', async t => { try{ await gravarFcm(t.value); if(fcmEspera){ fcmEspera.ok(); fcmEspera = null; } }catch(e){ if(fcmEspera){ fcmEspera.erro(e); fcmEspera = null; } } });
     pn.addListener('registrationError', e => { if(fcmEspera){ fcmEspera.erro(new Error((e && e.error) || 'registro')); fcmEspera = null; } });
     pn.addListener('pushNotificationActionPerformed', () => { location.hash = 'inicio'; if(D) carregar(false); });
-    // já permitido antes: registra de novo ao abrir (o token do aparelho pode mudar)
-    try{ if((await pn.checkPermissions()).receive === 'granted') pn.register(); }catch(_){}
+    // já permitido antes: registra de novo ao abrir (o token do aparelho pode mudar).
+    // (08/11 20h25, Gerson) nunca perguntado: pede a permissão dos avisos já ao abrir o app (sem ter que ir em Minha conta)
+    try{ const st = (await pn.checkPermissions()).receive;
+      if(st === 'granted') pn.register();
+      else if(st === 'prompt' || st === 'prompt-with-rationale'){ if(await ativarNativo()) toast('Avisos ativados neste celular'); estadoAvisos(); } }catch(_){}
   }
   async function ativarNativo(){
     const pn = PN(); if(!pn) throw new Error('avisos indisponíveis');
@@ -805,7 +816,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   }
   function cena3(u, est){
     const k = dadosCena(u, est), cena = $('cena'), temBat = !!k.bat;
-    cena.dataset.estado = est; cena.classList.toggle('semrede', k.semRede && u.tipo !== 'offgrid');   // off-grid: sem rede por natureza (não é defeito)
+    cena.dataset.estado = est; cena.classList.toggle('combat', !!k.bat); cena.classList.toggle('semrede', k.semRede && u.tipo !== 'offgrid');   // off-grid: sem rede por natureza (não é defeito)
     const img = temBat ? '-bat' : ''; if($('imgDia').getAttribute('src') !== 'cena-dia' + img + '.webp'){ $('imgDia').src = 'cena-dia' + img + '.webp'; $('imgNoite').src = 'cena-noite' + img + '.webp'; }
     const descarrega = temBat && k.batW > 20, carrega = temBat && k.batW < -20;
     // fluxos (on / rev / cor da casa)

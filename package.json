@@ -1,6 +1,6 @@
 {
   "name": "gap-clientes-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "web": "node scripts/copiar-web.mjs",
