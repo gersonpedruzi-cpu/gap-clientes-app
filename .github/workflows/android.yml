@@ -1,0 +1,37 @@
+# Monta o app GAP Clientes para a Play Store (pacote .aab) e um .apk para instalar direto no celular e testar.
+# Roda sozinho a cada envio para o main, ou pelo botão "Run workflow" (aba Actions).
+# A chave de envio vem dos Secrets do repositório (o Gerson coloca): CHAVE_BASE64 e CHAVE_SENHA. Sem ela, monta só o .apk de teste.
+name: Montar app Android
+on:
+  push: { branches: [main] }
+  workflow_dispatch:
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 21 }
+      - run: npm ci
+      - name: Site do cliente para dentro do app
+        run: node scripts/copiar-web.mjs && npx cap sync android
+      - name: Chave de envio (Secrets)
+        env: { CHAVE_BASE64: "${{ secrets.CHAVE_BASE64 }}" }
+        run: |
+          if [ -n "$CHAVE_BASE64" ]; then echo "$CHAVE_BASE64" | base64 -d > "$RUNNER_TEMP/envio.jks"; echo "CHAVE_ARQUIVO=$RUNNER_TEMP/envio.jks" >> "$GITHUB_ENV"; else echo "::warning::Sem CHAVE_BASE64: o .aab sai sem assinatura (só o .apk de teste serve)"; fi
+      - name: Montar
+        working-directory: android
+        env:
+          CHAVE_SENHA: ${{ secrets.CHAVE_SENHA }}
+          VERSAO_CODIGO: ${{ github.run_number }}
+        run: |
+          export VERSAO_NOME=$(node -p "require('../package.json').version")
+          chmod +x gradlew && ./gradlew --no-daemon bundleRelease assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gap-clientes-${{ github.run_number }}
+          path: |
+            android/app/build/outputs/bundle/release/*.aab
+            android/app/build/outputs/apk/debug/*.apk

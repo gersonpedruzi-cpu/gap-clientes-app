@@ -1,0 +1,21 @@
+# Cria a CHAVE DE ENVIO da Play Store uma vez só (botão "Run workflow" na aba Actions).
+# Antes: crie o Secret CHAVE_SENHA (uma senha sua, 8+ letras). A chave sai como arquivo para baixar
+# (gap-clientes-chave): copie o texto de chave-base64.txt para o Secret CHAVE_BASE64 e depois APAGUE o arquivo
+# baixado e o "artifact" na página da execução. Guarde o .jks num lugar seguro (pendrive/Drive pessoal).
+name: Criar chave de envio (uma vez)
+on: workflow_dispatch
+jobs:
+  chave:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 21 }
+      - env: { CHAVE_SENHA: "${{ secrets.CHAVE_SENHA }}" }
+        run: |
+          [ ${#CHAVE_SENHA} -ge 8 ] || { echo "::error::Crie antes o Secret CHAVE_SENHA (8 letras ou mais)"; exit 1; }
+          mkdir saida
+          keytool -genkeypair -v -keystore saida/gap-clientes-envio.jks -alias gap-clientes -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass "$CHAVE_SENHA" -keypass "$CHAVE_SENHA" -dname "CN=GAP Engenharia, O=GAP Engenharia, L=Castelo, ST=ES, C=BR"
+          base64 -w0 saida/gap-clientes-envio.jks > saida/chave-base64.txt
+      - uses: actions/upload-artifact@v4
+        with: { name: gap-clientes-chave, path: saida/, retention-days: 1 }
