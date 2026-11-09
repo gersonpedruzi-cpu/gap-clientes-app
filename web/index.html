@@ -233,7 +233,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--head);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:40;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 
 /* ---------- cena 3D (aprovada em 07/11 à noite): imagens + cabos animados (SVG) + cartões ---------- */
-.cena{position:relative;aspect-ratio:553/570;max-width:100%;border-radius:18px;overflow:hidden;background:#dfe6f3;box-shadow:0 10px 30px rgba(20,20,20,.12)}
+.cena{position:relative;aspect-ratio:560/419;max-width:100%;border-radius:18px;overflow:hidden;background:#dfe6f3;box-shadow:0 10px 30px rgba(20,20,20,.12)}
 .cena img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 2.4s ease}
 .cena .c3-noite{opacity:0}.cena[data-estado="noite"] .c3-noite{opacity:1}
 .cena svg.c3-svg{position:absolute;inset:0;width:100%;height:100%}
@@ -258,13 +258,13 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .c3-visor-bar{fill:#22e07a;transition:width 1.8s cubic-bezier(.3,0,.2,1),fill .6s}
 .cena[data-estado="alarme"] .c3-visor-bar{fill:#ff5a5a}
 .cena[data-estado="noite"] .c3-visor-bar,.cena[data-estado="offline"] .c3-visor-bar{fill:#3b9a6a}
-.c3-anel{fill:none;stroke:#dc2626;stroke-width:3;opacity:0;transform-origin:386px 296px;transform-box:view-box}
+.c3-anel{fill:none;stroke:#dc2626;stroke-width:3;opacity:0;transform-box:fill-box;transform-origin:center}
 .cena[data-estado="alarme"] .c3-anel{animation:onda 1.6s ease-out infinite}
-.c3-xal{opacity:0;transform:scale(.4);transform-origin:412px 266px;transform-box:view-box;transition:opacity .5s,transform .5s}
+.c3-xal{opacity:0;transform:scale(.4);transform-box:fill-box;transform-origin:center;transition:opacity .5s,transform .5s}
 .cena[data-estado="alarme"] .c3-xal{opacity:1;transform:scale(1)}
 .c3-corte{opacity:0;transition:opacity .8s}.cena.semrede .c3-corte{opacity:1}
 .c3-corte .cabo{fill:none;stroke:#dc2626;stroke-width:3.5;stroke-dasharray:6 5;stroke-linecap:round}
-.c3-corte .selo{animation:pulsa 1.8s ease-in-out infinite;transform-origin:490px 280px;transform-box:view-box}
+.c3-corte .selo{animation:pulsa 1.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 .c3-apaga{opacity:0;transition:opacity 1.6s}.cena.semrede[data-estado="noite"] .c3-apaga{opacity:1}
 /* cartões sobre a imagem */
 .c3{position:absolute;min-width:68px;max-width:42%;padding:5px 8px;border-radius:12px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(20,30,50,.14);color:#141414;transition:opacity .9s ease,background 1.6s ease,color 1.6s ease,transform .9s ease;line-height:1.1}
@@ -283,7 +283,18 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .c3.bat .x{color:#0f8f82}.cena[data-estado="noite"] .c3.bat .x{color:#5eead4}
 .c3.rede.caiu{background:rgba(254,226,226,.95)!important;color:#7f1d1d!important}.c3.rede.caiu .x{color:#b91c1c}
 /* (08/11, pedido do Gerson) cada texto perto da sua parte: placas no céu acima delas; bateria no chão abaixo dela; rede perto do poste; casa onde era a bateria */
-.c3.sol{top:1.5%;left:29%}.c3.casa{top:61.5%;left:31.5%}.c3.inv{top:42%;right:36.5%}.c3.bat{top:81%;left:52%}.c3.rede{top:63%;right:1%}
+/* (08/11 23h) posição dos cartões em cada cena (perto da sua parte) */
+.cena[data-tipo="ongrid"] .c3.sol{top:1.5%;left:44%}.cena[data-tipo="ongrid"] .c3.inv{top:67%;left:36%}.cena[data-tipo="ongrid"] .c3-pill{left:auto;right:2.5%;bottom:2.5%}.cena[data-tipo="ongrid"] .c3.casa{top:62%;left:66%}.cena[data-tipo="ongrid"] .c3.rede{top:46%;left:10%}
+/* (08/11 22h54, Gerson) híbrido: rede perto de onde o cabo entra no poste; comuns acima da caixa de cima; EPS pequeno entre as duas caixas; inversor colado nele; bateria à esquerda dela */
+.cena[data-tipo="hibrido"] .c3.sol{top:1.5%;left:30%}.cena[data-tipo="hibrido"] .c3.inv{top:37%;left:65%}.cena[data-tipo="hibrido"] .c3.bat{top:72%;left:13%}
+.cena[data-tipo="hibrido"] .c3.rede{top:17%;left:1.5%}.cena[data-tipo="hibrido"] .c3.casa{top:20%;left:30%}.cena[data-tipo="hibrido"] .c3.eps{top:45.5%;left:23%}
+.c3.eps{min-width:0;padding:3px 7px;border-radius:9px}.c3.eps .v{font-size:clamp(11.5px,3.2vw,14px)}.c3.eps .l,.c3.eps .x{font-size:9.5px}
+/* off-grid: dados da caixa logo abaixo dela e, mais abaixo, a bateria à esquerda dela */
+.cena[data-tipo="offgrid"] .c3.sol{top:1.5%;left:28%}.cena[data-tipo="offgrid"] .c3.inv{top:38%;left:61%}.cena[data-tipo="offgrid"] .c3.bat{top:72%;left:9%}.cena[data-tipo="offgrid"] .c3.casa{top:50%;left:18%}
+.c3-fx.k-sol{stroke:#ffd84a!important;filter:drop-shadow(0 0 3px #ffb300)!important}.c3-fx.k-bat{stroke:#5eead4!important;filter:drop-shadow(0 0 3px #14b8a6)!important}.c3-fx.k-rede{stroke:#7aa7ff!important;filter:drop-shadow(0 0 3px #2f6fed)!important}
+.cena[data-tipo="hibrido"] .c3-fx,.cena[data-tipo="offgrid"] .c3-fx{stroke-width:8.5;stroke-dasharray:.1 21;animation-name:corre3g}
+.cena[data-tipo="hibrido"] .c3-corte .cabo,.cena[data-tipo="offgrid"] .c3-corte .cabo{stroke-width:6;stroke-dasharray:10 8}
+@keyframes corre3g{to{stroke-dashoffset:-21.1}}
 .c3-pill{position:absolute;left:2.5%;bottom:3%;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.88);font-size:12px;font-weight:700;color:#141414;max-width:60%;transition:background 1.6s,color 1.6s}
 .c3-pill span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .c3-pill i{width:8px;height:8px;border-radius:50%;background:var(--pos);flex:none;animation:pulsa 1.8s ease-in-out infinite}
@@ -418,28 +429,13 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 
         <button type="button" class="atual" id="atualTxt" aria-label="Atualizar agora" hidden><i class="pt"></i><span id="atualS"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg></button>
         <div class="cena" id="cena" data-estado="dia" role="img" aria-label="Sua usina agora">
-          <img class="c3-dia" id="imgDia" alt="" src="cena-dia.webp" width="553" height="570">
-          <img class="c3-noite" id="imgNoite" alt="" src="cena-noite.webp" width="553" height="570" loading="lazy">
-          <svg class="c3-svg" viewBox="0 0 553 570" aria-hidden="true">
-            <defs><radialGradient id="gApaga"><stop offset="0" stop-color="#0b1a3a" stop-opacity=".95"/><stop offset=".55" stop-color="#0d1f45" stop-opacity=".8"/><stop offset="1" stop-color="#0d1f45" stop-opacity="0"/></radialGradient></defs>
-            <g class="c3-apaga"><circle cx="500" cy="196" r="46" fill="url(#gApaga)"/><ellipse cx="520" cy="430" rx="60" ry="22" fill="url(#gApaga)"/><ellipse cx="503" cy="186" rx="13" ry="5" fill="#9aa6bb"/></g>
-            <path class="c3-base" d="M362 306 H262 V292"/><circle class="c3-pt" cx="262" cy="290" r="4.5"/>
-            <path class="c3-fx sol" id="fSol" d="M357 178 L386 198 L387 268"/>
-            <path class="c3-fx bat" id="fBat" d="M387 324 L387 350"/>
-            <path class="c3-fx rede" id="fRede" d="M411 295.5 C414.2 295.1 423.5 293.9 430 293 C436.5 292.1 444.0 291.1 450 290 C456.0 288.9 459.3 288.2 466 286.5 C472.7 284.8 483.0 282.4 490 280 C497.0 277.6 503.0 274.8 508 272 C513.0 269.2 516.7 266.3 520 263 C523.3 259.7 525.9 256.2 528 252 C530.1 247.8 531.4 243.0 532.5 238 C533.6 233.0 534.1 227.5 534.6 222 C535.1 216.5 535.4 207.8 535.6 205"/>
-            <path class="c3-fio" d="M368 316 C360 332 346 340 336 356 C326 374 312 386 286 391"/>   <!-- (08/11 17h32) fio preto parado até a garagem; o fluxo amarelo anda por cima -->
-            <!-- (08/11 19h, Gerson) quadro de disjuntores da casa no pilar da garagem: o fio chega nele (on-grid; no híbrido o cartão da casa fica aqui) -->
-            <g class="c3-qd" id="qDisj" transform="translate(273.5 393.5) scale(1.3) translate(-273.5 -393.5)"><rect class="cx" x="261" y="377" width="25" height="33" rx="2.2"/><rect class="pt" x="263.2" y="379.2" width="20.6" height="28.6" rx="1.4"/>
-              <rect class="jn" x="266" y="385" width="15" height="9" rx="1"/><rect class="dj" x="267.6" y="386.6" width="2.6" height="5.8" rx=".6"/><rect class="dj" x="272.2" y="386.6" width="2.6" height="5.8" rx=".6"/><rect class="dj" x="276.8" y="386.6" width="2.6" height="5.8" rx=".6"/>
-              <rect class="tr" x="281" y="397" width="1.6" height="5" rx=".8"/><path class="rl" d="M266.5 400.5 l2.6 -4 l0 3 l2.6 -4"/></g>
-            <path class="c3-fx casa" id="fCasa" d="M368 316 C360 332 346 340 336 356 C326 374 312 386 286 391"/>
-            <g transform="translate(383.5 296.5) skewY(-11)"><rect class="c3-visor-bg" x="0" y="0" width="18.5" height="11" rx="1.6"/><rect class="c3-visor-bar" id="visorBar" x="1.6" y="4.2" width="0.8" height="2.6" rx="1.3"/></g>
-            <circle class="c3-anel" cx="386" cy="296" r="30"/>
-            <g class="c3-xal"><circle cx="412" cy="266" r="11" fill="#dc2626" stroke="#fff" stroke-width="2.4"/><path d="M407.5 261.5 L416.5 270.5 M416.5 261.5 L407.5 270.5" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/></g>
-            <g class="c3-corte"><path class="cabo" d="M411 295.5 C414.2 295.1 423.5 293.9 430 293 C436.5 292.1 444.0 291.1 450 290 C456.0 288.9 459.3 288.2 466 286.5 C472.7 284.8 483.0 282.4 490 280 C497.0 277.6 503.0 274.8 508 272 C513.0 269.2 516.7 266.3 520 263 C523.3 259.7 525.9 256.2 528 252 C530.1 247.8 531.4 243.0 532.5 238 C533.6 233.0 534.1 227.5 534.6 222 C535.1 216.5 535.4 207.8 535.6 205"/><g class="selo"><circle cx="490" cy="280" r="13" fill="#dc2626" stroke="#fff" stroke-width="2.6"/><path d="M492 271 L485 281 H491 L488 289" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M481 271 L499 289" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></g></g>
-          </svg>
+          <!-- (08/11 23h) 3 cenas (imagens do Gerson): on-grid, híbrido (caixa de cima = comuns, caixa de baixo = EPS) e off-grid. O SVG é montado por montaCena() -->
+          <img class="c3-dia" id="imgDia" alt="" src="cena-ongrid-dia.webp">
+          <img class="c3-noite" id="imgNoite" alt="" src="cena-ongrid-noite.webp" loading="lazy">
+          <svg class="c3-svg" id="cenaSvg" viewBox="0 0 560 419" aria-hidden="true"></svg>
           <div class="c3 sol" id="cSol"><div class="v"><span id="vSol">0,00</span><em>kW</em></div><div class="l">Solar (placas)</div></div>
-          <div class="c3 casa" id="cCasa" hidden><div class="v"><span id="vCasa">0,00</span><em>kW</em></div><div class="l">Casa</div><div class="x" id="xCasa"></div></div>
+          <div class="c3 casa" id="cCasa" hidden><div class="v"><span id="vCasa">0,00</span><em>kW</em></div><div class="l" id="lCasa">Casa</div><div class="x" id="xCasa"></div></div>
+          <div class="c3 eps" id="cEps" hidden><div class="v"><span id="vEps">0,00</span><em>kW</em></div><div class="l">Prioritárias (EPS)</div><div class="x" id="xEps"></div></div>
           <div class="c3 inv" id="cInv"><div class="v"><span id="vInv">0,00</span><em>kW</em></div><div class="l">Inversor</div><div class="x" id="xInv"></div><div class="barra"><i id="bInv"></i></div></div>
           <div class="c3 bat" id="cBat" hidden><div class="v"><span id="vBat">0</span><em>%</em></div><div class="l">Bateria</div><div class="x" id="xBat"></div></div>
           <div class="c3 rede" id="cRede" hidden><div class="v"><span id="vRede">0,00</span><em>kW</em></div><div class="l">Rede</div><div class="x" id="xRede"></div></div>
@@ -741,7 +737,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
       if(tot > 50 && p >= 0 && p <= tot * .4){ invTot = tot; perdaW = p; } }
     // (08/11 13h09, foto do Gerson) sem bateria a saída CA nunca passa das placas (leituras de momentos diferentes): fica igual às placas
     if(!bat && est === 'dia' && soma('wCc') != null && solW > 50 && invW != null && invW > solW) invW = solW;
-    return {bat, batW, semRede, capKw, invW, solW, redeW, casaW, invTot, perdaW, soc: bat ? nn(bat.soc) : null};
+    return {bat, batW, semRede, capKw, invW, solW, redeW, casaW, invTot, perdaW, soc: bat ? nn(bat.soc) : null,
+      epsW: bat ? nn(bat.epsW) : null, comunsW: bat ? nn(bat.comunsW) : null, portaW: bat && !semRede ? nn(bat.portaW) : null};
   }
   // (08/11 15h14) avisos no celular pelo app (alarme e voltou a gerar): inscrição no e-mail do cliente, app 'cliente' (SQL 31)
   const VAPID_PUB = 'BAQRKFCYDFuDayPRVmxvuQzeNuy9T0NL8cMqfSIYUVvvq4XusgXRZV8_vd31pwQSWREgzbLf3OtsnLrttVefJIU';
@@ -814,60 +811,110 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const h = a.em ? new Date(a.em).toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit'}).replace(':', 'h') : '';
     $('ogD').textContent = ['Conta das ' + h, a.socAgora != null ? 'bateria agora ' + a.socAgora + '%' : '', a.solResto != null ? 'sol no resto do dia ~' + String(a.solResto).replace('.', ',') + ' kWh' : ''].filter(Boolean).join(' · ');
   }
+  // (08/11 23h, imagens novas do Gerson) 3 cenas. Caminhos no tamanho de cada imagem; sentido do desenho = sentido "+1" do fluxo:
+  // fSol placas→inversor · fBat inversor→bateria (carregando) · fCasa inversor→caixa de cima (porta da rede do inversor; off-grid: a casa)
+  // fEps inversor→caixa de baixo (cargas prioritárias) · fRede caixa de cima→poste (enviando para a rede)
+  const CENAS = {
+    ongrid: {w: 560, h: 419, sol: 'M282 128 C272 134 262 140 261 158 L261 196', casa: 'M222 211 L178 209',
+      rede: 'M124 188 L84 189 C66 190 51 186 50 170 L49 125 C49 115 50 104 58 98', visor: [241, 231, 40, 16], anel: [262, 225, 52], xal: [300, 196, 11], selo: [49, 140], lamp: [82, 88, 26]},
+    hibrido: {w: 854, h: 878, sol: 'M498 212 C490 218 474 222 472 240 L470 336', bat: 'M479 470 L479 586', casa: 'M398 371 L321 369',
+      eps: 'M437 468 L437 512 C437 536 424 546 404 546 L322 546',
+      rede: 'M219 336 L165 333 C128 332 105 312 105 280 L105 180 C105 160 106 140 112 128', visor: [440, 413, 54, 28], anel: [466, 405, 82], xal: [548, 346, 17], selo: [105, 235], lamp: [178, 118, 44]},
+    offgrid: {w: 874, h: 879, sol: 'M474 213 C462 220 446 222 444 240 L443 340', bat: 'M450 472 L450 588', casa: 'M371 400 L289 398',
+      visor: [411, 413, 58, 30], anel: [448, 405, 84], xal: [522, 350, 17]}
+  };
+  let cenaTipo = null;
+  function montaCena(t){
+    if(cenaTipo === t) return; cenaTipo = t; const C = CENAS[t], cena = $('cena');
+    cena.dataset.tipo = t; cena.style.aspectRatio = C.w + '/' + C.h;
+    $('imgDia').src = 'cena-' + t + '-dia.webp'; $('imgNoite').src = 'cena-' + t + '-noite.webp';
+    const sv = $('cenaSvg'); sv.setAttribute('viewBox', '0 0 ' + C.w + ' ' + C.h);
+    const pth = (id, cls, d) => d ? '<path class="c3-fx ' + cls + '" id="' + id + '" d="' + d + '"/>' : '<path class="c3-fx ' + cls + '" id="' + id + '" d="M0 0"/>';
+    const [vx, vy, vw, vh] = C.visor, [ax, ay, ar] = C.anel, [xx, xy, xr] = C.xal;
+    let h = '<defs><radialGradient id="gApaga"><stop offset="0" stop-color="#0b1a3a" stop-opacity=".95"/><stop offset=".55" stop-color="#0d1f45" stop-opacity=".8"/><stop offset="1" stop-color="#0d1f45" stop-opacity="0"/></radialGradient></defs>';
+    if(C.lamp) h += '<g class="c3-apaga"><circle cx="' + C.lamp[0] + '" cy="' + C.lamp[1] + '" r="' + C.lamp[2] + '" fill="url(#gApaga)"/></g>';
+    h += pth('fSol', 'sol', C.sol) + pth('fBat', 'bat', C.bat) + pth('fCasa', 'casa', C.casa) + pth('fEps', 'casa', C.eps) + pth('fRede', 'rede', C.rede);
+    h += '<rect class="c3-visor-bg" x="' + vx + '" y="' + vy + '" width="' + vw + '" height="' + vh + '" rx="' + (vh / 4) + '"/>'
+      + '<rect class="c3-visor-bar" id="visorBar" x="' + (vx + vh * .25) + '" y="' + (vy + vh * .4) + '" width="1" height="' + (vh * .22) + '" rx="' + (vh * .11) + '" data-max="' + (vw - vh * .5) + '"/>';
+    h += '<circle class="c3-anel" cx="' + ax + '" cy="' + ay + '" r="' + ar + '"/>';
+    h += '<g class="c3-xal"><circle cx="' + xx + '" cy="' + xy + '" r="' + xr + '" fill="#dc2626" stroke="#fff" stroke-width="' + (xr * .22) + '"/><path d="M' + (xx - xr * .4) + ' ' + (xy - xr * .4) + ' L' + (xx + xr * .4) + ' ' + (xy + xr * .4) + ' M' + (xx + xr * .4) + ' ' + (xy - xr * .4) + ' L' + (xx - xr * .4) + ' ' + (xy + xr * .4) + '" stroke="#fff" stroke-width="' + (xr * .25) + '" stroke-linecap="round"/></g>';
+    if(C.rede){ const [sx, sy] = C.selo, r = C.w > 600 ? 20 : 13, k = r / 13;
+      h += '<g class="c3-corte"><path class="cabo" d="' + C.rede + '"/><g class="selo"><circle cx="' + sx + '" cy="' + sy + '" r="' + r + '" fill="#dc2626" stroke="#fff" stroke-width="' + (2.6 * k) + '"/>'
+        + '<g transform="translate(' + sx + ' ' + sy + ') scale(' + k + ') translate(-490 -280)"><path d="M492 271 L485 281 H491 L488 289" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M481 271 L499 289" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></g></g></g>'; }
+    sv.innerHTML = h;
+  }
   function cena3(u, est){
-    const k = dadosCena(u, est), cena = $('cena'), temBat = !!k.bat;
-    cena.dataset.estado = est; cena.classList.toggle('combat', !!k.bat); cena.classList.toggle('semrede', k.semRede && u.tipo !== 'offgrid');   // off-grid: sem rede por natureza (não é defeito)
-    const img = temBat ? '-bat' : ''; if($('imgDia').getAttribute('src') !== 'cena-dia' + img + '.webp'){ $('imgDia').src = 'cena-dia' + img + '.webp'; $('imgNoite').src = 'cena-noite' + img + '.webp'; }
+    const k = dadosCena(u, est), cena = $('cena'), temBat = !!k.bat, og = u.tipo === 'offgrid';
+    const tipo = og ? 'offgrid' : temBat ? 'hibrido' : 'ongrid'; montaCena(tipo);
+    cena.dataset.estado = est; cena.classList.toggle('combat', temBat); cena.classList.toggle('semrede', k.semRede && !og);   // off-grid: sem rede por natureza (não é defeito)
     const descarrega = temBat && k.batW > 20, carrega = temBat && k.batW < -20;
-    // fluxos (on / rev / cor da casa)
-    const fl = {fSol: 0, fBat: 0, fRede: 0, fCasa: 0};
     // (08/11 17h52, Gerson) sem geração (placas e inversor abaixo de 20 W) não corre energia das placas: os cabos ficam como à noite
     const gera = (k.solW || 0) > 20 || (k.invW || 0) > 20, estF = est === 'dia' && !gera ? 'noite' : est;
-    if(estF === 'dia'){
-      fl.fSol = k.solW > 0 ? 1 : 0;
-      fl.fBat = carrega ? 1 : descarrega ? -1 : 0;
-      fl.fRede = k.semRede ? 0 : !temBat ? 1 : k.redeW == null ? 0 : k.redeW > 20 ? 1 : k.redeW < -20 ? -1 : 0;
-      fl.fCasa = 1;
-    } else if(estF === 'noite'){
-      fl.fBat = descarrega ? -1 : 0;
-      fl.fRede = k.semRede ? 0 : (temBat && k.redeW != null && k.redeW >= -20 && descarrega) ? 0 : -1;
-      fl.fCasa = descarrega ? 'dabat' : k.semRede ? 0 : 'darede';
-    } else if(est === 'alarme'){
-      fl.fRede = k.semRede ? 0 : -1; fl.fCasa = k.semRede ? (descarrega ? 'dabat' : 0) : 'darede'; fl.fBat = descarrega ? -1 : 0;
+    const temSol = estF === 'dia' && (k.solW || 0) > 20;
+    // de onde vem o que o inversor entrega (cor do fluxo): sol, bateria ou rede passando por ele
+    const fonte = temSol ? 'sol' : descarrega ? 'bat' : 'rede';
+    // fluxos: [sentido (1, -1 ou 0), cor]
+    const fl = {fSol: [0], fBat: [0], fCasa: [0], fEps: [0], fRede: [0]};
+    if(tipo === 'ongrid'){
+      // sem medidor: de dia a energia sai do inversor para a caixa e para a rede; à noite / parado a casa vem da rede
+      if(estF === 'dia'){ fl.fSol = [1, 'sol']; fl.fCasa = [1, 'sol']; fl.fRede = [1, 'sol']; }
+      else if(est !== 'offline') fl.fRede = [-1, 'rede'];
+    } else if(est !== 'offline'){
+      if(temSol) fl.fSol = [1, 'sol'];
+      fl.fBat = carrega ? [1, temSol ? 'sol' : 'rede'] : descarrega ? [-1, 'bat'] : [0];
+      if(tipo === 'offgrid'){
+        const casa = k.casaW != null ? k.casaW > 20 : (k.invW || 0) > 20;
+        fl.fCasa = casa ? [1, fonte] : [0];
+      } else {
+        // híbrido (08/11, Gerson): TC na entrada; caixa de cima = cargas comuns + porta da rede do inversor; caixa de baixo = EPS (prioritárias)
+        if(!k.semRede && k.redeW != null) fl.fRede = k.redeW > 20 ? [1, fonte] : k.redeW < -20 ? [-1, 'rede'] : [0];
+        if(k.epsW != null && k.epsW > 20) fl.fEps = [1, fonte];
+        // porta da rede do inversor: o portal manda (Solax) ou comuns + rede; sem isso, só o que dá para afirmar
+        let porta = k.portaW != null ? k.portaW : (k.comunsW != null && k.redeW != null ? k.comunsW + k.redeW : null);
+        if(k.semRede) porta = 0;
+        if(porta != null) fl.fCasa = porta > 20 ? [1, fonte] : porta < -20 ? [-1, 'rede'] : [0];
+        else if(k.redeW != null) fl.fCasa = k.redeW > 20 ? [1, fonte] : (k.redeW < -20 && carrega && (k.solW || 0) < -k.batW) ? [-1, 'rede'] : [0];
+      }
     }
-    for(const [id, v] of Object.entries(fl)){ const p = $(id); p.classList.toggle('on', !!v); p.classList.toggle('rev', v === -1);
-      if(id === 'fCasa'){ p.classList.toggle('dabat', v === 'dabat'); p.classList.toggle('darede', v === 'darede'); } }
+    for(const [id, [v, cor]] of Object.entries(fl)){ const p = $(id); if(!p) continue; p.classList.toggle('on', !!v); p.classList.toggle('rev', v === -1);
+      p.classList.remove('k-sol', 'k-bat', 'k-rede'); if(v && cor) p.classList.add('k-' + cor); }
     // inversor: kW + % da capacidade
     const invKw = k.invTot != null ? k.invTot / 1000 : k.invW != null ? Math.max(0, k.invW) / 1000 : null, pct = invKw != null && k.capKw ? Math.min(100, Math.round(invKw / k.capKw * 100)) : 0;
     $('vInv').textContent = invKw != null ? f2(invKw) : '—';
     $('xInv').classList.toggle('duas', k.invTot != null);
     $('xInv').textContent = k.invTot != null ? 'perdas ' + f2(k.perdaW / 1000) + ' kW\nreal ' + f2((k.invTot - k.perdaW) / 1000) + ' kW' : est === 'alarme' ? 'Parado' : est === 'offline' ? 'Sem comunicação' : (est === 'noite' && !descarrega) ? 'Desligado à noite' : k.capKw ? pct + '% de ' + f1(k.capKw).replace(/,0$/, '') + ' kW' : '';
-    $('bInv').style.width = pct + '%'; $('visorBar').setAttribute('width', Math.max(.8, 15.3 * pct / 100));
+    $('bInv').style.width = pct + '%'; { const vb = $('visorBar'); vb.setAttribute('width', Math.max(1, (+vb.dataset.max || 15) * pct / 100)); }
     // sol
     $('cSol').hidden = k.solW == null; if(k.solW != null) $('vSol').textContent = f2(Math.max(0, k.solW) / 1000);
     // bateria
     $('cBat').hidden = !temBat || k.soc == null;
     if(temBat && k.soc != null){ $('vBat').textContent = f1(k.soc).replace(/,0$/, ''); $('xBat').textContent = carrega ? 'carregando ' + f2(-k.batW / 1000) + ' kW' : descarrega ? 'descarregando ' + f2(k.batW / 1000) + ' kW' : k.batW == null ? '' : 'parada'; }
     // rede (só com bateria)
-    const mostraRede = temBat && (k.semRede || k.redeW != null);
-    $('cRede').hidden = !mostraRede || u.tipo === 'offgrid'; $('cRede').classList.toggle('caiu', k.semRede);
+    const mostraRede = temBat && !og && (k.semRede || k.redeW != null);
+    $('cRede').hidden = !mostraRede; $('cRede').classList.toggle('caiu', k.semRede);
     if(mostraRede){ if(k.semRede){ $('vRede').textContent = '0,00'; $('xRede').textContent = 'sem energia'; }
       else { $('vRede').textContent = f2(Math.abs(k.redeW) / 1000); $('xRede').textContent = k.redeW > 20 ? 'enviando' : k.redeW < -20 ? 'recebendo' : 'parada'; } }
-    // casa (só com bateria e com dado)
-    const mostraCasa = temBat && k.casaW != null && est !== 'offline';
-    $('cCasa').hidden = !mostraCasa;
-    if(mostraCasa){ $('vCasa').textContent = f2(k.casaW / 1000);
-      $('xCasa').textContent = k.casaW <= 20 ? (k.semRede ? 'sem energia' : 'sem consumo') : fl.fCasa === 'dabat' ? 'pela bateria' : fl.fCasa === 'darede' ? 'pela rede' : (est === 'dia' && descarrega && k.solW < k.casaW) ? 'pelo sol e bateria' : 'pelo sol'; }
+    // casa: no híbrido, "Casa" = cargas comuns (caixa de cima) e "Cargas prioritárias" = EPS (caixa de baixo), cada uma só com o dado do portal.
+    // Sem nenhum dos dois: um cartão "Casa" com o total (nunca divide sozinho)
+    const pelo = w => w <= 20 ? (k.semRede ? 'sem energia' : 'sem consumo') : fonte === 'sol' ? (descarrega ? 'pelo sol e bateria' : 'pelo sol') : fonte === 'bat' ? 'pela bateria' : 'pela rede';
+    const hib = tipo === 'hibrido', dividido = hib && (k.epsW != null || k.comunsW != null);
+    const casaV = dividido ? (k.semRede ? 0 : k.comunsW) : k.casaW;
+    const mostraCasa = temBat && casaV != null && est !== 'offline';
+    $('cCasa').hidden = !mostraCasa; $('lCasa').textContent = dividido ? 'Cargas comuns' : 'Casa';
+    if(mostraCasa){ $('vCasa').textContent = f2(casaV / 1000);
+      $('xCasa').textContent = dividido ? (casaV <= 20 ? (k.semRede ? 'sem energia' : 'sem consumo') : fl.fCasa[0] === 1 && fl.fRede[0] !== -1 ? pelo(casaV) : 'pela rede') : pelo(casaV); }
+    const mostraEps = hib && k.epsW != null && est !== 'offline';
+    $('cEps').hidden = !mostraEps;
+    if(mostraEps){ $('vEps').textContent = f2(k.epsW / 1000); $('xEps').textContent = k.epsW <= 20 ? 'sem consumo' : fonte === 'rede' ? 'pela rede (passando no inversor)' : pelo(k.epsW); }
     // pill e aviso de rede caída
     $('statusTxt').textContent = k.semRede ? (k.solW > 0 && est === 'dia' ? 'Sem rede · sol e bateria' : 'Sem rede · na bateria')
       : est === 'dia' ? 'Gerando agora' : est === 'alarme' ? 'Sistema parado' : est === 'offline' ? 'Usina offline' : temBat ? 'Noite · energia da rede' : 'Sem geração · noite';
     if(temBat && est === 'noite' && descarrega && !k.semRede) $('statusTxt').textContent = 'Noite · casa na bateria';
     // (08/11 14h39) off-grid: não tem rede por natureza → sem o aviso de "sem energia da rede" e sem "Sem rede" no selo
-    const og = u.tipo === 'offgrid';
-    if(og && k.semRede) $('statusTxt').textContent = est === 'dia' ? 'Gerando agora' : descarrega ? 'Noite · casa na bateria' : $('statusTxt').textContent.replace('Sem rede · ', '');
+    if(og) $('statusTxt').textContent = est === 'dia' ? 'Gerando agora' : est === 'alarme' ? 'Sistema parado' : est === 'offline' ? 'Usina offline' : descarrega ? 'Noite · casa na bateria' : 'Noite';
     $('avisoSr').hidden = !k.semRede || og;
     avisoOffgrid(u);
-    if(k.semRede) $('txSr').textContent = 'A sua casa está funcionando ' + (carrega ? 'pelo sol, e a bateria está carregando' + (k.soc != null ? ' (' + f1(k.soc).replace(/,0$/, '') + '%)' : '') + '.' : 'pela bateria' + (k.soc != null ? ' (' + f1(k.soc).replace(/,0$/, '') + '%)' : '') + '.') + ' Quando a rede voltar, tudo volta ao normal sozinho.';
+    if(k.semRede) $('txSr').textContent = 'A sua casa está funcionando ' + (carrega ? 'pelo sol, e a bateria está carregando' + (k.soc != null ? ' (' + f1(k.soc).replace(/,0$/, '') + '%)' : '') + '.' : 'pela bateria' + (k.soc != null ? ' (' + f1(k.soc).replace(/,0$/, '') + '%)' : '') + '.') + (hib && dividido ? ' Só as cargas prioritárias (caixa de baixo) ficam ligadas.' : '') + ' Quando a rede voltar, tudo volta ao normal sozinho.';
   }
   const atual = {kw: 0, kwh: 0}; let anim = null;
   function contar(alvo){
