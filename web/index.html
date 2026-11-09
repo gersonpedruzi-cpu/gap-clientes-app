@@ -232,6 +232,30 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .linha-c span{color:var(--muted)}.linha-c b{text-align:right;overflow-wrap:anywhere}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--head);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:40;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 
+/* ---------- (09/11) administração: resumo, busca e lista ---------- */
+.adm-res{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px}
+@media (max-width:560px){.adm-res{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.adm-t{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:76px;padding:12px 12px 10px;border-radius:14px;border:1px solid var(--line);border-left:5px solid var(--c);background:var(--panel);color:var(--ink);cursor:pointer;text-align:left;font:inherit}
+.adm-t b{font-family:var(--display);font-size:30px;line-height:1;color:var(--c)}.adm-t span{font-size:13px;font-weight:600;color:var(--muted)}
+.adm-t[aria-pressed="true"]{background:color-mix(in srgb,var(--c) 14%,var(--panel));outline:2px solid var(--c);outline-offset:-1px}
+.adm-t:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.adm-quando{margin:8px 2px 0;font-size:12.5px;color:var(--muted);min-height:16px}
+.adm-busca{display:flex;align-items:center;gap:8px;margin:12px 0 10px;padding:0 12px;min-height:48px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.adm-busca svg{width:20px;height:20px;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;flex:none}
+.adm-busca input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font-size:16px;outline:none;min-height:46px}
+.adm-busca:focus-within{outline:3px solid var(--yellow);outline-offset:1px}
+.adm-lista{display:flex;flex-direction:column;gap:6px}
+.adm-u{display:flex;align-items:center;gap:10px;width:100%;min-height:56px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);cursor:pointer;text-align:left;font:inherit}
+.adm-u:focus-visible{outline:3px solid var(--yellow);outline-offset:1px}
+.adm-u i{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.adm-u .n{flex:1;min-width:0}.adm-u .n b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.adm-u .n small{display:block;font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.adm-u .k{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted);flex:none}.adm-u .k b{display:block;font-size:15px;color:var(--ink)}
+.adm-vazio{padding:20px 6px;color:var(--muted);font-size:14.5px}
+.adm-volta{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px 0 8px;margin-bottom:10px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);font:600 14px var(--body);cursor:pointer;max-width:100%}
+.adm-volta svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.adm-volta small{font-weight:500;color:var(--muted);margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.adm-volta:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.cx-it.cx-ext{text-decoration:none}
 /* ---------- cena 3D (aprovada em 07/11 à noite): imagens + cabos animados (SVG) + cartões ---------- */
 .cena{position:relative;aspect-ratio:560/419;max-width:100%;border-radius:18px;overflow:hidden;background:#dfe6f3;box-shadow:0 10px 30px rgba(20,20,20,.12)}
 .cena img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 2.4s ease}
@@ -411,7 +435,16 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 
 <main>
   <!-- INÍCIO -->
+  <!-- (09/11, Gerson) GAP Clientes do Gerson e do Adriano: as usinas que cada um acompanha, com o resumo e a busca; tocar abre a tela do cliente -->
+  <section id="v-usinas" aria-labelledby="t-usinas" hidden>
+    <div class="cab"><div><p class="olho" id="admOlho">Administração</p><h1 class="t" id="t-usinas">Usinas</h1></div></div>
+    <div class="adm-res" id="admRes"></div>
+    <p class="adm-quando" id="admQuando"></p>
+    <label class="adm-busca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="admBusca" type="search" placeholder="Buscar usina ou cidade" autocomplete="off" aria-label="Buscar usina ou cidade"></label>
+    <div class="adm-lista" id="admLista"></div>
+  </section>
   <section id="v-inicio" aria-labelledby="t-inicio">
+    <button type="button" class="adm-volta" id="admVolta" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Todas as usinas<small id="admDono"></small></button>
     <div class="grade-home">
       <div class="col">
         <div class="cab">
@@ -620,6 +653,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   }
 
   // ---------- estado ----------
+  let ADM = null, admF = null, admQ = '', admT = null;   // (09/11) GAP Clientes do Gerson/Adriano
   let sb = null, D = null, usinaSel = null, modo = 'pot', idx = null, mesK = null, diaSel = null, vista = 'inicio', ultCarga = 0, carregando = false;
   try{ usinaSel = localStorage.getItem('gapcli-usina') || null; }catch(_){}
 
@@ -647,7 +681,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     }catch(e){ er.textContent = 'Sem conexão com a internet. Tente de novo.'; }
     finally{ b.disabled = false; b.textContent = 'Entrar'; }
   });
-  document.addEventListener('click', async ev => { if(ev.target.closest('[data-sair]')){ try{ await sb.auth.signOut(); }catch(_){} D = null; try{ localStorage.removeItem('gapcli-usina'); }catch(_){} usinaSel = null; tela('login'); } });
+  document.addEventListener('click', async ev => { if(ev.target.closest('[data-sair]')){ try{ await sb.auth.signOut(); }catch(_){} D = null; ADM = null; admF = null; menu(false); try{ localStorage.removeItem('gapcli-usina'); }catch(_){} usinaSel = null; tela('login'); } });
 
   // ---------- "Atualizado há X min": hora da última leitura do inversor (o robô/API lê a cada 15 min) ----------
   function haQuanto(iso){
@@ -676,8 +710,12 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
         if(st === 403 && j && j.erro === 'sem_usina'){ tela('sem'); return; }
         throw new Error((j && j.erro) || error.message || 'erro');
       }
+      // (09/11) Gerson/Adriano sem usina aberta: a lista das usinas que acompanham (resumo + busca)
+      if(data && data.lista){ ADM = data; usinaSel = null; ultCarga = Date.now(); menu(true); tela('app');
+        if(vista !== 'usinas'){ if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); } else renderAdm(); return; }
       const trocou = !D || !D.usina || D.usina.id !== data.usina.id;
-      D = data; ultCarga = Date.now(); usinaSel = D.usina.id; try{ localStorage.setItem('gapcli-usina', usinaSel); }catch(_){}
+      D = data; ultCarga = Date.now(); usinaSel = D.usina.id; try{ if(!D.admin) localStorage.setItem('gapcli-usina', usinaSel); }catch(_){}
+      if(D.admin){ if(!ADM) ADM = {admin: D.admin, lista: []}; menu(true); if(vista === 'usinas') location.hash = 'inicio'; }
       // (08/11 13h12) off-grid (cadastro da GAP): a economia abre pelo consumo; on-grid e híbrido, pela geração. O cliente troca no botão
       if(trocou) modoG = D.usina.tipo === 'offgrid' && D.temConsumo ? 'cons' : 'ger';
       tela('app'); render();
@@ -940,6 +978,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     $('boxUsina').innerHTML = D.usinas.length > 1
       ? '<label for="selUsina">Usina</label><select id="selUsina">' + D.usinas.map(x => '<option value="' + esc(x.id) + '"' + (x.id === u.id ? ' selected' : '') + '>' + esc(x.nome + (x.kwp ? ' · ' + f1(x.kwp) + ' kWp' : '')) + '</option>').join('') + '</select>'
       : '<span class="usina-nome">' + esc(u.nome + (u.cidade ? ' · ' + u.cidade : '') + (u.kwp ? ' · ' + f1(u.kwp) + ' kWp' : '')) + '</span>';
+    $('admVolta').hidden = !D.admin; $('admDono').textContent = D.admin && D.dono ? 'cliente: ' + D.dono : '';
     const sel = $('selUsina'); if(sel) sel.onchange = () => { usinaSel = sel.value; idx = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); };
     // faixa: só quando gerou 1% ou mais acima
     const a = D.acima;
@@ -1317,19 +1356,60 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   };
   const MENU = [['inicio', 'Início', '#f5c916'], ['geracao', 'Geração', '#f59e0b'], ['chamados', 'Chamados', '#3b82f6'], ['documentos', 'Documentos', '#10b981'], ['conta', 'Minha conta', '#a78bfa']];
   const ic = (k, c) => '<span class="cx-ic" style="--c:' + c + '"><svg viewBox="0 0 24 24">' + IC[k] + '</svg></span>';
-  let lado = '<div class="cx-marca"><b>Minha usina</b><small>GAP Clientes</small></div>';
-  MENU.forEach(([k, n, c], i) => { if(i === 2) lado += '<div class="cx-g">Atendimento</div>'; if(i === 4) lado += '<div class="cx-g">Conta</div>';
-    lado += '<button type="button" class="cx-it" data-ir="' + k + '">' + ic(k, c) + '<span>' + n + '</span>' + (i === 2 || i === 3 ? '<small>em breve</small>' : '') + '</button>'; });
-  $('lado').innerHTML = lado;
-  $('baixo').innerHTML = MENU.map(([k, n, c]) => '<button type="button" data-ir="' + k + '">' + ic(k, c) + (k === 'conta' ? 'Conta' : n) + '</button>').join('');
-  const NOMES = {inicio: 'Minha usina', geracao: 'Geração', chamados: 'Chamados', documentos: 'Documentos', conta: 'Minha conta', inversores: 'Equipamentos'};
+  // (09/11) Gerson/Adriano: "Usinas" em primeiro e o atalho para o GAP Administração (o site da GAP)
+  IC.usinas = '<path d="M4 20h16M6 20V9l6-5 6 5v11"/><path d="M9.5 13.5h5M9.5 16.5h5"/>';
+  IC.adm = '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>';
+  let menuAdm = null;
+  function menu(adm){
+    if(menuAdm === adm) return; menuAdm = adm;
+    const M = adm ? [['usinas', 'Usinas', '#22c55e'], ...MENU] : MENU;
+    let lado = '<div class="cx-marca"><b>' + (adm ? 'Administração' : 'Minha usina') + '</b><small>GAP Clientes</small></div>';
+    M.forEach(([k, n, c]) => { if(k === 'chamados') lado += '<div class="cx-g">Atendimento</div>'; if(k === 'conta') lado += '<div class="cx-g">Conta</div>';
+      lado += '<button type="button" class="cx-it" data-ir="' + k + '">' + ic(k, c) + '<span>' + n + '</span>' + (k === 'chamados' || k === 'documentos' ? '<small>em breve</small>' : '') + '</button>'; });
+    if(adm) lado += '<a class="cx-it cx-ext" href="https://gap-controle.pages.dev/" target="_blank" rel="noopener">' + ic('adm', '#94a3b8') + '<span>GAP Administração</span></a>';
+    $('lado').innerHTML = lado;
+    const B = adm ? M.filter(([k]) => k !== 'documentos') : M;
+    $('baixo').innerHTML = B.map(([k, n, c]) => '<button type="button" data-ir="' + k + '">' + ic(k, c) + (k === 'conta' ? 'Conta' : n) + '</button>').join('');
+    document.querySelectorAll('#lado [data-ir],#baixo [data-ir]').forEach(b => { if(b.dataset.ir === vista) b.setAttribute('aria-current', 'page'); });
+  }
+  menu(false);
+  // ---------- (09/11) administração: resumo (igual ao do site), busca (sem travar: só a lista é redesenhada, 0,25 s depois de parar de digitar) e lista ----------
+  const ADM_G = [['normal', 'Online', '#16a34a'], ['alerta', 'Em alerta', '#dc2626'], ['baixo', 'Rendimento baixo', '#d4a106'], ['offline', 'Offline', '#8a8f98']];
+  const semAc = t => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  function renderAdm(){
+    if(!ADM) return; const L = ADM.lista || [], h = horaBR(), nome = ((ADM.admin && ADM.admin.nome) || '').trim().split(/\s+/)[0] || '';
+    $('t-usinas').textContent = (h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite') + (nome ? ', ' + nome : '');
+    $('admOlho').textContent = 'Usinas que você acompanha · ' + L.length;
+    $('avatar').textContent = (nome || (ADM.admin && ADM.admin.email) || 'G').charAt(0).toUpperCase();
+    $('admRes').innerHTML = ADM_G.map(([k, t, c]) => '<button type="button" class="adm-t" style="--c:' + c + '" data-admf="' + k + '" aria-pressed="' + (admF === k) + '"><b>' + L.filter(x => x.grupo === k).length + '</b><span>' + t + '</span></button>').join('');
+    const em = ADM.resumoEm ? new Date(ADM.resumoEm).toLocaleTimeString('pt-BR', {timeZone: TZ, hour: '2-digit', minute: '2-digit'}).replace(':', 'h') : '';
+    $('admQuando').textContent = ADM.resumoFresco ? 'Mesmo resumo do GAP Administração (' + em + ').' : em ? 'Online, alerta e offline pela última leitura; rendimento baixo da última conta do GAP Administração (' + em + ').' : 'Online, alerta e offline pela última leitura. Abra o GAP Administração uma vez para trazer o rendimento baixo.';
+    listaAdm();
+  }
+  function listaAdm(){
+    if(!ADM) return; const q = semAc(admQ.trim());
+    const L = (ADM.lista || []).filter(x => (!admF || x.grupo === admF) && (!q || semAc(x.nome + ' ' + x.cidade).includes(q)));
+    const cor = Object.fromEntries(ADM_G.map(([k, , c]) => [k, c])), tit = Object.fromEntries(ADM_G.map(([k, t]) => [k, t]));
+    $('admLista').innerHTML = L.length ? L.slice(0, 300).map(x => '<button type="button" class="adm-u" style="--c:' + cor[x.grupo] + '" data-admu="' + esc(x.id) + '"><i title="' + esc(tit[x.grupo]) + '"></i><span class="n"><b>' + esc(x.nome) + '</b><small>' + esc([x.cidade, x.kwp ? f1(x.kwp) + ' kWp' : '', tit[x.grupo]].filter(Boolean).join(' · ')) + '</small></span><span class="k"><b>' + f1((x.potenciaW || 0) / 1000) + ' kW</b>' + f1(x.hojeKwh || 0) + ' kWh hoje</span></button>').join('')
+      : '<p class="adm-vazio">' + ((ADM.lista || []).length ? 'Nenhuma usina com esse filtro.' : 'Nenhuma usina acompanhada. Escolha as suas no GAP Administração (Usinas › Cadastro).') + '</p>';
+  }
+  $('admBusca').addEventListener('input', () => { clearTimeout(admT); admT = setTimeout(() => { admQ = $('admBusca').value; listaAdm(); }, 250); });
+  document.addEventListener('click', ev => {
+    const f = ev.target.closest('[data-admf]'); if(f){ admF = admF === f.dataset.admf ? null : f.dataset.admf; renderAdm(); return; }
+    const u = ev.target.closest('[data-admu]'); if(u){ usinaSel = u.dataset.admu; idx = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); return; }
+    if(ev.target.closest('#admVolta')){ usinaSel = null; if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); carregar(false); }
+  });
+  const NOMES = {usinas: 'Usinas', inicio: 'Minha usina', geracao: 'Geração', chamados: 'Chamados', documentos: 'Documentos', conta: 'Minha conta', inversores: 'Equipamentos'};
   function ir(v){
-    if(!NOMES[v]) v = 'inicio'; vista = v;
-    const vv = ['inicio', 'geracao', 'conta', 'inversores'].includes(v) ? v : 'breve';
-    for(const k of ['inicio', 'geracao', 'conta', 'inversores', 'breve']) $('v-' + k).hidden = vv !== k;
+    if(!NOMES[v] || (v === 'usinas' && !ADM)) v = 'inicio';
+    if(ADM && !D && ['inicio', 'geracao', 'inversores'].includes(v)) v = 'usinas';   // administração sem usina aberta: a lista
+    vista = v;
+    const vv = ['usinas', 'inicio', 'geracao', 'conta', 'inversores'].includes(v) ? v : 'breve';
+    for(const k of ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'breve']) $('v-' + k).hidden = vv !== k;
     fecharInv(); fecharEscolhe();
     document.querySelectorAll('#lado [data-ir],#baixo [data-ir]').forEach(b => { if(b.dataset.ir === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
     $('topoSub').textContent = NOMES[v];
+    if(v === 'usinas') renderAdm();
     if(v === 'geracao' && D) mostrarGeracao();
     if(v === 'inversores' && D) mostrarInv();
     window.scrollTo(0, 0);
