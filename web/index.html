@@ -327,6 +327,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 @keyframes corre3g{to{stroke-dashoffset:-21.1}}
 .c3-pill{position:absolute;left:2.5%;bottom:3%;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.88);font-size:12px;font-weight:700;color:#141414;max-width:60%;transition:background 1.6s,color 1.6s}
 .c3-pill span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* (09/11 14h33, Gerson) off-grid com gerador/on-grid na porta do gerador: quadro no canto, sem mexer na animação */
+.c3-ger{position:absolute;right:2.5%;bottom:3%;display:flex;flex-direction:column;gap:1px;padding:7px 11px;border-radius:12px;background:rgba(255,247,237,.94);border:1px solid #fdba74;color:#7c2d12;font-size:11px;line-height:1.2;max-width:44%;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.c3-ger>b{font-size:11px;font-weight:700;letter-spacing:.02em;white-space:nowrap}.c3-ger span{font-size:12px}.c3-ger span b{font-family:var(--display);font-size:20px;color:#9a3412}.c3-ger small{opacity:.85;white-space:nowrap}
 .c3-pill i{width:8px;height:8px;border-radius:50%;background:var(--pos);flex:none;animation:pulsa 1.8s ease-in-out infinite}
 .cena[data-estado="noite"] .c3-pill{background:rgba(14,22,40,.76);color:#f2f5f9}.cena[data-estado="noite"] .c3-pill i,.cena[data-estado="offline"] .c3-pill i{background:#8a9bb5;animation:none}
 .cena[data-estado="alarme"] .c3-pill i{background:#dc2626}.cena.semrede .c3-pill i{background:#f59e0b}
@@ -480,6 +483,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
           <div class="c3 bat" id="cBat" hidden><div class="v"><span id="vBat">0</span><em>%</em></div><div class="l">Bateria</div><div class="x" id="xBat"></div></div>
           <div class="c3 rede" id="cRede" hidden><div class="v"><span id="vRede">0,00</span><em>kW</em></div><div class="l">Rede</div><div class="x" id="xRede"></div></div>
           <div class="c3-pill"><i></i><span id="statusTxt">Gerando agora</span></div>
+          <div class="c3-ger" id="cGer" hidden><b>⚡ Gerador ligado</b><span><b id="vGer"></b> kW</span><small id="xGer"></small></div>
         </div>
         <div class="aviso sr" id="avisoSr" role="status" hidden>
           <span class="x"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 6 13h5l-2 8 7-10h-5z"/><path d="M3 3l18 18"/></svg></span>
@@ -779,7 +783,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     // (09/11 08h38, Gerson) no HÍBRIDO também: o inversor mostra o que processa, com perdas e real (só a saída CA parecia errada)
     if(u.tipo !== 'ongrid' && bat && (est === 'dia' || (est === 'noite' && Math.abs(batW || 0) > 20)) && solW != null && batW != null && casaW != null && (semRede || redeW != null)){
       const sol = Math.max(0, solW), rd = semRede ? 0 : redeW, daRedeNaBat = batW < -20 && rd < 0 ? Math.min(-rd, Math.max(0, -batW - sol)) : 0;
-      const tot = sol + Math.max(0, batW) + daRedeNaBat, p = sol + batW - casaW - rd;
+      const gen = u.tipo === 'offgrid' ? Math.max(0, nn(bat.geradorW) || 0) : 0;   // (09/11 14h33) off-grid: o que entra pela porta do gerador (on-grid do Adriano)
+      const tot = sol + Math.max(0, batW) + daRedeNaBat + gen, p = sol + gen + batW - casaW - rd;
       if(tot > 50 && p >= 10 && p <= tot * .4){ invTot = tot; perdaW = p; } }   // (09/11) sem perda medida (conta exata) não mostra "perdas 0,00"
     // (08/11 13h09, foto do Gerson) sem bateria a saída CA nunca passa das placas (leituras de momentos diferentes): fica igual às placas
     if(!bat && est === 'dia' && soma('wCc') != null && solW > 50 && invW != null && invW > solW) invW = solW;
@@ -936,6 +941,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     $('bInv').style.width = pct + '%'; { const vb = $('visorBar'); vb.setAttribute('width', Math.max(1, (+vb.dataset.max || 15) * pct / 100)); }
     // sol
     $('cSol').hidden = k.solW == null; if(k.solW != null) $('vSol').textContent = f2(Math.max(0, k.solW) / 1000);
+    { const bg = u.tipo === 'offgrid' && u.bateria ? u.bateria : null, gw = bg ? nn(bg.geradorW) : null, gk = bg ? nn(bg.geradorHojeKwh) : null;
+      $('cGer').hidden = !(gw != null && gw > 30 && est !== 'offline');
+      if(!$('cGer').hidden){ $('vGer').textContent = f2(gw / 1000); $('xGer').textContent = gk != null && gk > 0 ? 'hoje ' + String(Math.round(gk * 10) / 10).replace('.', ',') + ' kWh' : ''; } }
     // bateria
     $('cBat').hidden = !temBat || k.soc == null;
     if(temBat && k.soc != null){ $('vBat').textContent = f1(k.soc).replace(/,0$/, ''); $('xBat').textContent = carrega ? 'carregando ' + f2(-k.batW / 1000) + ' kW' : descarrega ? 'descarregando ' + f2(k.batW / 1000) + ' kW' : k.batW == null ? '' : 'parada'; }
