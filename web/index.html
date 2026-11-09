@@ -363,11 +363,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 @keyframes cintila{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes pulsa{0%,100%{opacity:1}50%{opacity:.35}}
 @keyframes onda{0%{opacity:.8;transform:scale(.6)}100%{opacity:0;transform:scale(1.9)}}
-@media (prefers-reduced-motion: reduce){
-  .c3-fx,.c3-anel,.c3-pill i,.c3-corte .selo{animation:none}
-  .c3-fx{stroke-dasharray:none;stroke-width:2.5}
-  .cena img,.c3,.c3-visor-bar,.c3 .barra i{transition-duration:.01s}
-}
+/* (09/11 16h47, Gerson) a animação roda sempre, mesmo com os "efeitos de animação" do Windows/celular desligados (antes a cena ficava parada) */
 
 /* ---------- computador: menu na lateral ---------- */
 .grade-home{display:flex;flex-direction:column;gap:16px}
@@ -377,6 +373,31 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   .lado{display:flex;flex-direction:column;gap:2px;position:fixed;top:calc(96px + env(safe-area-inset-top,0px));bottom:16px;left:max(16px,calc((100vw - 1320px)/2));width:262px;overflow-y:auto;background:var(--head);color:#e9e9e4;padding:18px 12px 24px;border-radius:14px}
   main{margin-left:max(300px,calc((100vw - 1320px)/2 + 290px));margin-right:max(24px,calc((100vw - 1320px)/2));max-width:1000px;padding-bottom:32px}
   .grade-home{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;align-items:start}
+  .home-g{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+  /* (09/11 16h38, Gerson) Início no computador: animação e gráfico lado a lado; embaixo os números ao lado dos atalhos */
+  .home-g{grid-template-areas:"head head" "cena graf" "avisos avisos" "tiles dock" ". nota";align-items:stretch;row-gap:16px}
+  .home-g .ini-avisos:not(:has(>:not([hidden]))) {display:none}
+  .home-g>.col{display:contents}
+  .home-g .ini-head{grid-area:head;display:flex;flex-direction:column;gap:12px;min-width:0}
+  .home-g .cena{grid-area:cena;max-width:none;width:100%;align-self:start}
+  .home-g .ini-avisos{grid-area:avisos;display:flex;flex-direction:column;gap:12px;min-width:0}
+  .home-g .ini-avisos:not(:has(>:not([hidden]))){display:none}
+  .home-g .ini-tiles{grid-area:tiles}
+  .home-g>.col>.card{grid-area:graf;min-width:0;contain:size;min-height:100%}   /* a altura da linha é a da animação; o gráfico se ajusta */
+  .home-g>.col>.card{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto minmax(0,1fr) auto;grid-template-areas:"h h" "seg nav" "g g" "n n";column-gap:10px;align-content:stretch}
+  .home-g>.col>.card>.card-h{display:contents}
+  .home-g>.col>.card>.card-h>h2{grid-area:h}
+  .home-g>.col>.card>.card-h>.seg{grid-area:seg;align-self:center}
+  .home-g>.col>.card>.dia-nav{grid-area:nav;justify-content:flex-end;margin:0;align-self:center}
+  .home-g>.col>.card>.dia-nav{flex-wrap:nowrap;gap:4px}
+  .home-g .dia-nav input{width:116px;padding:0 4px;font-size:13px}
+  .home-g .dia-nav button{min-width:30px;height:36px;padding:0}
+  .home-g>.col>.card .seg button{padding-left:10px;padding-right:10px}
+  .home-g .dia-nav .dia-hoje{display:none}
+  .home-g>.col>.card>.graf{grid-area:g;width:100%;height:100%;min-height:0}
+  .home-g>.col>.card>.nota-g{grid-area:n}
+  .home-g .ini-dock{grid-area:dock;align-content:center}
+  .home-g #atualizado{grid-area:nota;margin:0}
   .top-in{padding-inline:max(24px,calc((100vw - 1320px)/2 + 16px))}
   .toast{bottom:24px}
 }
@@ -460,8 +481,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   </section>
   <section id="v-inicio" aria-labelledby="t-inicio">
     <button type="button" class="adm-volta" id="admVolta" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Todas as usinas<small id="admDono"></small></button>
-    <div class="grade-home">
+    <div class="grade-home home-g">
       <div class="col">
+        <div class="ini-head">
         <div class="cab">
           <div>
             <p class="olho" id="dataTxt"></p>
@@ -477,6 +499,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
         </div>
 
         <button type="button" class="atual" id="atualTxt" aria-label="Atualizar agora" hidden><i class="pt"></i><span id="atualS"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg></button>
+        </div>
         <div class="cena" id="cena" data-estado="dia" role="img" aria-label="Sua usina agora">
           <!-- (08/11 23h) 3 cenas (imagens do Gerson): on-grid, híbrido (caixa de cima = comuns, caixa de baixo = EPS) e off-grid. O SVG é montado por montaCena() -->
           <img class="c3-dia" id="imgDia" alt="" src="cena-ongrid-dia.webp">
@@ -491,6 +514,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
           <div class="c3-pill"><i></i><span id="statusTxt">Gerando agora</span></div>
           <div class="c3-ger" id="cGer" hidden><b>⚡ Gerador ligado</b><span><b id="vGer"></b> kW</span><small id="xGer"></small></div>
         </div>
+        <div class="ini-avisos">
         <div class="aviso sr" id="avisoSr" role="status" hidden>
           <span class="x"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 6 13h5l-2 8 7-10h-5z"/><path d="M3 3l18 18"/></svg></span>
           <div><b>Sem energia da rede agora</b><p id="txSr">A sua casa está funcionando pela bateria. Quando a rede voltar, tudo volta ao normal sozinho.</p></div>
@@ -504,6 +528,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
         <div class="aviso" id="aviso" role="status" hidden>
           <span class="x"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></span>
           <div><b id="avisoT">Seu sistema parou de gerar</b><p id="avisoP">Já estamos sabendo: alguém da equipe GAP está verificando. Você não precisa fazer nada, avisamos aqui quando voltar.</p><small id="avisoD"></small><a class="aviso-wa" id="avisoWa" href="https://wa.me/5531985101043" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg><span id="avisoWaT">Agendar visita técnica</span></a><small class="aviso-num">WhatsApp da GAP: (31) 98510-1043</small></div>
+        </div>
+
         </div>
 
         <div class="ini-tiles">
@@ -649,7 +675,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   'use strict';
   const $ = id => document.getElementById(id);
   const CFG = window.GAP_CFG || {};
-  const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduz = false;   // (09/11) animação sempre ligada
   const f1 = v => (+v || 0).toLocaleString('pt-BR', {minimumFractionDigits: 1, maximumFractionDigits: 1});
   const f0 = v => Math.round(+v || 0).toLocaleString('pt-BR');
   const rs = v => 'R$ ' + (+v || 0).toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -716,6 +742,15 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     b.classList.toggle('velho', Date.now() - new Date(l).getTime() > 40 * 60000);
   }
   // ---------- dados ----------
+  // (09/11 16h47, Gerson) o resumo das usinas (online, alerta, rendimento baixo, offline) não roda mais de 30 em 30 min:
+  // quando a lista abre e o último resumo tem mais de 15 min, pede um novo só desta pessoa e recarrega a lista quando ficar pronto
+  let resumoPedido = 0;
+  function pedirResumo(){
+    const em = ADM && ADM.resumoEm ? new Date(ADM.resumoEm).getTime() : 0;
+    if(!ADM || !ADM.admin || !ADM.admin.email || Date.now() - em < 15 * 60000 || Date.now() - resumoPedido < 10 * 60000) return;
+    resumoPedido = Date.now();
+    sb.functions.invoke('usinas-resumo', {body: {email: ADM.admin.email}}).then(r => { if(r && !r.error && !D) carregar(false); }).catch(() => {});
+  }
   async function carregar(mostrar){
     if(carregando) return; carregando = true; textoAtual();
     if(mostrar) tela('carr', 'Carregando a sua usina…');
@@ -729,11 +764,11 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
         throw new Error((j && j.erro) || error.message || 'erro');
       }
       // (09/11) Gerson/Adriano sem usina aberta: a lista das usinas que acompanham (resumo + busca)
-      if(data && data.lista){ ADM = data; usinaSel = null; ultCarga = Date.now(); menu(true); tela('app');
+      if(data && data.lista){ ADM = data; usinaSel = null; ultCarga = Date.now(); menu(true); tela('app'); pedirResumo();
         if(vista !== 'usinas'){ if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); } else renderAdm(); return; }
       const trocou = !D || !D.usina || D.usina.id !== data.usina.id;
       D = data; ultCarga = Date.now(); usinaSel = D.usina.id; try{ if(!D.admin) localStorage.setItem('gapcli-usina', usinaSel); }catch(_){}
-      if(D.admin){ if(!ADM) ADM = {admin: D.admin, lista: []}; menu(true); if(vista === 'usinas') location.hash = 'inicio'; }
+      if(D.admin){ if(!ADM) ADM = {admin: D.admin, lista: []}; menu(true); if(vista === 'usinas'){ if(location.hash !== '#inicio') location.hash = 'inicio'; else ir('inicio'); } }   // (09/11 16h47) endereço já em #inicio: abre direto (antes ficava na lista)
       // (08/11 13h12) off-grid (cadastro da GAP): a economia abre pelo consumo; on-grid e híbrido, pela geração. O cliente troca no botão
       if(trocou) modoG = D.usina.tipo === 'offgrid' && D.temConsumo ? 'cons' : 'ger';
       tela('app'); render();
@@ -878,12 +913,12 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   // fEps inversor→caixa de baixo (cargas prioritárias) · fRede caixa de cima→poste (enviando para a rede)
   const CENAS = {
     ongrid: {w: 560, h: 419, sol: 'M282 128 C272 134 262 140 261 158 L261 196', casa: 'M222 211 L178 209',
-      rede: 'M121 198 C116 192 112 189 106 189 L72 189 C60 189 51 180 51 165 L51 104 C51 92 57 86 68 85', visor: [241, 231, 40, 16], anel: [262, 225, 52], xal: [300, 196, 11], selo: [51, 140], lamp: [82, 88, 26]},
+      rede: 'M121 198 C116 192 112 189 106 189 L72 189 C60 189 51 180 51 165 L51 104 C51 92 57 86 68 85', visor: [240, 230, 40, 21], anel: [262, 225, 52], xal: [300, 196, 11], selo: [51, 140], lamp: [82, 88, 26]},
     hibrido: {w: 854, h: 878, sol: 'M498 212 C490 218 474 222 472 240 L470 336', bat: 'M479 470 L479 586', casa: 'M398 371 L321 369',
       eps: 'M437 468 L437 512 C437 536 424 546 404 546 L322 546',
-      rede: 'M218 342 C210 336 205 333 196 333 L150 333 C128 333 108 318 108 296 L108 160 C108 128 118 116 140 115', visor: [440, 413, 54, 28], anel: [466, 405, 82], xal: [548, 346, 17], selo: [108, 235], lamp: [178, 118, 44]},
+      rede: 'M218 342 C210 336 205 333 196 333 L150 333 C128 333 108 318 108 296 L108 160 C108 128 118 116 140 115', visor: [436, 409, 62, 36], anel: [466, 405, 82], xal: [548, 346, 17], selo: [108, 235], lamp: [178, 118, 44]},
     offgrid: {w: 874, h: 879, sol: 'M474 213 C462 220 446 222 444 240 L443 340', bat: 'M450 472 L450 588', casa: 'M371 400 L289 398',
-      visor: [411, 413, 58, 30], anel: [448, 405, 84], xal: [522, 350, 17]}
+      visor: [409, 411, 64, 36], anel: [448, 405, 84], xal: [522, 350, 17]}
   };
   let cenaTipo = null;
   function montaCena(t){
@@ -1471,6 +1506,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   function ir(v){
     if(!NOMES[v] || (v === 'usinas' && !ADM)) v = 'inicio';
     if(ADM && !D && ['inicio', 'geracao', 'inversores'].includes(v)) v = 'usinas';   // administração sem usina aberta: a lista
+    if(v === 'usinas' && location.hash !== '#usinas') try{ history.replaceState(null, '', '#usinas'); }catch(_){}   // endereço igual à tela
     vista = v;
     const vv = ['usinas', 'inicio', 'geracao', 'conta', 'inversores'].includes(v) ? v : 'breve';
     for(const k of ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'breve']) $('v-' + k).hidden = vv !== k;
@@ -1490,7 +1526,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   // busca na hora se a última busca tem mais de 1 min; o "há X min" anda sozinho a cada 30 s; tocar nele busca na hora.
   setInterval(() => { if(D && !document.hidden) carregar(false); }, 5 * 60000);
   setInterval(() => { if(!document.hidden) textoAtual(); }, 30000);
-  const aoVoltar = () => { if(document.hidden || !D) return; textoAtual(); if(Date.now() - ultCarga > 60000) carregar(false); };
+  const aoVoltar = () => { if(document.hidden || (!D && !ADM)) return; textoAtual(); if(Date.now() - ultCarga > 60000) carregar(false); };
   document.addEventListener('visibilitychange', aoVoltar);
   window.addEventListener('pageshow', aoVoltar); window.addEventListener('focus', aoVoltar); window.addEventListener('online', aoVoltar);
   $('atualTxt').onclick = () => { if(D) carregar(false); };
