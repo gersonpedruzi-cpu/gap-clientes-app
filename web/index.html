@@ -768,11 +768,12 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     // e embaixo as perdas e o que sobra de verdade ("real"). Perda = placas + bateria − casa − rede; só quando a conta fecha (0 a 40%)
     let invTot = null, perdaW = null;
     // fluxos do híbrido (12h25): entra placas + bateria descarregando + rede carregando a bateria; sai casa + bateria carregando + rede recebendo
-    // (08/11 13h35, Gerson) perdas e "real" SÓ no off-grid (cadastro): no on-grid e no híbrido o cliente vê a saída CA, que é o que vale
-    if(u.tipo === 'offgrid' && bat && (est === 'dia' || (est === 'noite' && Math.abs(batW || 0) > 20)) && solW != null && batW != null && casaW != null && (semRede || redeW != null)){
+    // (08/11 13h35, Gerson) perdas e "real" só no off-grid; (09/11) também no híbrido. No on-grid o cliente vê a saída CA
+    // (09/11 08h38, Gerson) no HÍBRIDO também: o inversor mostra o que processa, com perdas e real (só a saída CA parecia errada)
+    if(u.tipo !== 'ongrid' && bat && (est === 'dia' || (est === 'noite' && Math.abs(batW || 0) > 20)) && solW != null && batW != null && casaW != null && (semRede || redeW != null)){
       const sol = Math.max(0, solW), rd = semRede ? 0 : redeW, daRedeNaBat = batW < -20 && rd < 0 ? Math.min(-rd, Math.max(0, -batW - sol)) : 0;
       const tot = sol + Math.max(0, batW) + daRedeNaBat, p = sol + batW - casaW - rd;
-      if(tot > 50 && p >= 0 && p <= tot * .4){ invTot = tot; perdaW = p; } }
+      if(tot > 50 && p >= 10 && p <= tot * .4){ invTot = tot; perdaW = p; } }   // (09/11) sem perda medida (conta exata) não mostra "perdas 0,00"
     // (08/11 13h09, foto do Gerson) sem bateria a saída CA nunca passa das placas (leituras de momentos diferentes): fica igual às placas
     if(!bat && est === 'dia' && soma('wCc') != null && solW > 50 && invW != null && invW > solW) invW = solW;
     // (08/11 23h50, Gerson) EPS: a Solax manda 0 com a rede ligada (as cargas passam por dentro) → EPS 0 com rede = não sabe.
