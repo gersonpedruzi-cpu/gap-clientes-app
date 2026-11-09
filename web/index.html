@@ -123,6 +123,12 @@ h1.t{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.05;
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .card h2{display:flex;align-items:center;gap:10px;margin:0;font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-size:18px}
 .card-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+/* (09/11 16h07, Gerson) curva de dias anteriores (as leituras ficam guardadas 90 dias) */
+.dia-nav{display:flex;align-items:center;gap:6px;margin:2px 0 6px;flex-wrap:wrap}
+.dia-nav button{min-width:38px;height:38px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.dia-nav button:disabled{opacity:.35;cursor:default}
+.dia-nav input{height:38px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:inherit;font-size:15px}
+.dia-nav .dia-hoje{font-size:14px;font-weight:600;padding:0 12px;color:var(--ink)}
 .seg{display:inline-grid;grid-auto-flow:column;gap:4px;padding:4px;background:var(--bg);border:1px solid var(--line);border-radius:12px}
 .seg button{min-height:38px;padding:0 12px;border:0;border-radius:9px;background:transparent;color:var(--muted);font-size:14px;font-weight:600;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--head);color:var(--yellow)}
@@ -510,12 +516,13 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
       <div class="col">
         <div class="card">
           <div class="card-h">
-            <h2><span class="cx-ic" style="--c:#f59e0b"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-6 4 4 5-7"/></svg></span>Geração de hoje</h2>
+            <h2><span class="cx-ic" style="--c:#f59e0b"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-6 4 4 5-7"/></svg></span><span id="tDia">Geração de hoje</span></h2>
             <div class="seg" role="group" aria-label="Tipo de gráfico">
               <button type="button" id="bPot" aria-pressed="true">Potência</button>
               <button type="button" id="bEn" aria-pressed="false">Acumulado</button>
             </div>
           </div>
+          <div class="dia-nav" id="diaNav"><button type="button" id="dAnt" aria-label="Dia anterior">‹</button><input type="date" id="dCurva" aria-label="Escolher o dia da curva"><button type="button" id="dProx" aria-label="Próximo dia">›</button><button type="button" class="dia-hoje" id="dHoje" hidden>Voltar para hoje</button></div>
           <svg class="graf" id="grafDia" viewBox="0 0 340 210" role="img" aria-label="Curva de geração de hoje"></svg>
           <p class="nota-g" id="notaDia"></p>
         </div>
@@ -999,7 +1006,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     box.innerHTML = T.map(([k, um, v]) => { const xs = L.filter(x => (de(x) || 'normal') === k); if(!xs.length) return '';
       const alvo = xs.find(x => x.id !== u.id) || xs[0];
       return '<button type="button" data-resu="' + esc(alvo.id) + '" title="' + esc(xs.map(x => x.nome).join(', ')) + '">' + IC_RES[k] + '<span><b>' + xs.length + '</b> ' + (xs.length > 1 ? v : um) + '</span></button>'; }).join('');
-    box.querySelectorAll('[data-resu]').forEach(b => b.onclick = () => { if(b.dataset.resu === u.id) return; usinaSel = b.dataset.resu; idx = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); });
+    box.querySelectorAll('[data-resu]').forEach(b => b.onclick = () => { if(b.dataset.resu === u.id) return; usinaSel = b.dataset.resu; idx = null; curva = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); });
   }
   function render(){
     const u = D.usina, c = D.cliente, nome = (c.nome || '').trim().split(/\s+/)[0] || '';
@@ -1012,7 +1019,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
       ? '<label for="selUsina">Usina</label><select id="selUsina">' + D.usinas.map(x => '<option value="' + esc(x.id) + '"' + (x.id === u.id ? ' selected' : '') + '>' + esc(x.nome + (x.kwp ? ' · ' + f1(x.kwp) + ' kWp' : '')) + '</option>').join('') + '</select>'
       : '<span class="usina-nome">' + esc(u.nome + (u.cidade ? ' · ' + u.cidade : '') + (u.kwp ? ' · ' + f1(u.kwp) + ' kWp' : '')) + '</span>';
     $('admVolta').hidden = !D.admin; $('admDono').textContent = D.admin && D.dono ? 'cliente: ' + D.dono : '';
-    const sel = $('selUsina'); if(sel) sel.onchange = () => { usinaSel = sel.value; idx = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); };
+    const sel = $('selUsina'); if(sel) sel.onchange = () => { usinaSel = sel.value; idx = null; curva = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); };
     resumoUsinas(u, est);
     // faixa: só quando gerou 1% ou mais acima
     const a = D.acima;
@@ -1059,13 +1066,40 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   // ---------- gráfico do dia (leituras reais de 15 em 15 min) ----------
   const G = {W: 340, H: 210, L: 36, R: 10, T: 28, B: 26, h0: 5, h1: 19};
   const passoBom = m => { for(const s of [0.25, 0.5, 1, 2, 2.5, 5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000, 2500, 5000, 10000, 20000, 25000, 50000]) if(m / s <= 4) return s; return Math.ceil(m / 4); };
+  // (09/11 16h07, Gerson) curva de outro dia: as leituras de 15 em 15 min ficam guardadas 90 dias (desde que a usina entrou no sistema)
+  let curva = null;   // null = hoje; {dia, L} = dia escolhido
+  const somaDiaC = (d, n) => { const x = new Date(d + 'T12:00:00-03:00'); x.setDate(x.getDate() + n); return diaBR(x); };
+  const minCurva = () => { const lim = somaDiaC(diaBR(), -89), c = D && D.curvaDesde; return c && c > lim ? c : lim; };
+  function navDia(){
+    const h = diaBR(), d = curva ? curva.dia : h, mn = minCurva(), inp = $('dCurva');
+    inp.min = mn; inp.max = h; inp.value = d;
+    $('dAnt').disabled = d <= mn; $('dProx').disabled = d >= h; $('dHoje').hidden = d >= h;
+    const dd = d.split('-'); $('tDia').textContent = d >= h ? 'Geração de hoje' : 'Geração de ' + dd[2] + '/' + dd[1] + '/' + dd[0];
+  }
+  async function irDia(d){
+    const h = diaBR(), mn = minCurva(); if(!d) return; if(d > h) d = h; if(d < mn) d = mn;
+    idx = null;
+    if(d >= h){ curva = null; navDia(); grafDia(); return; }
+    curva = {dia: d, L: null}; navDia(); $('grafDia').innerHTML = '<text x="170" y="105" text-anchor="middle">Carregando…</text>'; $('notaDia').textContent = '';
+    try{ const {data, error} = await sb.functions.invoke('cliente-dados', {body: {usina: usinaSel || D.usina.id, exportar: {de: d, ate: d}}});
+      if(!curva || curva.dia !== d) return; if(error || !data || !data.ok) throw new Error('erro');
+      curva.L = data.leituras || []; }
+    catch(_){ if(curva && curva.dia === d) curva.L = []; }
+    grafDia();
+  }
+  $('dCurva').addEventListener('change', e => irDia(e.target.value));
+  $('dAnt').onclick = () => irDia(somaDiaC(curva ? curva.dia : diaBR(), -1));
+  $('dProx').onclick = () => irDia(somaDiaC(curva ? curva.dia : diaBR(), 1));
+  $('dHoje').onclick = () => irDia(diaBR());
   function pontos(){
-    return (D.hoje || []).filter(l => l.w != null || l.kwh != null).map(l => ({h: horaBR(new Date(l.em)), kw: Math.max(0, (l.w || 0) / 1000), kwh: Math.max(0, l.kwh || 0)}))
+    return ((curva ? curva.L : D.hoje) || []).filter(l => l.w != null || l.kwh != null).map(l => ({h: horaBR(new Date(l.em)), kw: Math.max(0, (l.w || 0) / 1000), kwh: Math.max(0, l.kwh || 0)}))
       .filter(p => p.h >= G.h0 - 1 && p.h <= G.h1 + 1).sort((a, b) => a.h - b.h);
   }
   function grafDia(){
     const P = pontos(), svg = $('grafDia');
-    if(P.length < 2){ svg.innerHTML = '<text x="170" y="105" text-anchor="middle">Ainda sem leituras hoje.</text>'; $('notaDia').textContent = 'A curva aparece assim que o inversor começar a mandar dados.'; return; }
+    navDia();
+    if(curva && curva.L == null) return;
+    if(P.length < 2){ svg.innerHTML = '<text x="170" y="105" text-anchor="middle">' + (curva ? 'Sem leituras guardadas neste dia.' : 'Ainda sem leituras hoje.') + '</text>'; $('notaDia').textContent = curva ? 'Escolha outro dia (as leituras ficam guardadas por 90 dias).' : 'A curva aparece assim que o inversor começar a mandar dados.'; return; }
     const val = p => modo === 'pot' ? p.kw : p.kwh;
     const mx = Math.max(...P.map(val), modo === 'pot' ? 0.5 : 1), st = passoBom(mx * 1.08), max = Math.ceil(mx * 1.08 / st) * st;
     const pw = G.W - G.L - G.R, ph = G.H - G.T - G.B, base = G.T + ph;
@@ -1086,7 +1120,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     s += '<g class="tip"><rect x="' + bx.toFixed(1) + '" y="2" width="116" height="20" rx="10"/><text x="' + (bx + 58).toFixed(1) + '" y="16" text-anchor="middle">' + txt + '</text></g>';
     svg.innerHTML = s;
     const pk = P.reduce((m, q) => q.kw > m.kw ? q : m, P[0]);
-    $('notaDia').textContent = modo === 'pot' ? 'Pico de hoje: ' + f1(pk.kw) + ' kW às ' + hhmm(pk.h) + '. Toque no gráfico para ver cada horário.' : 'Total de hoje: ' + f1(D.usina.energiaHojeKwh || P[P.length - 1].kwh) + ' kWh. Toque no gráfico para ver cada horário.';
+    $('notaDia').textContent = modo === 'pot' ? (curva ? 'Pico do dia: ' : 'Pico de hoje: ') + f1(pk.kw) + ' kW às ' + hhmm(pk.h) + '. Toque no gráfico para ver cada horário.' : (curva ? 'Total do dia: ' + f1(Math.max(...P.map(q => q.kwh))) : 'Total de hoje: ' + f1(D.usina.energiaHojeKwh || P[P.length - 1].kwh)) + ' kWh. Toque no gráfico para ver cada horário.';
   }
   function moverDia(ev){
     const P = pontos(); if(P.length < 2) return;
@@ -1430,7 +1464,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   $('admBusca').addEventListener('input', () => { clearTimeout(admT); admT = setTimeout(() => { admQ = $('admBusca').value; listaAdm(); }, 250); });
   document.addEventListener('click', ev => {
     const f = ev.target.closest('[data-admf]'); if(f){ admF = admF === f.dataset.admf ? null : f.dataset.admf; renderAdm(); return; }
-    const u = ev.target.closest('[data-admu]'); if(u){ usinaSel = u.dataset.admu; idx = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); return; }
+    const u = ev.target.closest('[data-admu]'); if(u){ usinaSel = u.dataset.admu; idx = null; curva = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); return; }
     if(ev.target.closest('#admVolta')){ usinaSel = null; if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); carregar(false); }
   });
   const NOMES = {usinas: 'Usinas', inicio: 'Minha usina', geracao: 'Geração', chamados: 'Chamados', documentos: 'Documentos', conta: 'Minha conta', inversores: 'Equipamentos'};
