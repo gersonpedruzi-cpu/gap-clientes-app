@@ -816,10 +816,10 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   // fEps inversor→caixa de baixo (cargas prioritárias) · fRede caixa de cima→poste (enviando para a rede)
   const CENAS = {
     ongrid: {w: 560, h: 419, sol: 'M282 128 C272 134 262 140 261 158 L261 196', casa: 'M222 211 L178 209',
-      rede: 'M124 188 L84 189 C66 190 51 186 50 170 L49 125 C49 115 50 104 58 98', visor: [241, 231, 40, 16], anel: [262, 225, 52], xal: [300, 196, 11], selo: [49, 140], lamp: [82, 88, 26]},
+      rede: 'M121 198 C116 192 112 189 106 189 L72 189 C60 189 51 180 51 165 L51 104 C51 92 57 86 68 85', visor: [241, 231, 40, 16], anel: [262, 225, 52], xal: [300, 196, 11], selo: [51, 140], lamp: [82, 88, 26]},
     hibrido: {w: 854, h: 878, sol: 'M498 212 C490 218 474 222 472 240 L470 336', bat: 'M479 470 L479 586', casa: 'M398 371 L321 369',
       eps: 'M437 468 L437 512 C437 536 424 546 404 546 L322 546',
-      rede: 'M219 336 L165 333 C128 332 105 312 105 280 L105 180 C105 160 106 140 112 128', visor: [440, 413, 54, 28], anel: [466, 405, 82], xal: [548, 346, 17], selo: [105, 235], lamp: [178, 118, 44]},
+      rede: 'M218 342 C210 336 205 333 196 333 L150 333 C128 333 108 318 108 296 L108 160 C108 128 118 116 140 115', visor: [440, 413, 54, 28], anel: [466, 405, 82], xal: [548, 346, 17], selo: [108, 235], lamp: [178, 118, 44]},
     offgrid: {w: 874, h: 879, sol: 'M474 213 C462 220 446 222 444 240 L443 340', bat: 'M450 472 L450 588', casa: 'M371 400 L289 398',
       visor: [411, 413, 58, 30], anel: [448, 405, 84], xal: [522, 350, 17]}
   };
@@ -897,7 +897,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     // casa: no híbrido, "Casa" = cargas comuns (caixa de cima) e "Cargas prioritárias" = EPS (caixa de baixo), cada uma só com o dado do portal.
     // Sem nenhum dos dois: um cartão "Casa" com o total (nunca divide sozinho)
     const pelo = w => w <= 20 ? (k.semRede ? 'sem energia' : 'sem consumo') : fonte === 'sol' ? (descarrega ? 'pelo sol e bateria' : 'pelo sol') : fonte === 'bat' ? 'pela bateria' : 'pela rede';
-    const hib = tipo === 'hibrido', dividido = hib && (k.epsW != null || k.comunsW != null);
+    const hib = tipo === 'hibrido', dividido = hib && k.epsW != null;   // (08/11 23h40) sem o dado da EPS não chama de "comuns" (Marco: Solax não manda a EPS)
     const casaV = dividido ? (k.semRede ? 0 : k.comunsW) : k.casaW;
     const mostraCasa = temBat && casaV != null && est !== 'offline';
     $('cCasa').hidden = !mostraCasa; $('lCasa').textContent = dividido ? 'Cargas comuns' : 'Casa';
