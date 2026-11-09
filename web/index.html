@@ -106,7 +106,7 @@ h1.t{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.05;
 .usina select:focus-visible{outline:3px solid var(--yellow);outline-offset:1px}
 .usina-nome{font-size:14px;color:var(--muted)}
 /* (09/11 13h15, Gerson) cliente com 2+ usinas: resumo no topo (bolinha verde · triângulo de alerta · bolinha vermelha com X) */
-.resU{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 14px}
+.resU{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}   /* (09/11 18h17) antes -4px: encostava no seletor da usina */
 .resU button{display:inline-flex;align-items:center;gap:7px;padding:7px 12px 7px 9px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:14px;font-weight:600;cursor:pointer;line-height:1}
 .resU button:disabled{cursor:default}
 .resU svg{width:18px;height:18px;flex:none}

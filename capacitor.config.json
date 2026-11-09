@@ -18,5 +18,10 @@
         "alert"
       ]
     }
+  },
+  "server": {
+    "url": "https://gap-controle.pages.dev/cliente/",
+    "errorPath": "sem-conexao.html",
+    "androidScheme": "https"
   }
 }
