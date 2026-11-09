@@ -854,9 +854,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   // (08/11 14h39) aviso do off-grid (função aviso-offgrid; só a usina do Adriano): mostra a conta de hoje
   function avisoOffgrid(u){
     const a = u.avisoOffgrid, box = $('avisoOg'), hoje = new Date().toLocaleDateString('en-CA', {timeZone: 'America/Sao_Paulo'});
-    const mostra = !!(a && a.dia === hoje && ['ligar', 'nao_precisa', 'ligado'].includes(a.estado));
+    const mostra = !!(a && a.dia === hoje && ['ligar', 'nao_precisa', 'ligado', 'manter', 'desligar'].includes(a.estado));
     box.hidden = !mostra; if(!mostra) return;
-    box.className = 'aviso og ' + (a.estado === 'ligar' ? 'ligar' : a.estado === 'ligado' ? 'ligado' : 'ok');
+    box.className = 'aviso og ' + (a.estado === 'ligar' ? 'ligar' : a.estado === 'ligado' || a.estado === 'manter' ? 'ligado' : 'ok');   // (09/11) manter = azul (ligado), desligar = verde
     $('ogT').textContent = a.titulo || ''; $('ogP').textContent = a.texto || '';
     const h = a.em ? new Date(a.em).toLocaleTimeString('pt-BR', {timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit'}).replace(':', 'h') : '';
     $('ogD').textContent = ['Conta das ' + h, a.socAgora != null ? 'bateria agora ' + a.socAgora + '%' : '', a.solResto != null ? 'sol no resto do dia ~' + String(a.solResto).replace('.', ',') + ' kWh' : ''].filter(Boolean).join(' · ');
