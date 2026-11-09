@@ -737,8 +737,12 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
       if(tot > 50 && p >= 0 && p <= tot * .4){ invTot = tot; perdaW = p; } }
     // (08/11 13h09, foto do Gerson) sem bateria a saída CA nunca passa das placas (leituras de momentos diferentes): fica igual às placas
     if(!bat && est === 'dia' && soma('wCc') != null && solW > 50 && invW != null && invW > solW) invW = solW;
-    return {bat, batW, semRede, capKw, invW, solW, redeW, casaW, invTot, perdaW, soc: bat ? nn(bat.soc) : null,
-      epsW: bat ? nn(bat.epsW) : null, comunsW: bat ? nn(bat.comunsW) : null, portaW: bat && !semRede ? nn(bat.portaW) : null};
+    // (08/11 23h50, Gerson) EPS: a Solax manda 0 com a rede ligada (as cargas passam por dentro) → EPS 0 com rede = não sabe.
+    // Cadastro "Tudo na EPS" (u.cargasEps): a casa inteira é EPS, a caixa de cima só passa a energia da rede.
+    let epsW = bat ? nn(bat.epsW) : null, comunsW = bat ? nn(bat.comunsW) : null, portaW = bat && !semRede ? nn(bat.portaW) : null;
+    if(epsW != null && epsW <= 20 && !semRede) epsW = null;
+    if(bat && u.cargasEps === 'tudo'){ const tot = casaW != null ? casaW : (comunsW != null ? comunsW + (epsW || 0) : epsW); epsW = tot; comunsW = tot != null ? 0 : null; portaW = null; }
+    return {bat, batW, semRede, capKw, invW, solW, redeW, casaW, invTot, perdaW, soc: bat ? nn(bat.soc) : null, epsW, comunsW, portaW};
   }
   // (08/11 15h14) avisos no celular pelo app (alarme e voltou a gerar): inscrição no e-mail do cliente, app 'cliente' (SQL 31)
   const VAPID_PUB = 'BAQRKFCYDFuDayPRVmxvuQzeNuy9T0NL8cMqfSIYUVvvq4XusgXRZV8_vd31pwQSWREgzbLf3OtsnLrttVefJIU';
@@ -899,7 +903,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const pelo = w => w <= 20 ? (k.semRede ? 'sem energia' : 'sem consumo') : fonte === 'sol' ? (descarrega ? 'pelo sol e bateria' : 'pelo sol') : fonte === 'bat' ? 'pela bateria' : 'pela rede';
     const hib = tipo === 'hibrido', dividido = hib && k.epsW != null;   // (08/11 23h40) sem o dado da EPS não chama de "comuns" (Marco: Solax não manda a EPS)
     const casaV = dividido ? (k.semRede ? 0 : k.comunsW) : k.casaW;
-    const mostraCasa = temBat && casaV != null && est !== 'offline';
+    const mostraCasa = temBat && casaV != null && est !== 'offline' && !(hib && u.cargasEps === 'tudo');   // tudo na EPS: a caixa de cima é só passagem
     $('cCasa').hidden = !mostraCasa; $('lCasa').textContent = dividido ? 'Cargas comuns' : 'Casa';
     if(mostraCasa){ $('vCasa').textContent = f2(casaV / 1000);
       $('xCasa').textContent = dividido ? (casaV <= 20 ? (k.semRede ? 'sem energia' : 'sem consumo') : fl.fCasa[0] === 1 && fl.fRede[0] !== -1 ? pelo(casaV) : 'pela rede') : pelo(casaV); }
