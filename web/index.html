@@ -262,6 +262,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .ch-op{display:flex;flex-wrap:wrap;gap:8px}.ch-op label{cursor:pointer;position:relative}.ch-op input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;pointer-events:none}
 .ch-op span{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);font-size:15px}
 .ch-op input:checked+span{background:var(--head);color:var(--yellow);border-color:var(--head);font-weight:600}.ch-op input:focus-visible+span{outline:3px solid var(--yellow);outline-offset:2px}
+.ch-agd{border-radius:14px;padding:14px;display:grid;gap:8px;margin-top:12px;border:1px solid var(--line);background:var(--panel)}.ch-agd b{font-family:var(--display);font-size:20px}.ch-agd.gap{border:2px solid var(--yellow)}.ch-agd.ok{border-color:color-mix(in srgb,var(--pos) 45%,transparent)}.ch-agd.ok b{color:var(--pos)}
+.ch-agd-b{display:flex;flex-wrap:wrap;gap:8px}.ch-agd-b>*{flex:1 1 160px}.ch-agd-f{display:grid;gap:10px;margin-top:4px}
 .ch-mult{display:block;font-weight:500;font-size:13.5px;color:var(--muted);margin-top:2px}
 .ch-arq{display:inline-flex;align-items:center;gap:6px;width:max-content;cursor:pointer}
 .ch-arqs{display:flex;flex-wrap:wrap;gap:6px}.ch-a{display:inline-flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font-size:14px;max-width:100%;overflow-wrap:anywhere}
@@ -1565,6 +1567,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   }
   document.addEventListener('click', ev => { const b = ev.target.closest('[data-ir]'); if(!b) return; const v = b.dataset.ir; if(location.hash !== '#' + v) location.hash = v; else ir(v); });
   addEventListener('hashchange', () => ir(location.hash.slice(1)));
+  // (10/11) aviso tocado: o service worker recarrega com ?av=… (tira daqui) ou manda a tela por mensagem
+  try{ if(/[?&]av=/.test(location.search)) history.replaceState(null, '', location.pathname + location.hash); }catch(_){}
+  if('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', e => { const h = e.data && e.data.abrir; if(typeof h === 'string' && /^#\w/.test(h)){ if(location.hash !== h) location.hash = h; else ir(h.slice(1)); } });
 
   // ---------- atualiza sozinho ----------
   // ATUALIZAÇÃO: com a tela aberta, busca de novo a cada 5 min; ao VOLTAR para o app/aba (ou a internet voltar),
@@ -1748,6 +1753,32 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 })();
 </script>
 <script>
+// =============== VISITA NA AGENDA DO CELULAR (10/11, Gerson) ===============
+// Visita confirmada (dia + turno/hora) → arquivo .ics (iPhone: abre o Calendário; Android/PC: a agenda do aparelho)
+// ou link do Google Agenda. Manhã = 8h–12h, Tarde = 13h–17h, "9h" = 9h–11h. Horário de Brasília (UTC−3, sem horário de verão).
+(function(raiz){
+  const pad = n => String(n).padStart(2, '0');
+  function horas(turno){ if(turno === 'Manhã') return [8, 12]; if(turno === 'Tarde') return [13, 17]; const h = parseInt(turno, 10); return isFinite(h) ? [h, Math.min(h + 2, 20)] : [8, 17]; }
+  const utc = (data, h) => { const [a, m, d] = data.split('-').map(Number), t = new Date(Date.UTC(a, m - 1, d, h + 3, 0, 0)); return `${t.getUTCFullYear()}${pad(t.getUTCMonth() + 1)}${pad(t.getUTCDate())}T${pad(t.getUTCHours())}0000Z`; };
+  const escI = s => String(s || '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+  function evento({data, turno, titulo, local, texto, uid}){
+    const [h1, h2] = horas(turno), ini = utc(data, h1), fim = utc(data, h2), agora = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+    const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//GAP Engenharia//Chamados//PT', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT', `UID:${uid || ini + '@gapengenharia'}`, `DTSTAMP:${agora}`,
+      `DTSTART:${ini}`, `DTEND:${fim}`, `SUMMARY:${escI(titulo)}`, local ? `LOCATION:${escI(local)}` : '', `DESCRIPTION:${escI(texto)}`, 'BEGIN:VALARM', 'TRIGGER:-PT1H', 'ACTION:DISPLAY', `DESCRIPTION:${escI(titulo)}`, 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].filter(Boolean).join('\r\n');
+    const google = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(titulo) + '&dates=' + ini + '/' + fim + '&details=' + encodeURIComponent(texto || '') + (local ? '&location=' + encodeURIComponent(local) : '') + '&ctz=America/Sao_Paulo';
+    return {ics, google, ini, fim};
+  }
+  // abre o .ics: no iPhone/iPad navegar para o arquivo mostra "Adicionar ao Calendário"; nos outros, baixa e abre na agenda
+  function abrirIcs(ics, nome){
+    const blob = new Blob([ics], {type: 'text/calendar;charset=utf-8'}), url = URL.createObjectURL(blob);
+    if(/iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)){ location.href = url; }
+    else { const a = document.createElement('a'); a.href = url; a.download = nome || 'visita.ics'; document.body.appendChild(a); a.click(); a.remove(); }
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  }
+  raiz.GAP_CAL = {evento, abrirIcs, horas};
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script>
 // GAP Clientes · CHAMADOS (10/11/2026, pedido do Gerson). Entra no cliente.html pelo build_cliente.py.
 // O cliente abre o chamado (9 tipos), manda fotos/contas e acompanha: Em aberto · Em andamento · Finalizados.
 // Nada trava o envio: UC, média de consumo, endereço… tudo opcional (a GAP resolve depois). Só os créditos "eu mesmo divido" pedem 100%.
@@ -1830,7 +1861,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     return `<div class="cab"><div><p class="olho">Atendimento</p><h1 class="t" id="t-chamados">Chamados</h1></div><button type="button" class="btn-p" data-chnovo>+ Abrir chamado</button></div>
       <div class="ch-abas" role="tablist">${['aberto', 'andamento', 'fim'].map(g => `<button type="button" role="tab" aria-selected="${st.grupo === g}" class="${st.grupo === g ? 'on' : ''}" data-chg="${g}">${GN[g]} <b>${cont(g)}</b></button>`).join('')}</div>
       ${st.carregando && !st.lista ? '<p class="nota-g">Buscando seus chamados…</p>' : V.length ? `<div class="ch-l">${V.map(c => { const t = TN[c.tipo] || TIPOS[0], ul = (c.historico || []).filter(h => h.quem === 'gap' && h.texto).pop();
-        return `<button type="button" class="ch-c" data-chver="${esc(c.id)}">${icone(t)}<span class="ch-cm"><b>${esc(t.n)}</b><small>Nº ${c.num} · aberto em ${dBR(c.criado_em)}${c.usina_nome ? ' · ' + esc(c.usina_nome) : ''}</small>${c.agendado_para && c.status === 'agendado' ? `<small class="ch-ag">Agendado para ${dBR(c.agendado_para)}</small>` : ''}${ul ? `<small class="ch-ult">GAP: ${esc(ul.texto.slice(0, 90))}</small>` : ''}</span>${pill(c.status)}</button>`; }).join('')}</div>`
+        return `<button type="button" class="ch-c" data-chver="${esc(c.id)}">${icone(t)}<span class="ch-cm"><b>${esc(t.n)}</b><small>Nº ${c.num} · aberto em ${dBR(c.criado_em)}${c.usina_nome ? ' · ' + esc(c.usina_nome) : ''}</small>${c.agenda && c.agenda.estado === 'confirmado' && GRUPO(c.status) !== 'fim' ? `<small class="ch-ag">Visita: ${quando(c.agenda)}</small>` : c.agenda && c.agenda.estado === 'proposta_gap' && GRUPO(c.status) !== 'fim' ? `<small class="ch-ag">A GAP sugeriu ${quando(c.agenda)}: confirme</small>` : ''}${ul ? `<small class="ch-ult">GAP: ${esc(ul.texto.slice(0, 90))}</small>` : ''}</span>${pill(c.status)}</button>`; }).join('')}</div>`
         : `<div class="ch-vazio"><p>${st.grupo === 'aberto' ? 'Nenhum chamado em aberto.' : st.grupo === 'andamento' ? 'Nenhum chamado em andamento.' : 'Nenhum chamado finalizado ainda.'}</p>${st.grupo === 'aberto' ? '<p class="nota-g">Precisa de manutenção, limpeza ou de mudar a divisão dos créditos? Toque em “Abrir chamado”.</p>' : ''}</div>`}`;
   }
   function telaTipos(){
@@ -1903,10 +1934,32 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const H = (c.historico || []).map(h => `<li class="${h.quem}"><small>${dhBR(h.em)} · ${h.quem === 'gap' ? 'GAP' : 'Você'}</small>${h.status ? `<b>${esc(h.status === 'aberto' ? 'Chamado aberto' : SN[h.status] || h.status)}${h.status === 'agendado' && c.agendado_para ? ' para ' + dBR(c.agendado_para) : ''}</b>` : ''}${h.texto ? `<p>${esc(h.texto)}</p>` : ''}</li>`).join('');
     return `<div class="cab"><div><p class="olho">Chamado nº ${c.num}</p><h1 class="t" id="t-chamados">${esc(t.n)}</h1></div><button type="button" class="btn-o" data-chvolta>Voltar</button></div>
       <div class="ch-det">${icone(t, 26)}<div>${pill(c.status)}<small>aberto em ${dBR(c.criado_em)}${c.usina_nome ? ' · ' + esc(c.usina_nome) : ''}</small>${c.status === 'agendado' && c.agendado_para ? `<p class="ch-ag">Agendado para <b>${dBR(c.agendado_para)}</b></p>` : ''}</div></div>
+      ${blocoAgenda(c, fim)}
       <h2 class="ch-h2">Andamento</h2><ol class="ch-hist">${H}</ol>
       ${fim ? '' : `<form class="ch-resp" id="chResp"><label class="ch-f"><span>Mandar mensagem para a GAP</span><textarea name="texto" rows="3" maxlength="2000" placeholder="ex.: pode vir sábado de manhã?"></textarea></label><button type="submit" class="btn-p">Enviar</button></form>`}
       <h2 class="ch-h2">O que você mandou</h2><div class="ch-dados">${linhas}${ucs}${(c.arquivos || []).length ? `<div><small>Arquivos</small><span>${c.arquivos.map(a => esc(a.nome)).join(', ')}</span></div>` : ''}</div>
       ${fim ? '' : '<button type="button" class="lnk ch-canc" data-chcanc>Cancelar este chamado</button>'}`;
+  }
+  // (10/11 23h38) visita: a GAP sugere → você confirma ou sugere outra data (manhã/tarde); confirmada → pôr na agenda do celular
+  const quando = a => a && a.data ? dBR(a.data) + (a.turno ? ` (${a.turno})` : '') : '';
+  function eventoDe(c){ const d = c.dados || {};
+    return window.GAP_CAL ? GAP_CAL.evento({data: c.agenda.data, turno: c.agenda.turno, uid: 'chamado-' + c.id + '@gapengenharia', titulo: 'Visita da GAP · ' + ((TN[c.tipo] || {}).n || 'chamado'),
+      local: d.endereco || c.usina_nome || '', texto: `Chamado nº ${c.num}. Dúvidas: GAP (31) 98510-1043.`}) : null; }
+  function blocoAgenda(c, fim){
+    const a = c.agenda; if(!a || fim) return '';
+    if(a.estado === 'confirmado'){ const ev = eventoDe(c);
+      return `<div class="ch-agd ok"><b>✓ Visita confirmada: ${esc(quando(a))}</b>${ev ? `<div class="ch-agd-b"><button type="button" class="btn-p" data-chics>📅 Pôr na minha agenda</button><a class="btn-o" href="${esc(ev.google)}" target="_blank" rel="noopener">Google Agenda</a></div>` : ''}</div>`; }
+    if(a.estado === 'proposta_cliente') return `<div class="ch-agd esp"><b>Você sugeriu: ${esc(quando(a))}</b><p class="nota-g">Aguardando a GAP confirmar. Você recebe o aviso no celular.</p></div>`;
+    return `<div class="ch-agd gap"><b>A GAP sugeriu a visita: ${esc(quando(a))}</b><p class="nota-g">Essa data fica boa para você?</p>
+      <div class="ch-agd-b"><button type="button" class="btn-y" data-chconf>Confirmar</button><button type="button" class="btn-o" data-choutra>Sugerir outra data</button></div>
+      ${st.outra === c.id ? `<form class="ch-agd-f" id="chOutra"><label class="ch-f"><span>Dia</span><input type="date" name="data" min="${new Date().toLocaleDateString('en-CA', {timeZone: 'America/Sao_Paulo'})}" required></label>
+        <fieldset class="ch-f"><legend>Turno</legend>${opc('turno', ['Manhã', 'Tarde'], false)}</fieldset><button type="submit" class="btn-p">Enviar sugestão</button></form>` : ''}</div>`;
+  }
+  async function responderAgenda(corpo){
+    try{ const r = await chamar({acao: 'agenda', id: st.ver, ...corpo});
+      if(r && r.ok){ st.lista = st.lista.map(c => c.id === st.ver ? r.chamado : c); st.outra = null; toast(corpo.resposta === 'confirmar' ? 'Visita confirmada. A GAP foi avisada.' : 'Sugestão enviada para a GAP.'); render(); }
+      else toast(r && r.erro === 'data' ? 'Escolha um dia (de hoje em diante) e o turno.' : 'Não consegui enviar.');
+    }catch(_){ toast('Não consegui enviar. Confira a internet.'); }
   }
   function render(){
     const b = box(); if(!b) return;
@@ -1968,6 +2021,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const rm = q('[data-chrm]'); if(rm){ st.arqs.splice(+rm.dataset.chrm, 1); document.getElementById('chArqs').innerHTML = listaArqs(); return; }
     if(q('[data-chucmais]')){ guardarRec(); st.rec.push({}); render(); return; }
     const ux = q('[data-chucx]'); if(ux){ guardarRec(); st.rec.splice(+ux.dataset.chucx, 1); render(); return; }
+    if(q('[data-chconf]')){ responderAgenda({resposta: 'confirmar'}); return; }
+    if(q('[data-choutra]')){ st.outra = st.outra === st.ver ? null : st.ver; render(); return; }
+    if(q('[data-chics]')){ const c = st.lista.find(x => x.id === st.ver), ev = c && eventoDe(c); if(ev) GAP_CAL.abrirIcs(ev.ics, 'Visita GAP.ics'); return; }
     if(q('[data-chcanc]')){
       const b = q('[data-chcanc]'); if(b.dataset.conf !== '1'){ b.dataset.conf = '1'; b.textContent = 'Toque de novo para confirmar o cancelamento'; return; }
       try{ const r = await chamar({acao: 'cancelar', id: st.ver}); if(r && r.ok){ st.lista = st.lista.map(c => c.id === st.ver ? r.chamado : c); toast('Chamado cancelado.'); render(); } }catch(_){ toast('Não consegui cancelar agora.'); }
@@ -1991,6 +2047,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   });
   document.addEventListener('submit', ev => {
     if(ev.target.id === 'chForm'){ ev.preventDefault(); enviar(); }
+    if(ev.target.id === 'chOutra'){ ev.preventDefault(); const f = ev.target, t = f.querySelector('input[name=turno]:checked');
+      if(!f.data.value || !t){ toast('Escolha o dia e o turno.'); return; } responderAgenda({resposta: 'sugerir', data: f.data.value, turno: t.value}); }
     if(ev.target.id === 'chResp'){ ev.preventDefault(); const tx = ev.target.texto.value.trim(); if(!tx) return; const bt = ev.target.querySelector('button'); bt.disabled = true;
       chamar({acao: 'responder', id: st.ver, texto: tx}).then(r => { if(r && r.ok){ st.lista = st.lista.map(c => c.id === st.ver ? r.chamado : c); toast('Mensagem enviada.'); render(); } else toast('Não consegui enviar.'); })
         .catch(() => toast('Não consegui enviar.')).finally(() => { bt.disabled = false; }); }
