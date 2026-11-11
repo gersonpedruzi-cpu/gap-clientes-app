@@ -257,6 +257,13 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .ch-tipos{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:14px}.ch-tp span{display:grid;gap:2px;min-width:0}
 .ch-form,.ch-resp{display:grid;gap:14px;margin-top:14px;max-width:720px}
 .ch-f{display:grid;gap:6px;border:0;padding:0;margin:0;min-width:0}.ch-f>span,.ch-f legend,.ch-sub{font-weight:600;font-size:15px;padding:0}
+.ch-f legend{margin-bottom:10px}
+.ch-dlg{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.5);display:grid;place-items:end center;padding:16px max(16px,env(safe-area-inset-left,0px)) calc(16px + env(safe-area-inset-bottom,0px))}
+.ch-dlg-c{background:var(--bg,#fff);background:var(--panel);color:var(--ink);border-radius:18px;padding:18px;display:grid;gap:12px;width:min(520px,100%)}
+.ch-opc{display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;align-items:end;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px}.ch-opc b{align-self:center;font-size:14px}
+@media (max-width:420px){.ch-opc{grid-template-columns:1fr 1fr}.ch-opc b{grid-column:1/-1}}
+.ch-dias-esc{color:var(--ink);font-size:14px;margin-top:6px}
+.ch-f legend .ch-mult{margin-top:3px}.ch-sub{margin:6px 0 4px}
 .ch-f input,.ch-f textarea,.ch-f select{font:inherit;font-size:16px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;min-width:0}
 .ch-f textarea{resize:vertical}.ch-f input:focus,.ch-f textarea:focus,.ch-f select:focus{outline:2px solid var(--yellow);border-color:transparent}
 .ch-op{display:flex;flex-wrap:wrap;gap:8px}.ch-op label{cursor:pointer;position:relative}.ch-op input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;pointer-events:none}
@@ -1791,7 +1798,11 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   const toast = m => { const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 3500); };
   const C = () => window.__cli || {};
   const DIAS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'], TURNOS = ['Manhã', 'Tarde'];
-  const TELHADO = ['Térreo', 'Sobrado (2 andares)', 'Mais alto', 'Usina no chão'];
+  // (11/11 06h55, Gerson) primeiro o TIPO de instalação; a altura só aparece se for em telhado
+  const TIPO_USINA = ['Telhado colonial (cerâmica)', 'Telhado de zinco (metálico)', 'Telhado de fibrocimento (Eternit)', 'No solo (no chão)'];
+  const ALTURA = ['Térreo', 'Sobrado (2 andares)', 'Mais alto'];
+  const NO_SOLO = 'No solo (no chão)';
+  const HORAS = ['8h', '9h', '10h', '11h', '13h', '14h', '15h', '16h', '17h'];
   // ---------- os 9 tipos (ordem do Gerson + as ideias aprovadas em 10/11)
   const TIPOS = [
     {k: 'preventiva', n: 'Manutenção preventiva', d: 'Revisão do sistema, aperto e conferência', c: '#10b981', ic: 'M9 12l2 2 4-4M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z'},
@@ -1809,12 +1820,12 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   const F = {
     preventiva: [['descricao', 't', 'O que você está precisando?', 'Conte rapidinho (ex.: faz tempo que não revisa, quero conferir antes do verão)'],
       ['ultima', 'e', 'Quando foi a última manutenção?', ['Nunca fiz', 'Menos de 1 ano', '1 a 2 anos', 'Mais de 2 anos', 'Não sei']],
-      ['telhado', 'e', 'Onde ficam as placas?', TELHADO], ['presenca', 'e', 'Precisa ter alguém em casa?', ['Sim, precisa', 'Não, podem ir sem ninguém']],
-      ['animal', 'e', 'Tem animal solto no local?', ['Tem', 'Não tem']], ['dias', 'v', 'Dias que ficam melhores', DIAS], ['turno', 'v', 'Turno', TURNOS],
+      ['instalacao', 'e', 'Tipo de instalação das placas', TIPO_USINA], ['altura', 'e', 'Altura do telhado', ALTURA, 'instalacao'], ['presenca', 'e', 'Precisa ter alguém em casa?', ['Sim, precisa', 'Não, podem ir sem ninguém']],
+      ['animal', 'e', 'Tem animal solto no local?', ['Tem', 'Não tem']], ['dias', 'd', 'Dias que ficam melhores', DIAS], ['turno', 'v', 'Turno', TURNOS],
       ['fotos', 'f', 'Fotos (opcional)', 'do inversor (o visor), do quadro de disjuntores e das placas, se conseguir']],
     limpeza: [['endereco', 'l', 'Endereço da usina', 'Rua, número, bairro, cidade'], ['placas', 'l', 'Quantas placas? (se souber)', 'ex.: 12'],
-      ['telhado', 'e', 'Onde ficam as placas?', TELHADO], ['agua', 'e', 'Tem torneira perto das placas?', ['Tem', 'Não tem', 'Não sei']],
-      ['dias', 'v', 'Dias que ficam melhores', DIAS], ['turno', 'v', 'Turno', TURNOS],
+      ['instalacao', 'e', 'Tipo de instalação das placas', TIPO_USINA], ['altura', 'e', 'Altura do telhado', ALTURA, 'instalacao'], ['agua', 'e', 'Tem torneira perto das placas?', ['Tem', 'Não tem', 'Não sei']],
+      ['dias', 'd', 'Dias que ficam melhores', DIAS], ['turno', 'v', 'Turno', TURNOS],
       ['frequencia', 'e', 'Limpeza', ['Só desta vez', 'A cada 6 meses', 'Quero que a GAP indique']], ['descricao', 't', 'Observação (opcional)', '']],
     corretiva: [['problemas', 'v', 'O que está acontecendo?', ['Parou de gerar', 'Gerando pouco', 'Alarme / luz vermelha no inversor', 'Disjuntor desarmando', 'Placa quebrada / granizo', 'Cabo solto ou danificado', 'Cheiro de queimado / fumaça', 'Barulho estranho', 'Outro']],
       ['desde', 'e', 'Desde quando?', ['Hoje', 'Esta semana', 'Mais de uma semana', 'Não sei']],
@@ -1869,8 +1880,14 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
       <div class="ch-tipos">${TIPOS.map(t => `<button type="button" class="ch-tp" data-chtipo="${t.k}">${icone(t, 24)}<span><b>${esc(t.n)}</b><small>${esc(t.d)}</small></span></button>`).join('')}</div>`;
   }
   const opc = (nome, L, multi) => `<div class="ch-op" role="${multi ? 'group' : 'radiogroup'}">${L.map(o => `<label><input type="${multi ? 'checkbox' : 'radio'}" name="${nome}" value="${esc(o)}"><span>${esc(o)}</span></label>`).join('')}</div>`;
-  function campo([k, tp, rot, x]){
+  function campo([k, tp, rot, x, depende]){
     const id = 'chf-' + k;
+    // altura: só aparece quando a instalação é em telhado
+    if(depende) return `<div data-chse="${depende}" hidden>${campo([k, tp, rot, x])}</div>`;
+    if(tp === 'd') return `<fieldset class="ch-f" data-chdias><legend>${esc(rot)}</legend><div class="ch-op">
+      <label><input type="radio" name="dias_modo" value="qualquer" checked><span>Qualquer dia</span></label>
+      <label><input type="radio" name="dias_modo" value="escolher" data-chdiasabre><span>Escolher dias…</span></label></div>
+      <input type="hidden" name="dias" value="Qualquer dia"><small class="ch-dias-esc" hidden></small></fieldset>`;
     if(tp === 't') return `<label class="ch-f"><span>${esc(rot)}</span><textarea id="${id}" name="${k}" rows="4" maxlength="4000" placeholder="${esc(x || '')}"></textarea></label>`;
     if(tp === 'l') return `<label class="ch-f"><span>${esc(rot)}</span><input id="${id}" name="${k}" maxlength="300" placeholder="${esc(x || '')}"></label>`;
     if(tp === 'e' || tp === 'v') return `<fieldset class="ch-f"><legend>${esc(rot)}${tp === 'v' ? ' <small class="ch-mult">pode marcar um ou mais</small>' : ''}</legend>${opc(k, x, tp === 'v')}</fieldset>`;
@@ -1949,16 +1966,18 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const a = c.agenda; if(!a || fim) return '';
     if(a.estado === 'confirmado'){ const ev = eventoDe(c);
       return `<div class="ch-agd ok"><b>✓ Visita confirmada: ${esc(quando(a))}</b>${ev ? `<div class="ch-agd-b"><button type="button" class="btn-p" data-chics>📅 Pôr na minha agenda</button><a class="btn-o" href="${esc(ev.google)}" target="_blank" rel="noopener">Google Agenda</a></div>` : ''}</div>`; }
-    if(a.estado === 'proposta_cliente') return `<div class="ch-agd esp"><b>Você sugeriu: ${esc(quando(a))}</b><p class="nota-g">Aguardando a GAP confirmar. Você recebe o aviso no celular.</p></div>`;
+    if(a.estado === 'proposta_cliente') return `<div class="ch-agd esp"><b>Você sugeriu: ${esc(((a.opcoes && a.opcoes.length) ? a.opcoes : [a]).map(quando).join(' ou '))}</b><p class="nota-g">Aguardando a GAP confirmar. Você recebe o aviso no celular.</p></div>`;
     return `<div class="ch-agd gap"><b>A GAP sugeriu a visita: ${esc(quando(a))}</b><p class="nota-g">Essa data fica boa para você?</p>
       <div class="ch-agd-b"><button type="button" class="btn-y" data-chconf>Confirmar</button><button type="button" class="btn-o" data-choutra>Sugerir outra data</button></div>
-      ${st.outra === c.id ? `<form class="ch-agd-f" id="chOutra"><label class="ch-f"><span>Dia</span><input type="date" name="data" min="${new Date().toLocaleDateString('en-CA', {timeZone: 'America/Sao_Paulo'})}" required></label>
-        <fieldset class="ch-f"><legend>Turno</legend>${opc('turno', ['Manhã', 'Tarde'], false)}</fieldset><button type="submit" class="btn-p">Enviar sugestão</button></form>` : ''}</div>`;
+      ${st.outra === c.id ? `<form class="ch-agd-f" id="chOutra"><p class="nota-g">Escolha o dia e a hora. Pode dar até 3 opções: a GAP confirma uma delas.</p>
+        ${Array.from({length: st.nOpc || 1}, (_, i) => `<div class="ch-opc"><b>Opção ${i + 1}</b><label class="ch-f"><span>Dia</span><input type="date" name="data${i}" min="${new Date().toLocaleDateString('en-CA', {timeZone: 'America/Sao_Paulo'})}"></label>
+          <label class="ch-f"><span>Hora</span><select name="hora${i}"><option value="">—</option>${HORAS.map(h => `<option>${h}</option>`).join('')}</select></label></div>`).join('')}
+        ${(st.nOpc || 1) < 3 ? '<button type="button" class="btn-o" data-chopcmais>+ Outra opção</button>' : ''}<button type="submit" class="btn-p">Enviar sugestão</button></form>` : ''}</div>`;
   }
   async function responderAgenda(corpo){
     try{ const r = await chamar({acao: 'agenda', id: st.ver, ...corpo});
-      if(r && r.ok){ st.lista = st.lista.map(c => c.id === st.ver ? r.chamado : c); st.outra = null; toast(corpo.resposta === 'confirmar' ? 'Visita confirmada. A GAP foi avisada.' : 'Sugestão enviada para a GAP.'); render(); }
-      else toast(r && r.erro === 'data' ? 'Escolha um dia (de hoje em diante) e o turno.' : 'Não consegui enviar.');
+      if(r && r.ok){ st.lista = st.lista.map(c => c.id === st.ver ? r.chamado : c); st.outra = null; st.nOpc = 1; toast(corpo.resposta === 'confirmar' ? 'Visita confirmada. A GAP foi avisada.' : 'Sugestão enviada para a GAP.'); render(); }
+      else toast(r && r.erro === 'data' ? 'Escolha dia (de hoje em diante) e hora em cada opção.' : 'Não consegui enviar.');
     }catch(_){ toast('Não consegui enviar. Confira a internet.'); }
   }
   function render(){
@@ -1989,8 +2008,10 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   function lerForm(){
     const fm = document.getElementById('chForm'), o = {};
     fm.querySelectorAll('textarea[name],input[name]:not([type=radio]):not([type=checkbox]):not([type=file]),select[name]').forEach(e => { if(e.name !== 'usina' && e.value.trim()) o[e.name] = e.value.trim(); });
-    const nomes = new Set([...fm.querySelectorAll('input[type=radio],input[type=checkbox]')].map(e => e.name).filter(n => n !== 'modo'));
+    const nomes = new Set([...fm.querySelectorAll('input[type=radio],input[type=checkbox]')].map(e => e.name).filter(n => n !== 'modo' && n !== 'dias_modo' && n !== 'diasp'));
     nomes.forEach(n => { const L = [...fm.querySelectorAll(`input[name="${n}"]:checked`)].map(e => e.value); const multi = fm.querySelector(`input[name="${n}"]`).type === 'checkbox'; if(L.length) o[n] = multi ? L : L[0]; });
+    if(o.dias) o.dias = o.dias.split(', ').filter(Boolean);
+    if(o.instalacao === NO_SOLO) delete o.altura;
     if(st.tipo === 'creditos'){ guardarRec(); o.modo = st.modo || 'naosei'; const R = st.rec.map(r => ({uc: (r.uc || '').trim(), quem: (r.quem || '').trim(), cpf: (r.cpf || '').trim(), email: (r.email || '').trim(), consumo: (r.consumo || '').trim(), pct: (r.pct || '').trim().replace(',', '.')}));
       o.geradora = R[0] || {}; o.receptoras = R.slice(1); }
     return {dados: o, usina: (fm.querySelector('select[name=usina]') || {}).value || (C().usinaSel && C().usinaSel()) || (C().D && C().D() && C().D().usina ? C().D().usina.id : null)};
@@ -2009,6 +2030,15 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     }catch(e){ toast('Não consegui enviar. Confira a internet e tente de novo.'); }
     finally{ st.enviando = false; render(); window.scrollTo(0, 0); }
   }
+  // ---------- (11/11) janela para escolher os dias (a maioria deixa "Qualquer dia")
+  function abrirDias(fs){
+    const atuais = (fs.querySelector('input[name=dias]').value || '').split(', ');
+    const d = document.createElement('div'); d.id = 'chDiasDlg'; d.className = 'ch-dlg'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); d.setAttribute('aria-labelledby', 'chDiasT');
+    d.innerHTML = `<div class="ch-dlg-c"><h2 id="chDiasT" class="ch-h2">Quais dias ficam bons?</h2><p class="nota-g">Marque um ou mais.</p><div class="ch-op">${DIAS.map(x => `<label><input type="checkbox" name="diasp" value="${x}" ${atuais.includes(x) ? 'checked' : ''}><span>${x}</span></label>`).join('')}</div>
+      <div class="ch-agd-b"><button type="button" class="btn-o" data-chdiasx>Cancelar</button><button type="button" class="btn-p" data-chdiasok>Pronto</button></div></div>`;
+    box().appendChild(d); const p = d.querySelector('input'); if(p) p.focus();
+  }
+  function fecharDias(){ const d = document.getElementById('chDiasDlg'); if(d) d.remove(); }
   // ---------- eventos (a tela é toda desenhada aqui dentro)
   document.addEventListener('click', async ev => {
     const raiz = box(); if(!raiz || !raiz.contains(ev.target)) return;
@@ -2022,7 +2052,15 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     if(q('[data-chucmais]')){ guardarRec(); st.rec.push({}); render(); return; }
     const ux = q('[data-chucx]'); if(ux){ guardarRec(); st.rec.splice(+ux.dataset.chucx, 1); render(); return; }
     if(q('[data-chconf]')){ responderAgenda({resposta: 'confirmar'}); return; }
-    if(q('[data-choutra]')){ st.outra = st.outra === st.ver ? null : st.ver; render(); return; }
+    if(q('[data-choutra]')){ st.outra = st.outra === st.ver ? null : st.ver; st.nOpc = 1; render(); return; }
+    if(q('[data-chopcmais]')){ const f = document.getElementById('chOutra'), v = f ? [...f.querySelectorAll('input,select')].map(e => [e.name, e.value]) : [];
+      st.nOpc = Math.min(3, (st.nOpc || 1) + 1); render(); const g = document.getElementById('chOutra'); if(g) v.forEach(([n, x]) => { if(g[n]) g[n].value = x; }); return; }
+    if(ev.target.matches && ev.target.matches('input[data-chdiasabre]') && !document.getElementById('chDiasDlg')){ abrirDias(ev.target.closest('[data-chdias]')); return; }
+    if(q('[data-chdiasok]')){ const dlg = document.getElementById('chDiasDlg'), L = [...dlg.querySelectorAll('input:checked')].map(e => e.value);
+      const fs = raiz.querySelector('[data-chdias]'); fecharDias(); if(!fs) return;
+      if(!L.length){ fs.querySelector('input[value=qualquer]').checked = true; fs.querySelector('input[name=dias]').value = 'Qualquer dia'; const sm = fs.querySelector('.ch-dias-esc'); sm.hidden = true; return; }
+      fs.querySelector('input[name=dias]').value = L.join(', '); const sm = fs.querySelector('.ch-dias-esc'); sm.hidden = false; sm.textContent = 'Dias escolhidos: ' + L.join(', ') + ' (toque em "Escolher dias…" para mudar)'; return; }
+    if(q('[data-chdiasx]')){ const fs = raiz.querySelector('[data-chdias]'); fecharDias(); if(fs && fs.querySelector('input[name=dias]').value === 'Qualquer dia') fs.querySelector('input[value=qualquer]').checked = true; return; }
     if(q('[data-chics]')){ const c = st.lista.find(x => x.id === st.ver), ev = c && eventoDe(c); if(ev) GAP_CAL.abrirIcs(ev.ics, 'Visita GAP.ics'); return; }
     if(q('[data-chcanc]')){
       const b = q('[data-chcanc]'); if(b.dataset.conf !== '1'){ b.dataset.conf = '1'; b.textContent = 'Toque de novo para confirmar o cancelamento'; return; }
@@ -2031,6 +2069,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   });
   document.addEventListener('change', async ev => {
     const raiz = box(); if(!raiz || !raiz.contains(ev.target)) return;
+    if(ev.target.name === 'instalacao'){ raiz.querySelectorAll('[data-chse="instalacao"]').forEach(d => { d.hidden = ev.target.value === NO_SOLO; }); return; }
+    if(ev.target.name === 'dias_modo'){ const fs = ev.target.closest('[data-chdias]');
+      if(ev.target.value === 'qualquer'){ fs.querySelector('input[name=dias]').value = 'Qualquer dia'; fs.querySelector('.ch-dias-esc').hidden = true; } return; }
     if(ev.target.matches('[data-chmodo]')){ guardarRec(); st.modo = ev.target.value; render(); return; }
     if(ev.target.matches('input[name=problemas]')){ const u = document.getElementById('chUrg'); if(u) u.hidden = ![...raiz.querySelectorAll('input[name=problemas]:checked')].some(e => /fuma|queim/i.test(e.value)); }
     if(ev.target.matches('[data-charq]')){
@@ -2047,8 +2088,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   });
   document.addEventListener('submit', ev => {
     if(ev.target.id === 'chForm'){ ev.preventDefault(); enviar(); }
-    if(ev.target.id === 'chOutra'){ ev.preventDefault(); const f = ev.target, t = f.querySelector('input[name=turno]:checked');
-      if(!f.data.value || !t){ toast('Escolha o dia e o turno.'); return; } responderAgenda({resposta: 'sugerir', data: f.data.value, turno: t.value}); }
+    if(ev.target.id === 'chOutra'){ ev.preventDefault(); const f = ev.target, ops = [];
+      for(let i = 0; i < (st.nOpc || 1); i++){ const d = f['data' + i].value, h = f['hora' + i].value; if(d || h){ if(!d || !h){ toast('Na opção ' + (i + 1) + ', escolha o dia e a hora.'); return; } ops.push({data: d, turno: h}); } }
+      if(!ops.length){ toast('Escolha o dia e a hora.'); return; } responderAgenda({resposta: 'sugerir', opcoes: ops}); }
     if(ev.target.id === 'chResp'){ ev.preventDefault(); const tx = ev.target.texto.value.trim(); if(!tx) return; const bt = ev.target.querySelector('button'); bt.disabled = true;
       chamar({acao: 'responder', id: st.ver, texto: tx}).then(r => { if(r && r.ok){ st.lista = st.lista.map(c => c.id === st.ver ? r.chamado : c); toast('Mensagem enviada.'); render(); } else toast('Não consegui enviar.'); })
         .catch(() => toast('Não consegui enviar.')).finally(() => { bt.disabled = false; }); }
