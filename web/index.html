@@ -1853,6 +1853,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const linha = (r, i) => `<div class="ch-uc" data-uci="${i}"><div class="ch-uc-h"><b>${i === 0 ? 'Geradora (onde estão as placas)' : 'Receptora ' + i}</b>${i > 0 ? `<button type="button" class="lnk" data-chucx="${i}">tirar</button>` : ''}</div>
       <div class="ch-uc-g"><label class="ch-f"><span>Nº da UC / instalação (se souber)</span><input data-uck="uc" value="${esc(r.uc || '')}" inputmode="numeric" placeholder="está na conta de luz"></label>
       ${i > 0 ? `<label class="ch-f"><span>Quem / onde</span><input data-uck="quem" value="${esc(r.quem || '')}" placeholder="ex.: casa da minha mãe, loja"></label>` : ''}
+      <label class="ch-f"><span>CPF ou CNPJ do titular da conta</span><input data-uck="cpf" value="${esc(r.cpf || '')}" inputmode="numeric" maxlength="18" placeholder="só números"></label>
+      <label class="ch-f"><span>E-mail para receber a fatura</span><input data-uck="email" type="email" value="${esc(r.email || '')}" maxlength="120" placeholder="nome@email.com"></label>
       ${gap ? `<label class="ch-f"><span>Consumo médio (kWh/mês), se souber</span><input data-uck="consumo" value="${esc(r.consumo || '')}" inputmode="decimal"></label>` : ''}
       ${eu ? `<label class="ch-f ch-pct"><span>%</span><input data-uck="pct" value="${esc(r.pct || '')}" inputmode="decimal" placeholder="0"></label>` : ''}</div></div>`;
     const soma = st.rec.reduce((t, r) => t + (parseFloat(String(r.pct || '').replace(',', '.')) || 0), 0);
@@ -1865,7 +1867,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
       ${st.modo ? `<div class="ch-ucs">${st.rec.map(linha).join('')}</div><button type="button" class="btn-o" data-chucmais>+ Adicionar receptora</button>
       ${eu ? `<p class="ch-soma ${Math.abs(soma - 100) <= 0.05 ? 'ok' : 'al'}" id="chSoma">Total: <b>${String(Math.round(soma * 100) / 100).replace('.', ',')}%</b>${Math.abs(soma - 100) <= 0.05 ? ' ✓' : ' — precisa dar 100%'}</p><p class="nota-g">A geradora pode ficar com 0% se ela mesma já gasta tudo o que precisa.</p>` : ''}
       ${gap ? '<p class="nota-g">Mande o consumo de cada uma, ou fotos/PDF das contas de luz, ou só descreva: o que você tiver. A GAP faz a conta e te mostra antes de pedir na distribuidora.</p>' : ''}
-      <p class="nota-g">Não sabe o número da UC? Pode deixar em branco e mandar foto da conta ou explicar abaixo.</p>` : ''}
+      <p class="nota-g">A EDP pede, de cada conta: CPF ou CNPJ do titular, nº da UC (está na conta de luz) e o e-mail para receber a fatura. Não sabe algum? Pode deixar em branco e mandar foto da conta ou explicar abaixo.</p>` : ''}
       ${campo(['descricao', 't', 'Observação (opcional)', ''])}${campo(['fotos', 'f', 'Contas de luz (opcional)', 'fotos ou PDF das contas das unidades'])}`;
   }
   function telaForm(){
@@ -1896,7 +1898,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const linhas = Object.entries(d).filter(([k, v]) => v !== '' && v != null && !(Array.isArray(v) && !v.length) && !['nome', 'modo', 'geradora', 'receptoras'].includes(k)).map(([k, v]) => {
       const rot = ((F[c.tipo] || []).find(f => f[0] === k) || [])[2] || {telefone: 'Telefone', horario: 'Melhor horário', usina: 'Usina', descricao: 'Observação'}[k] || k;
       return `<div><small>${esc(rot)}</small><span>${esc(Array.isArray(v) ? v.join(', ') : v)}</span></div>`; }).join('');
-    const ucs = c.tipo === 'creditos' ? [d.geradora, ...(d.receptoras || [])].filter(Boolean).map((r, i) => `<div><small>${i === 0 ? 'Geradora' : 'Receptora ' + i}</small><span>${esc([r.uc, r.quem, r.consumo ? r.consumo + ' kWh' : '', r.pct !== '' && r.pct != null ? r.pct + '%' : ''].filter(Boolean).join(' · ') || '—')}</span></div>`).join('') : '';
+    const ucs = c.tipo === 'creditos' ? [d.geradora, ...(d.receptoras || [])].filter(Boolean).map((r, i) => `<div><small>${i === 0 ? 'Geradora' : 'Receptora ' + i}</small><span>${esc([r.uc, r.quem, r.cpf, r.email, r.consumo ? r.consumo + ' kWh' : '', r.pct !== '' && r.pct != null ? r.pct + '%' : ''].filter(Boolean).join(' · ') || '—')}</span></div>`).join('') : '';
     const H = (c.historico || []).map(h => `<li class="${h.quem}"><small>${dhBR(h.em)} · ${h.quem === 'gap' ? 'GAP' : 'Você'}</small>${h.status ? `<b>${esc(h.status === 'aberto' ? 'Chamado aberto' : SN[h.status] || h.status)}${h.status === 'agendado' && c.agendado_para ? ' para ' + dBR(c.agendado_para) : ''}</b>` : ''}${h.texto ? `<p>${esc(h.texto)}</p>` : ''}</li>`).join('');
     return `<div class="cab"><div><p class="olho">Chamado nº ${c.num}</p><h1 class="t" id="t-chamados">${esc(t.n)}</h1></div><button type="button" class="btn-o" data-chvolta>Voltar</button></div>
       <div class="ch-det">${icone(t, 26)}<div>${pill(c.status)}<small>aberto em ${dBR(c.criado_em)}${c.usina_nome ? ' · ' + esc(c.usina_nome) : ''}</small>${c.status === 'agendado' && c.agendado_para ? `<p class="ch-ag">Agendado para <b>${dBR(c.agendado_para)}</b></p>` : ''}</div></div>
@@ -1935,7 +1937,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     fm.querySelectorAll('textarea[name],input[name]:not([type=radio]):not([type=checkbox]):not([type=file]),select[name]').forEach(e => { if(e.name !== 'usina' && e.value.trim()) o[e.name] = e.value.trim(); });
     const nomes = new Set([...fm.querySelectorAll('input[type=radio],input[type=checkbox]')].map(e => e.name).filter(n => n !== 'modo'));
     nomes.forEach(n => { const L = [...fm.querySelectorAll(`input[name="${n}"]:checked`)].map(e => e.value); const multi = fm.querySelector(`input[name="${n}"]`).type === 'checkbox'; if(L.length) o[n] = multi ? L : L[0]; });
-    if(st.tipo === 'creditos'){ guardarRec(); o.modo = st.modo || 'naosei'; const R = st.rec.map(r => ({uc: (r.uc || '').trim(), quem: (r.quem || '').trim(), consumo: (r.consumo || '').trim(), pct: (r.pct || '').trim().replace(',', '.')}));
+    if(st.tipo === 'creditos'){ guardarRec(); o.modo = st.modo || 'naosei'; const R = st.rec.map(r => ({uc: (r.uc || '').trim(), quem: (r.quem || '').trim(), cpf: (r.cpf || '').trim(), email: (r.email || '').trim(), consumo: (r.consumo || '').trim(), pct: (r.pct || '').trim().replace(',', '.')}));
       o.geradora = R[0] || {}; o.receptoras = R.slice(1); }
     return {dados: o, usina: (fm.querySelector('select[name=usina]') || {}).value || (C().usinaSel && C().usinaSel()) || (C().D && C().D() && C().D().usina ? C().D().usina.id : null)};
   }
