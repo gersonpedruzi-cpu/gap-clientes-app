@@ -1,4 +1,4 @@
-// GAP Clientes · service worker só para os avisos no celular (não guarda páginas em cache) · v2 10/11
+// GAP Clientes · service worker só para os avisos no celular (não guarda páginas em cache) · v3 11/11
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
 self.addEventListener('push', e => {

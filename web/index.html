@@ -818,13 +818,14 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
       }
       // (09/11) Gerson/Adriano sem usina aberta: a lista das usinas que acompanham (resumo + busca)
       if(data && data.lista){ ADM = data; usinaSel = null; ultCarga = Date.now(); menu(true); tela('app'); pedirResumo();
-        if(vista !== 'usinas'){ if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); } else renderAdm(); return; }
+        if(!['usinas', 'chamados', 'conta'].includes(vista)){ if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); } else if(vista === 'usinas') renderAdm(); else ir(vista); return; }
       const trocou = !D || !D.usina || D.usina.id !== data.usina.id;
       D = data; ultCarga = Date.now(); usinaSel = D.usina.id; try{ if(!D.admin) localStorage.setItem('gapcli-usina', usinaSel); }catch(_){}
       if(D.admin){ if(!ADM) ADM = {admin: D.admin, lista: []}; menu(true); if(vista === 'usinas'){ if(location.hash !== '#inicio') location.hash = 'inicio'; else ir('inicio'); } }   // (09/11 16h47) endereço já em #inicio: abre direto (antes ficava na lista)
       // (08/11 13h12) off-grid (cadastro da GAP): a economia abre pelo consumo; on-grid e híbrido, pela geração. O cliente troca no botão
       if(trocou) modoG = D.usina.tipo === 'offgrid' && D.temConsumo ? 'cons' : 'ger';
       tela('app'); render();
+      if(vista === 'chamados' && window.GAP_CH_CLI) GAP_CH_CLI.abrir(true);   // (11/11) aberto pelo aviso: busca de novo agora que o login está pronto
     }catch(e){
       if(D){ toast('Sem conexão agora. Mostrando os últimos dados.'); }
       else { tela('sem'); $('sem-t').textContent = 'Não foi possível carregar a sua usina'; $('sem-p').textContent = 'Verifique a internet e tente de novo. Se continuar, fale com a GAP.'; }
@@ -1557,6 +1558,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   });
   const NOMES = {usinas: 'Usinas', inicio: 'Minha usina', geracao: 'Geração', chamados: 'Chamados', documentos: 'Documentos', conta: 'Minha conta', inversores: 'Equipamentos'};
   function ir(v){
+    // (11/11) aviso de chamado: #chamado=ID abre a lista e já o chamado
+    const mch = String(v || '').match(/^chamado=([\w-]{1,64})$/); if(mch){ v = 'chamados'; if(window.GAP_CH_CLI) GAP_CH_CLI.verDepois(mch[1]); }
     if(!NOMES[v] || (v === 'usinas' && !ADM)) v = 'inicio';
     if(ADM && !D && ['inicio', 'geracao', 'inversores'].includes(v)) v = 'usinas';   // administração sem usina aberta: a lista
     if(v === 'usinas' && location.hash !== '#usinas') try{ history.replaceState(null, '', '#usinas'); }catch(_){}   // endereço igual à tela
@@ -1857,11 +1860,14 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     return data;
   }
   async function carregar(){
-    st.carregando = true; render();
-    try{ const r = await chamar({acao: 'listar'}); st.lista = r && r.ok ? r.chamados : []; }
-    catch(e){ st.lista = st.lista || []; toast('Não foi possível buscar os chamados. Confira a internet.'); }
+    if(st.carregando) return; st.carregando = true; st.erro = false; render();
+    // (11/11, iPhone: aberto pelo aviso ficava parado) espera o login voltar antes de buscar
+    try{ const sb = C().sb && C().sb(); if(sb){ for(let i = 0; i < 20; i++){ const {data} = await sb.auth.getSession(); if(data && data.session) break; await new Promise(r => setTimeout(r, 250)); } } }catch(_){}
+    try{ const r = await chamar({acao: 'listar'}); if(!r || !r.ok) throw new Error((r && r.erro) || 'erro'); st.lista = r.chamados; }
+    catch(e){ st.erro = true; st.lista = st.lista || null; }
     st.carregando = false;
-    if(st.lista.length && !st.lista.some(c => GRUPO(c.status) === st.grupo)) st.grupo = ['aberto', 'andamento', 'fim'].find(g => st.lista.some(c => GRUPO(c.status) === g)) || 'aberto';
+    if(st.verDepois && st.lista && st.lista.some(c => c.id === st.verDepois)){ st.ver = st.verDepois; st.tela = 'ver'; st.verDepois = null; }
+    if(st.lista && st.lista.length && st.tela !== 'ver' && !st.lista.some(c => GRUPO(c.status) === st.grupo)) st.grupo = ['aberto', 'andamento', 'fim'].find(g => st.lista.some(c => GRUPO(c.status) === g)) || 'aberto';
     render();
   }
   const icone = (t, tam = 22) => `<span class="ch-ic" style="--c:${t.c}"><svg viewBox="0 0 24 24" width="${tam}" height="${tam}"><path d="${t.ic}"/></svg></span>`;
@@ -1871,7 +1877,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const L = st.lista || [], cont = g => L.filter(c => GRUPO(c.status) === g).length, V = L.filter(c => GRUPO(c.status) === st.grupo);
     return `<div class="cab"><div><p class="olho">Atendimento</p><h1 class="t" id="t-chamados">Chamados</h1></div><button type="button" class="btn-p" data-chnovo>+ Abrir chamado</button></div>
       <div class="ch-abas" role="tablist">${['aberto', 'andamento', 'fim'].map(g => `<button type="button" role="tab" aria-selected="${st.grupo === g}" class="${st.grupo === g ? 'on' : ''}" data-chg="${g}">${GN[g]} <b>${cont(g)}</b></button>`).join('')}</div>
-      ${st.carregando && !st.lista ? '<p class="nota-g">Buscando seus chamados…</p>' : V.length ? `<div class="ch-l">${V.map(c => { const t = TN[c.tipo] || TIPOS[0], ul = (c.historico || []).filter(h => h.quem === 'gap' && h.texto).pop();
+      ${!st.lista && st.erro ? '<div class="ch-vazio"><p>Não consegui buscar seus chamados agora.</p><button type="button" class="btn-p" data-chrecarregar>Tentar de novo</button></div>' : !st.lista ? '<p class="nota-g">Buscando seus chamados…</p>' : V.length ? `<div class="ch-l">${V.map(c => { const t = TN[c.tipo] || TIPOS[0], ul = (c.historico || []).filter(h => h.quem === 'gap' && h.texto).pop();
         return `<button type="button" class="ch-c" data-chver="${esc(c.id)}">${icone(t)}<span class="ch-cm"><b>${esc(t.n)}</b><small>Nº ${c.num} · aberto em ${dBR(c.criado_em)}${c.usina_nome ? ' · ' + esc(c.usina_nome) : ''}</small>${c.agenda && c.agenda.estado === 'confirmado' && GRUPO(c.status) !== 'fim' ? `<small class="ch-ag">Visita: ${quando(c.agenda)}</small>` : c.agenda && c.agenda.estado === 'proposta_gap' && GRUPO(c.status) !== 'fim' ? `<small class="ch-ag">A GAP sugeriu ${quando(c.agenda)}: confirme</small>` : ''}${ul ? `<small class="ch-ult">GAP: ${esc(ul.texto.slice(0, 90))}</small>` : ''}</span>${pill(c.status)}</button>`; }).join('')}</div>`
         : `<div class="ch-vazio"><p>${st.grupo === 'aberto' ? 'Nenhum chamado em aberto.' : st.grupo === 'andamento' ? 'Nenhum chamado em andamento.' : 'Nenhum chamado finalizado ainda.'}</p>${st.grupo === 'aberto' ? '<p class="nota-g">Precisa de manutenção, limpeza ou de mudar a divisão dos créditos? Toque em “Abrir chamado”.</p>' : ''}</div>`}`;
   }
@@ -2043,6 +2049,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   document.addEventListener('click', async ev => {
     const raiz = box(); if(!raiz || !raiz.contains(ev.target)) return;
     const q = s => ev.target.closest(s);
+    if(q('[data-chrecarregar]')){ carregar(); return; }
     if(q('[data-chnovo]')){ st.tela = 'tipos'; render(); window.scrollTo(0, 0); return; }
     if(q('[data-chvolta]')){ st.tela = 'lista'; st.ver = null; render(); return; }
     const g = q('[data-chg]'); if(g){ st.grupo = g.dataset.chg; render(); return; }
@@ -2096,7 +2103,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
         .catch(() => toast('Não consegui enviar.')).finally(() => { bt.disabled = false; }); }
   });
   window.GAP_CH_CLI = {
-    abrir(){ if(st.tela === 'form' || st.tela === 'tipos') { render(); return; } st.tela = st.tela === 'ver' ? 'ver' : 'lista'; render(); carregar(); },
+    abrir(forcar){ if(!forcar && (st.tela === 'form' || st.tela === 'tipos')){ render(); return; } if(st.tela !== 'form' && st.tela !== 'tipos') st.tela = st.tela === 'ver' ? 'ver' : 'lista'; render(); carregar(); },
+    verDepois(id){ st.verDepois = id; },
     _st: st, _TIPOS: TIPOS,
   };
 })();
