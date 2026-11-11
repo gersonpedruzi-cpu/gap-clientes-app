@@ -262,6 +262,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .ch-op{display:flex;flex-wrap:wrap;gap:8px}.ch-op label{cursor:pointer;position:relative}.ch-op input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;pointer-events:none}
 .ch-op span{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);font-size:15px}
 .ch-op input:checked+span{background:var(--head);color:var(--yellow);border-color:var(--head);font-weight:600}.ch-op input:focus-visible+span{outline:3px solid var(--yellow);outline-offset:2px}
+.ch-mult{display:block;font-weight:500;font-size:13.5px;color:var(--muted);margin-top:2px}
 .ch-arq{display:inline-flex;align-items:center;gap:6px;width:max-content;cursor:pointer}
 .ch-arqs{display:flex;flex-wrap:wrap;gap:6px}.ch-a{display:inline-flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font-size:14px;max-width:100%;overflow-wrap:anywhere}
 .ch-a small{color:var(--muted)}.ch-a button{border:0;background:none;color:var(--neg);font-size:20px;cursor:pointer;line-height:1;padding:0 4px}
@@ -1841,7 +1842,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const id = 'chf-' + k;
     if(tp === 't') return `<label class="ch-f"><span>${esc(rot)}</span><textarea id="${id}" name="${k}" rows="4" maxlength="4000" placeholder="${esc(x || '')}"></textarea></label>`;
     if(tp === 'l') return `<label class="ch-f"><span>${esc(rot)}</span><input id="${id}" name="${k}" maxlength="300" placeholder="${esc(x || '')}"></label>`;
-    if(tp === 'e' || tp === 'v') return `<fieldset class="ch-f"><legend>${esc(rot)}</legend>${opc(k, x, tp === 'v')}</fieldset>`;
+    if(tp === 'e' || tp === 'v') return `<fieldset class="ch-f"><legend>${esc(rot)}${tp === 'v' ? ' <small class="ch-mult">pode marcar um ou mais</small>' : ''}</legend>${opc(k, x, tp === 'v')}</fieldset>`;
     if(tp === 'f') return `<div class="ch-f"><span>${esc(rot)}</span><small class="nota-g">${esc(x || '')}</small>
       <label class="btn-o ch-arq"><input type="file" accept="image/*,application/pdf" multiple data-charq hidden>📎 Escolher fotos ou PDF</label><div class="ch-arqs" id="chArqs">${listaArqs()}</div></div>`;
     return '';
