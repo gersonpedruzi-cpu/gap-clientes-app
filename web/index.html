@@ -239,6 +239,46 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .btn-p{min-height:46px;border:0;border-radius:10px;background:var(--head);color:var(--yellow);font-family:var(--display);font-size:18px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;padding:0 18px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
 .btn-o{min-height:46px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font-size:15px;font-weight:600;cursor:pointer;padding:0 16px}
 .btn-p:focus-visible,.btn-o:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+/* (10/11) CHAMADOS */
+.ch-ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c)}
+.ch-ic svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ch-abas{display:flex;gap:6px;margin:14px 0 12px;overflow-x:auto}
+.ch-abas button{flex:none;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:600;cursor:pointer;min-height:42px}
+.ch-abas button b{margin-left:4px;color:var(--muted);font-variant-numeric:tabular-nums}.ch-abas button.on{background:var(--head);color:var(--yellow);border-color:var(--head)}.ch-abas button.on b{color:var(--yellow)}
+.ch-l{display:grid;gap:10px}
+.ch-c,.ch-tp{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0;width:100%}
+.ch-c:hover,.ch-tp:hover{border-color:var(--sol)}.ch-c:focus-visible,.ch-tp:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.ch-cm{flex:1;min-width:0;display:grid;gap:2px}.ch-cm b,.ch-tp b{font-family:var(--display);font-size:19px}.ch-cm small,.ch-tp small{color:var(--muted);font-size:13.5px;overflow-wrap:anywhere}
+.ch-ag{color:#1d4ed8!important;font-weight:600}.ch-ult{color:var(--ink)!important}
+.ch-st{flex:none;font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 10px;white-space:nowrap;background:color-mix(in srgb,#f59e0b 18%,transparent);color:#b45309}
+.ch-st.andamento,.ch-st.agendado{background:color-mix(in srgb,#3b82f6 16%,transparent);color:#1d4ed8}.ch-st.concluido{background:color-mix(in srgb,var(--pos) 15%,transparent);color:var(--pos)}.ch-st.cancelado{background:color-mix(in srgb,var(--muted) 16%,transparent);color:var(--muted)}
+@media (prefers-color-scheme: dark){.ch-st.andamento,.ch-st.agendado,.ch-ag{color:#93c5fd!important}.ch-st{color:#fbbf24}}
+.ch-vazio{background:var(--panel);border:1px dashed var(--line);border-radius:14px;padding:18px;display:grid;gap:6px}.ch-vazio p{margin:0}
+.ch-tipos{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:14px}.ch-tp span{display:grid;gap:2px;min-width:0}
+.ch-form,.ch-resp{display:grid;gap:14px;margin-top:14px;max-width:720px}
+.ch-f{display:grid;gap:6px;border:0;padding:0;margin:0;min-width:0}.ch-f>span,.ch-f legend,.ch-sub{font-weight:600;font-size:15px;padding:0}
+.ch-f input,.ch-f textarea,.ch-f select{font:inherit;font-size:16px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;min-width:0}
+.ch-f textarea{resize:vertical}.ch-f input:focus,.ch-f textarea:focus,.ch-f select:focus{outline:2px solid var(--yellow);border-color:transparent}
+.ch-op{display:flex;flex-wrap:wrap;gap:8px}.ch-op label{cursor:pointer;position:relative}.ch-op input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;pointer-events:none}
+.ch-op span{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);font-size:15px}
+.ch-op input:checked+span{background:var(--head);color:var(--yellow);border-color:var(--head);font-weight:600}.ch-op input:focus-visible+span{outline:3px solid var(--yellow);outline-offset:2px}
+.ch-arq{display:inline-flex;align-items:center;gap:6px;width:max-content;cursor:pointer}
+.ch-arqs{display:flex;flex-wrap:wrap;gap:6px}.ch-a{display:inline-flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font-size:14px;max-width:100%;overflow-wrap:anywhere}
+.ch-a small{color:var(--muted)}.ch-a button{border:0;background:none;color:var(--neg);font-size:20px;cursor:pointer;line-height:1;padding:0 4px}
+.ch-info{background:color-mix(in srgb,#3b82f6 10%,var(--panel));border:1px solid color-mix(in srgb,#3b82f6 30%,transparent);border-radius:12px;padding:10px 12px;font-size:14.5px}
+.ch-urg{background:color-mix(in srgb,var(--neg) 14%,var(--panel));border:2px solid var(--neg);border-radius:12px;padding:12px;font-size:15px}
+.ch-exp{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px}.ch-exp summary{font-weight:700;cursor:pointer}.ch-exp p{margin:8px 0;font-size:15px;line-height:1.45}
+.ch-ex{display:grid;gap:4px;margin:8px 0;padding:10px 12px;border-left:4px solid var(--yellow);background:color-mix(in srgb,var(--yellow) 10%,transparent);border-radius:8px;font-size:15px;font-variant-numeric:tabular-nums}
+.ch-ucs{display:grid;gap:10px}.ch-uc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:8px}
+.ch-uc-h{display:flex;justify-content:space-between;align-items:center;gap:8px}.ch-uc-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.ch-pct input{max-width:120px}
+.ch-soma{margin:0;font-size:16px;padding:10px 12px;border-radius:10px}.ch-soma.ok{background:color-mix(in srgb,var(--pos) 13%,transparent);color:var(--pos)}.ch-soma.al{background:color-mix(in srgb,#f59e0b 16%,transparent);color:#b45309}
+.ch-det{display:flex;gap:12px;align-items:flex-start;margin-top:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px}.ch-det>div{display:grid;gap:4px;justify-items:start}.ch-det small{color:var(--muted)}.ch-det p{margin:0}
+.ch-h2{font-family:var(--display);font-size:21px;margin:18px 0 8px}
+.ch-hist{list-style:none;margin:0;padding:0;display:grid;gap:8px}.ch-hist li{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;padding:9px 12px;display:grid;gap:2px}
+.ch-hist li.gap{border-left-color:var(--yellow)}.ch-hist small{color:var(--muted);font-size:12.5px}.ch-hist p{margin:2px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.ch-dados{display:grid;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px}.ch-dados div{display:grid;gap:1px}.ch-dados small{color:var(--muted);font-size:12.5px}.ch-dados span{overflow-wrap:anywhere;white-space:pre-wrap}
+.ch-canc{margin-top:14px;color:var(--neg)}
 .msg-ok{color:var(--pos);font-size:14px;margin:0;min-height:18px}.msg-er{color:var(--neg);font-size:14px;margin:0;min-height:18px}
 .linha-c{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}.linha-c:last-child{border-bottom:0}
 .linha-c span{color:var(--muted)}.linha-c b{text-align:right;overflow-wrap:anywhere}
@@ -658,6 +698,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   </section>
   <div class="inv-pop" id="invPop" hidden role="dialog" aria-modal="true" aria-labelledby="invPopT"><div class="inv-pop-c" id="invPopC"></div></div>
 
+  <section id="v-chamados" hidden aria-labelledby="t-chamados"><div id="chLista"></div></section>
+
   <section id="v-breve" hidden aria-labelledby="t-breve">
     <p class="olho">Em breve</p>
     <h1 class="t" id="t-breve">Esta parte ainda está sendo feita</h1>
@@ -705,6 +747,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     for(const [id, k] of [['s-login', 'login'], ['s-carr', 'carr'], ['s-sem', 'sem'], ['s-app', 'app']]) $(id).hidden = t !== k;
     if(txt) $('carr-txt').textContent = txt;
   }
+  window.__cli = {sb: () => sb, D: () => D, usinaSel: () => usinaSel};   // (10/11) para o módulo de chamados
   function toast(m){ const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 3200); }
 
   // ---------- login ----------
@@ -901,7 +944,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   // (08/11 14h39) aviso do off-grid (função aviso-offgrid; só a usina do Adriano): mostra a conta de hoje
   function avisoOffgrid(u){
     const a = u.avisoOffgrid, box = $('avisoOg'), hoje = new Date().toLocaleDateString('en-CA', {timeZone: 'America/Sao_Paulo'});
-    const mostra = !!(a && a.dia === hoje && ['ligar', 'nao_precisa', 'ligado', 'manter', 'desligar'].includes(a.estado));
+    const mostra = !!(a && a.dia === hoje && ['ligar', 'nao_precisa', 'ligado', 'manter', 'desligar', 'aguardar', 'nao_liga'].includes(a.estado));
     box.hidden = !mostra; if(!mostra) return;
     box.className = 'aviso og ' + (a.estado === 'ligar' ? 'ligar' : a.estado === 'ligado' || a.estado === 'manter' ? 'ligado' : 'ok');   // (09/11) manter = azul (ligado), desligar = verde
     $('ogT').textContent = a.titulo || ''; $('ogP').textContent = a.texto || '';
@@ -1468,7 +1511,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const M = adm ? [['usinas', 'Usinas', '#22c55e'], ...MENU] : MENU;
     let lado = '<div class="cx-marca"><b>' + (adm ? 'Administração' : 'Minha usina') + '</b><small>GAP Clientes</small></div>';
     M.forEach(([k, n, c]) => { if(k === 'chamados') lado += '<div class="cx-g">Atendimento</div>'; if(k === 'conta') lado += '<div class="cx-g">Conta</div>';
-      lado += '<button type="button" class="cx-it" data-ir="' + k + '">' + ic(k, c) + '<span>' + n + '</span>' + (k === 'chamados' || k === 'documentos' ? '<small>em breve</small>' : '') + '</button>'; });
+      lado += '<button type="button" class="cx-it" data-ir="' + k + '">' + ic(k, c) + '<span>' + n + '</span>' + (k === 'documentos' ? '<small>em breve</small>' : '') + '</button>'; });
     if(adm) lado += '<a class="cx-it cx-ext" href="https://gap-controle.pages.dev/" target="_blank" rel="noopener">' + ic('adm', '#94a3b8') + '<span>GAP Administração</span></a>';
     $('lado').innerHTML = lado;
     const B = adm ? M.filter(([k]) => k !== 'documentos') : M;
@@ -1508,14 +1551,15 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     if(ADM && !D && ['inicio', 'geracao', 'inversores'].includes(v)) v = 'usinas';   // administração sem usina aberta: a lista
     if(v === 'usinas' && location.hash !== '#usinas') try{ history.replaceState(null, '', '#usinas'); }catch(_){}   // endereço igual à tela
     vista = v;
-    const vv = ['usinas', 'inicio', 'geracao', 'conta', 'inversores'].includes(v) ? v : 'breve';
-    for(const k of ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'breve']) $('v-' + k).hidden = vv !== k;
+    const vv = ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'chamados'].includes(v) ? v : 'breve';
+    for(const k of ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'chamados', 'breve']) $('v-' + k).hidden = vv !== k;
     fecharInv(); fecharEscolhe();
     document.querySelectorAll('#lado [data-ir],#baixo [data-ir]').forEach(b => { if(b.dataset.ir === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
     $('topoSub').textContent = NOMES[v];
     if(v === 'usinas') renderAdm();
     if(v === 'geracao' && D) mostrarGeracao();
     if(v === 'inversores' && D) mostrarInv();
+    if(v === 'chamados' && window.GAP_CH_CLI) GAP_CH_CLI.abrir();   // (10/11) chamados
     window.scrollTo(0, 0);
   }
   document.addEventListener('click', ev => { const b = ev.target.closest('[data-ir]'); if(!b) return; const v = b.dataset.ir; if(location.hash !== '#' + v) location.hash = v; else ir(v); });
@@ -1700,6 +1744,258 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     setTimeout(() => { const f = $('[data-gxp="mes"]'); if(f) f.focus(); }, 30);
   }
   window.GAP_EXPORTAR = {abrir, fechar, montar, porMes, porAno};
+})();
+</script>
+<script>
+// GAP Clientes · CHAMADOS (10/11/2026, pedido do Gerson). Entra no cliente.html pelo build_cliente.py.
+// O cliente abre o chamado (9 tipos), manda fotos/contas e acompanha: Em aberto · Em andamento · Finalizados.
+// Nada trava o envio: UC, média de consumo, endereço… tudo opcional (a GAP resolve depois). Só os créditos "eu mesmo divido" pedem 100%.
+// Usa window.__cli = {sb(), D(), usinaSel()} do cliente.html. Fala só com a função "chamados".
+(function(){
+  'use strict';
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+  const dBR = s => s ? new Date(String(s).length === 10 ? s + 'T12:00:00' : s).toLocaleDateString('pt-BR', {timeZone: 'America/Sao_Paulo'}) : '';
+  const dhBR = s => s ? new Date(s).toLocaleString('pt-BR', {timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'}).replace(',', ' ·') : '';
+  const toast = m => { const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 3500); };
+  const C = () => window.__cli || {};
+  const DIAS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'], TURNOS = ['Manhã', 'Tarde'];
+  const TELHADO = ['Térreo', 'Sobrado (2 andares)', 'Mais alto', 'Usina no chão'];
+  // ---------- os 9 tipos (ordem do Gerson + as ideias aprovadas em 10/11)
+  const TIPOS = [
+    {k: 'preventiva', n: 'Manutenção preventiva', d: 'Revisão do sistema, aperto e conferência', c: '#10b981', ic: 'M9 12l2 2 4-4M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z'},
+    {k: 'limpeza', n: 'Limpeza de módulos', d: 'Pedir orçamento de limpeza das placas', c: '#0ea5e9', ic: 'M7 16c-2 0-3-1.5-3-3 0-2 3-6 3-6s3 4 3 6c0 1.5-1 3-3 3zM14 20l6-12M17 20h4'},
+    {k: 'corretiva', n: 'Manutenção corretiva', d: 'Algo com problema: parou, alarme, desarmando', c: '#ef4444', ic: 'M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-2.5z'},
+    {k: 'creditos', n: 'Divisão de créditos', d: 'Mudar como a energia que sobra é dividida', c: '#f59e0b', ic: 'M12 3v18M5 8h11a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h11'},
+    {k: 'monitoramento', n: 'Monitoramento parado / Wi-Fi', d: 'O app parou de mostrar dados, troquei o roteador', c: '#6366f1', ic: 'M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01'},
+    {k: 'conta', n: 'Conta de luz veio alta', d: 'Mande a conta e a GAP confere', c: '#e11d48', ic: 'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6'},
+    {k: 'ampliacao', n: 'Ampliação do sistema', d: 'Consumo aumentou: mais placas', c: '#f5c916', ic: 'M12 5v14M5 12h14'},
+    {k: 'telhado', n: 'Reforma do telhado', d: 'Tirar e recolocar as placas', c: '#a16207', ic: 'M3 11l9-7 9 7M5 10v10h14V10'},
+    {k: 'documentos', n: 'Documentos', d: 'ART, projeto, garantias, nota fiscal', c: '#64748b', ic: 'M6 3h9l4 4v14H6zM9 12h7M9 16h7M9 8h3'},
+  ];
+  const TN = Object.fromEntries(TIPOS.map(t => [t.k, t]));
+  // campos de cada tipo: t=texto longo, l=linha, e=escolha uma, v=várias, f=fotos/arquivos
+  const F = {
+    preventiva: [['descricao', 't', 'O que você está precisando?', 'Conte rapidinho (ex.: faz tempo que não revisa, quero conferir antes do verão)'],
+      ['ultima', 'e', 'Quando foi a última manutenção?', ['Nunca fiz', 'Menos de 1 ano', '1 a 2 anos', 'Mais de 2 anos', 'Não sei']],
+      ['telhado', 'e', 'Onde ficam as placas?', TELHADO], ['presenca', 'e', 'Precisa ter alguém em casa?', ['Sim, precisa', 'Não, podem ir sem ninguém']],
+      ['animal', 'e', 'Tem animal solto no local?', ['Tem', 'Não tem']], ['dias', 'v', 'Dias que ficam melhores', DIAS], ['turno', 'v', 'Turno', TURNOS],
+      ['fotos', 'f', 'Fotos (opcional)', 'do inversor (o visor), do quadro de disjuntores e das placas, se conseguir']],
+    limpeza: [['endereco', 'l', 'Endereço da usina', 'Rua, número, bairro, cidade'], ['placas', 'l', 'Quantas placas? (se souber)', 'ex.: 12'],
+      ['telhado', 'e', 'Onde ficam as placas?', TELHADO], ['agua', 'e', 'Tem torneira perto das placas?', ['Tem', 'Não tem', 'Não sei']],
+      ['dias', 'v', 'Dias que ficam melhores', DIAS], ['turno', 'v', 'Turno', TURNOS],
+      ['frequencia', 'e', 'Limpeza', ['Só desta vez', 'A cada 6 meses', 'Quero que a GAP indique']], ['descricao', 't', 'Observação (opcional)', '']],
+    corretiva: [['problemas', 'v', 'O que está acontecendo?', ['Parou de gerar', 'Gerando pouco', 'Alarme / luz vermelha no inversor', 'Disjuntor desarmando', 'Placa quebrada / granizo', 'Cabo solto ou danificado', 'Cheiro de queimado / fumaça', 'Barulho estranho', 'Outro']],
+      ['desde', 'e', 'Desde quando?', ['Hoje', 'Esta semana', 'Mais de uma semana', 'Não sei']],
+      ['religou', 'e', 'Já tentou desligar e ligar o disjuntor da usina?', ['Já tentei', 'Não tentei', 'Não sei onde fica']],
+      ['descricao', 't', 'Conte o que viu', 'ex.: o inversor mostra um código, a luz está vermelha desde ontem'],
+      ['fotos', 'f', 'Fotos', 'do visor do inversor (com o código, se tiver) e do quadro']],
+    monitoramento: [['oque', 'e', 'O que aconteceu?', ['Troquei o roteador', 'Mudei a senha do Wi-Fi', 'Troquei de operadora', 'Não sei, só parou']],
+      ['wifi', 'l', 'Nome da rede Wi-Fi nova (opcional)', 'ex.: CASA_5G'], ['descricao', 't', 'Algo mais? (opcional)', ''],
+      ['fotos', 'f', 'Foto do inversor (opcional)', 'ajuda a ver o modelo do aparelho de internet dele']],
+    conta: [['fotos', 'f', 'A conta (PDF ou foto)', 'pode mandar mais de uma'], ['mes', 'l', 'De qual mês? (opcional)', 'ex.: outubro'],
+      ['descricao', 't', 'O que achou estranho?', 'ex.: veio R$ 300, normalmente vem R$ 90']],
+    ampliacao: [['motivo', 'v', 'Por quê?', ['Comprei ar-condicionado', 'Carro elétrico', 'Mais gente em casa', 'A conta voltou a subir', 'Outro']],
+      ['consumo', 'l', 'Consumo novo (kWh por mês), se souber', ''], ['descricao', 't', 'Conte mais (opcional)', ''], ['fotos', 'f', 'Contas de luz (opcional)', 'ajuda a calcular quantas placas a mais']],
+    telhado: [['oque', 'e', 'Que obra?', ['Trocar telhas', 'Reforma completa', 'Infiltração / goteira', 'Outro']], ['quando', 'l', 'Quando a obra começa? (aprox.)', 'ex.: começo de dezembro'],
+      ['descricao', 't', 'Conte mais (opcional)', ''], ['fotos', 'f', 'Fotos do telhado (opcional)', '']],
+    documentos: [['quais', 'v', 'Quais documentos?', ['ART', 'Projeto', 'Garantia das placas e do inversor', 'Nota fiscal', 'Aprovação da distribuidora', 'Outro']],
+      ['para', 'e', 'Para quê?', ['Financiamento', 'Seguro', 'Venda do imóvel', 'Guardar', 'Outro']], ['descricao', 't', 'Algo mais? (opcional)', '']],
+  };
+  const GRUPO = s => (s === 'aberto' ? 'aberto' : s === 'andamento' || s === 'agendado' ? 'andamento' : 'fim');
+  const GN = {aberto: 'Em aberto', andamento: 'Em andamento', fim: 'Finalizados'};
+  const SN = {aberto: 'Recebido', andamento: 'Em andamento', agendado: 'Agendado', concluido: 'Concluído', cancelado: 'Cancelado'};
+  const st = {lista: null, tela: 'lista', grupo: 'aberto', tipo: null, ver: null, arqs: [], rec: [], modo: null, enviando: false, carregando: false};
+  const box = () => document.getElementById('chLista');
+
+  async function chamar(body){
+    const sb = C().sb && C().sb(); if(!sb) throw new Error('sem login');
+    const {data, error} = await sb.functions.invoke('chamados', {body});
+    if(error){ let j = null; try{ j = await error.context.json(); }catch(_){} if(j) return j; throw error; }
+    return data;
+  }
+  async function carregar(){
+    st.carregando = true; render();
+    try{ const r = await chamar({acao: 'listar'}); st.lista = r && r.ok ? r.chamados : []; }
+    catch(e){ st.lista = st.lista || []; toast('Não foi possível buscar os chamados. Confira a internet.'); }
+    st.carregando = false;
+    if(st.lista.length && !st.lista.some(c => GRUPO(c.status) === st.grupo)) st.grupo = ['aberto', 'andamento', 'fim'].find(g => st.lista.some(c => GRUPO(c.status) === g)) || 'aberto';
+    render();
+  }
+  const icone = (t, tam = 22) => `<span class="ch-ic" style="--c:${t.c}"><svg viewBox="0 0 24 24" width="${tam}" height="${tam}"><path d="${t.ic}"/></svg></span>`;
+  const pill = s => `<span class="ch-st ${s}">${esc(SN[s] || s)}</span>`;
+
+  function telaLista(){
+    const L = st.lista || [], cont = g => L.filter(c => GRUPO(c.status) === g).length, V = L.filter(c => GRUPO(c.status) === st.grupo);
+    return `<div class="cab"><div><p class="olho">Atendimento</p><h1 class="t" id="t-chamados">Chamados</h1></div><button type="button" class="btn-p" data-chnovo>+ Abrir chamado</button></div>
+      <div class="ch-abas" role="tablist">${['aberto', 'andamento', 'fim'].map(g => `<button type="button" role="tab" aria-selected="${st.grupo === g}" class="${st.grupo === g ? 'on' : ''}" data-chg="${g}">${GN[g]} <b>${cont(g)}</b></button>`).join('')}</div>
+      ${st.carregando && !st.lista ? '<p class="nota-g">Buscando seus chamados…</p>' : V.length ? `<div class="ch-l">${V.map(c => { const t = TN[c.tipo] || TIPOS[0], ul = (c.historico || []).filter(h => h.quem === 'gap' && h.texto).pop();
+        return `<button type="button" class="ch-c" data-chver="${esc(c.id)}">${icone(t)}<span class="ch-cm"><b>${esc(t.n)}</b><small>Nº ${c.num} · aberto em ${dBR(c.criado_em)}${c.usina_nome ? ' · ' + esc(c.usina_nome) : ''}</small>${c.agendado_para && c.status === 'agendado' ? `<small class="ch-ag">Agendado para ${dBR(c.agendado_para)}</small>` : ''}${ul ? `<small class="ch-ult">GAP: ${esc(ul.texto.slice(0, 90))}</small>` : ''}</span>${pill(c.status)}</button>`; }).join('')}</div>`
+        : `<div class="ch-vazio"><p>${st.grupo === 'aberto' ? 'Nenhum chamado em aberto.' : st.grupo === 'andamento' ? 'Nenhum chamado em andamento.' : 'Nenhum chamado finalizado ainda.'}</p>${st.grupo === 'aberto' ? '<p class="nota-g">Precisa de manutenção, limpeza ou de mudar a divisão dos créditos? Toque em “Abrir chamado”.</p>' : ''}</div>`}`;
+  }
+  function telaTipos(){
+    return `<div class="cab"><div><p class="olho">Novo chamado</p><h1 class="t" id="t-chamados">O que você precisa?</h1></div><button type="button" class="btn-o" data-chvolta>Voltar</button></div>
+      <div class="ch-tipos">${TIPOS.map(t => `<button type="button" class="ch-tp" data-chtipo="${t.k}">${icone(t, 24)}<span><b>${esc(t.n)}</b><small>${esc(t.d)}</small></span></button>`).join('')}</div>`;
+  }
+  const opc = (nome, L, multi) => `<div class="ch-op" role="${multi ? 'group' : 'radiogroup'}">${L.map(o => `<label><input type="${multi ? 'checkbox' : 'radio'}" name="${nome}" value="${esc(o)}"><span>${esc(o)}</span></label>`).join('')}</div>`;
+  function campo([k, tp, rot, x]){
+    const id = 'chf-' + k;
+    if(tp === 't') return `<label class="ch-f"><span>${esc(rot)}</span><textarea id="${id}" name="${k}" rows="4" maxlength="4000" placeholder="${esc(x || '')}"></textarea></label>`;
+    if(tp === 'l') return `<label class="ch-f"><span>${esc(rot)}</span><input id="${id}" name="${k}" maxlength="300" placeholder="${esc(x || '')}"></label>`;
+    if(tp === 'e' || tp === 'v') return `<fieldset class="ch-f"><legend>${esc(rot)}</legend>${opc(k, x, tp === 'v')}</fieldset>`;
+    if(tp === 'f') return `<div class="ch-f"><span>${esc(rot)}</span><small class="nota-g">${esc(x || '')}</small>
+      <label class="btn-o ch-arq"><input type="file" accept="image/*,application/pdf" multiple data-charq hidden>📎 Escolher fotos ou PDF</label><div class="ch-arqs" id="chArqs">${listaArqs()}</div></div>`;
+    return '';
+  }
+  const listaArqs = () => st.arqs.map((a, i) => `<span class="ch-a">${a.tipo === 'application/pdf' ? '📄' : '🖼'} ${esc(a.nome)} <small>${Math.max(1, Math.round(a.b64.length * 0.75 / 1024))} KB</small><button type="button" data-chrm="${i}" aria-label="Tirar ${esc(a.nome)}">×</button></span>`).join('');
+  // ---------- créditos: explicação + geradora/receptoras; % só quando "eu mesmo divido"
+  function blocoCreditos(){
+    const eu = st.modo === 'eu', gap = st.modo === 'gap';
+    const linha = (r, i) => `<div class="ch-uc" data-uci="${i}"><div class="ch-uc-h"><b>${i === 0 ? 'Geradora (onde estão as placas)' : 'Receptora ' + i}</b>${i > 0 ? `<button type="button" class="lnk" data-chucx="${i}">tirar</button>` : ''}</div>
+      <div class="ch-uc-g"><label class="ch-f"><span>Nº da UC / instalação (se souber)</span><input data-uck="uc" value="${esc(r.uc || '')}" inputmode="numeric" placeholder="está na conta de luz"></label>
+      ${i > 0 ? `<label class="ch-f"><span>Quem / onde</span><input data-uck="quem" value="${esc(r.quem || '')}" placeholder="ex.: casa da minha mãe, loja"></label>` : ''}
+      ${gap ? `<label class="ch-f"><span>Consumo médio (kWh/mês), se souber</span><input data-uck="consumo" value="${esc(r.consumo || '')}" inputmode="decimal"></label>` : ''}
+      ${eu ? `<label class="ch-f ch-pct"><span>%</span><input data-uck="pct" value="${esc(r.pct || '')}" inputmode="decimal" placeholder="0"></label>` : ''}</div></div>`;
+    const soma = st.rec.reduce((t, r) => t + (parseFloat(String(r.pct || '').replace(',', '.')) || 0), 0);
+    return `<details class="ch-exp" open><summary>Como funciona a divisão dos créditos</summary>
+        <p>A energia que vai para as outras contas é só a que <b>sobra</b> na geradora, depois de abater todo o consumo dela no mês.</p>
+        <div class="ch-ex"><span>Usina gerou no mês <b>800 kWh</b></span><span>A casa da geradora gastou <b>300 kWh</b></span><span>Sobraram <b>500 kWh</b> para dividir</span>
+        <span>Receptora 1 com 60% → <b>300 kWh</b></span><span>Receptora 2 com 40% → <b>200 kWh</b></span></div>
+        <p class="nota-g">A mudança vale depois que a distribuidora processa o pedido (normalmente a partir da conta seguinte).</p></details>
+      <fieldset class="ch-f"><legend>Como você quer fazer a divisão?</legend><div class="ch-op">${[['eu', 'Eu mesmo divido (em %)'], ['gap', 'A GAP calcula para mim'], ['naosei', 'Ainda não sei / quero conversar']].map(([v, t]) => `<label><input type="radio" name="modo" value="${v}" ${st.modo === v ? 'checked' : ''} data-chmodo><span>${t}</span></label>`).join('')}</div></fieldset>
+      ${st.modo ? `<div class="ch-ucs">${st.rec.map(linha).join('')}</div><button type="button" class="btn-o" data-chucmais>+ Adicionar receptora</button>
+      ${eu ? `<p class="ch-soma ${Math.abs(soma - 100) <= 0.05 ? 'ok' : 'al'}" id="chSoma">Total: <b>${String(Math.round(soma * 100) / 100).replace('.', ',')}%</b>${Math.abs(soma - 100) <= 0.05 ? ' ✓' : ' — precisa dar 100%'}</p><p class="nota-g">A geradora pode ficar com 0% se ela mesma já gasta tudo o que precisa.</p>` : ''}
+      ${gap ? '<p class="nota-g">Mande o consumo de cada uma, ou fotos/PDF das contas de luz, ou só descreva: o que você tiver. A GAP faz a conta e te mostra antes de pedir na distribuidora.</p>' : ''}
+      <p class="nota-g">Não sabe o número da UC? Pode deixar em branco e mandar foto da conta ou explicar abaixo.</p>` : ''}
+      ${campo(['descricao', 't', 'Observação (opcional)', ''])}${campo(['fotos', 'f', 'Contas de luz (opcional)', 'fotos ou PDF das contas das unidades'])}`;
+  }
+  function telaForm(){
+    const t = TN[st.tipo], D = C().D ? C().D() : null, us = (D && D.usinas) || [], nome = D && D.cliente ? D.cliente.nome : '';
+    return `<div class="cab"><div><p class="olho">Novo chamado</p><h1 class="t" id="t-chamados">${esc(t.n)}</h1></div><button type="button" class="btn-o" data-chnovo>Trocar tipo</button></div>
+      <form class="ch-form" id="chForm" novalidate>
+        ${us.length > 1 ? `<label class="ch-f"><span>Usina</span><select name="usina">${us.map(u => `<option value="${esc(u.id)}" ${D.usina && D.usina.id === u.id ? 'selected' : ''}>${esc(u.nome)}</option>`).join('')}</select></label>` : ''}
+        ${st.tipo === 'corretiva' ? '<div class="ch-info">A GAP já vê o alarme e a geração da sua usina pelo monitoramento; isso vai junto com o chamado.</div><div class="ch-urg" id="chUrg" hidden><b>Cheiro de queimado ou fumaça:</b> desligue o disjuntor da usina (no quadro) agora e ligue para a GAP: (31) 98510-1043.</div>' : ''}
+        ${st.tipo === 'monitoramento' ? '<div class="ch-info">Não escreva a senha do Wi-Fi aqui: a GAP combina com você na hora de reconectar.</div>' : ''}
+        ${st.tipo === 'creditos' ? blocoCreditos() : F[st.tipo].map(campo).join('')}
+        <fieldset class="ch-f"><legend>Contato</legend><div class="ch-uc-g">
+          <label class="ch-f"><span>Seu nome</span><input name="nome" value="${esc(nome)}" maxlength="120"></label>
+          <label class="ch-f"><span>Telefone / WhatsApp</span><input name="telefone" type="tel" inputmode="tel" maxlength="30" placeholder="(27) 99999-9999"></label></div>
+          <span class="ch-sub">Melhor horário para falar</span>${opc('horario', ['Manhã', 'Tarde', 'Qualquer horário'], false)}</fieldset>
+        <button type="submit" class="btn-y" ${st.enviando ? 'disabled' : ''}>${st.enviando ? 'Enviando…' : 'Enviar chamado'}</button>
+        <p class="nota-g">Nada aqui é obrigatório: mande o que tiver e a GAP completa com você.</p>
+      </form>`;
+  }
+  function telaVer(){
+    const c = (st.lista || []).find(x => x.id === st.ver); if(!c){ st.tela = 'lista'; return telaLista(); }
+    const t = TN[c.tipo] || TIPOS[0], d = c.dados || {}, fim = GRUPO(c.status) === 'fim';
+    if(c.resumido && c.resumo){ const r = c.resumo;
+      return `<div class="cab"><div><p class="olho">Chamado nº ${c.num}</p><h1 class="t" id="t-chamados">${esc(t.n)}</h1></div><button type="button" class="btn-o" data-chvolta>Voltar</button></div>
+        <div class="ch-det">${icone(t, 26)}<div>${pill(c.status)}<small>aberto em ${dBR(r.criado_em)} · fechado em ${dBR(r.finalizado_em)}</small></div></div>
+        ${r.descricao ? `<h2 class="ch-h2">O que você pediu</h2><div class="ch-dados"><div><span>${esc(r.descricao)}</span></div></div>` : ''}
+        ${(r.observacoes || []).length ? `<h2 class="ch-h2">Observações</h2><ol class="ch-hist">${r.observacoes.map(h => `<li class="${h.quem}"><small>${dhBR(h.em)} · ${h.quem === 'gap' ? 'GAP' : 'Você'}</small><p>${esc(h.texto)}</p></li>`).join('')}</ol>` : ''}
+        <p class="nota-g">Chamados fechados há mais de 90 dias ficam só com este resumo.</p>`; }
+    const linhas = Object.entries(d).filter(([k, v]) => v !== '' && v != null && !(Array.isArray(v) && !v.length) && !['nome', 'modo', 'geradora', 'receptoras'].includes(k)).map(([k, v]) => {
+      const rot = ((F[c.tipo] || []).find(f => f[0] === k) || [])[2] || {telefone: 'Telefone', horario: 'Melhor horário', usina: 'Usina', descricao: 'Observação'}[k] || k;
+      return `<div><small>${esc(rot)}</small><span>${esc(Array.isArray(v) ? v.join(', ') : v)}</span></div>`; }).join('');
+    const ucs = c.tipo === 'creditos' ? [d.geradora, ...(d.receptoras || [])].filter(Boolean).map((r, i) => `<div><small>${i === 0 ? 'Geradora' : 'Receptora ' + i}</small><span>${esc([r.uc, r.quem, r.consumo ? r.consumo + ' kWh' : '', r.pct !== '' && r.pct != null ? r.pct + '%' : ''].filter(Boolean).join(' · ') || '—')}</span></div>`).join('') : '';
+    const H = (c.historico || []).map(h => `<li class="${h.quem}"><small>${dhBR(h.em)} · ${h.quem === 'gap' ? 'GAP' : 'Você'}</small>${h.status ? `<b>${esc(h.status === 'aberto' ? 'Chamado aberto' : SN[h.status] || h.status)}${h.status === 'agendado' && c.agendado_para ? ' para ' + dBR(c.agendado_para) : ''}</b>` : ''}${h.texto ? `<p>${esc(h.texto)}</p>` : ''}</li>`).join('');
+    return `<div class="cab"><div><p class="olho">Chamado nº ${c.num}</p><h1 class="t" id="t-chamados">${esc(t.n)}</h1></div><button type="button" class="btn-o" data-chvolta>Voltar</button></div>
+      <div class="ch-det">${icone(t, 26)}<div>${pill(c.status)}<small>aberto em ${dBR(c.criado_em)}${c.usina_nome ? ' · ' + esc(c.usina_nome) : ''}</small>${c.status === 'agendado' && c.agendado_para ? `<p class="ch-ag">Agendado para <b>${dBR(c.agendado_para)}</b></p>` : ''}</div></div>
+      <h2 class="ch-h2">Andamento</h2><ol class="ch-hist">${H}</ol>
+      ${fim ? '' : `<form class="ch-resp" id="chResp"><label class="ch-f"><span>Mandar mensagem para a GAP</span><textarea name="texto" rows="3" maxlength="2000" placeholder="ex.: pode vir sábado de manhã?"></textarea></label><button type="submit" class="btn-p">Enviar</button></form>`}
+      <h2 class="ch-h2">O que você mandou</h2><div class="ch-dados">${linhas}${ucs}${(c.arquivos || []).length ? `<div><small>Arquivos</small><span>${c.arquivos.map(a => esc(a.nome)).join(', ')}</span></div>` : ''}</div>
+      ${fim ? '' : '<button type="button" class="lnk ch-canc" data-chcanc>Cancelar este chamado</button>'}`;
+  }
+  function render(){
+    const b = box(); if(!b) return;
+    // redesenhar o formulário (ex.: + receptora) não apaga o que já foi digitado
+    const antes = st.tela === 'form' ? [...b.querySelectorAll('#chForm [name]')].map(e => [e.name, e.type, e.value, e.checked]) : null;
+    if(st.tipo === 'creditos' && st.tela === 'form') guardarRec();
+    b.innerHTML = st.tela === 'tipos' ? telaTipos() : st.tela === 'form' ? telaForm() : st.tela === 'ver' ? telaVer() : telaLista();
+    if(antes && st.tela === 'form') for(const [n, tp, v, ck] of antes){ if(n === 'modo') continue;
+      const L = [...b.querySelectorAll('#chForm [name="' + CSS.escape(n) + '"]')];
+      if(tp === 'radio' || tp === 'checkbox'){ const e = L.find(x => x.value === v); if(e) e.checked = ck; } else if(L[0] && v) L[0].value = v; }
+  }
+  function guardarRec(){
+    document.querySelectorAll('#chLista .ch-uc').forEach(el => { const i = +el.dataset.uci, r = st.rec[i] || (st.rec[i] = {});
+      el.querySelectorAll('[data-uck]').forEach(inp => { r[inp.dataset.uck] = inp.value; }); });
+  }
+  // ---------- fotos: reduz no aparelho (até 1600 px, JPEG) para caber e subir rápido; PDF vai como está (até 4 MB)
+  const lerB64 = f => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(',')[1]); r.onerror = no; r.readAsDataURL(f); });
+  async function reduzir(f){
+    if(f.type === 'application/pdf') return f.size <= 4 * 1048576 ? {nome: f.name, tipo: f.type, b64: await lerB64(f)} : null;
+    try{
+      const url = URL.createObjectURL(f), img = await new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = url; });
+      const k = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight)), cv = document.createElement('canvas');
+      cv.width = Math.round(img.naturalWidth * k); cv.height = Math.round(img.naturalHeight * k); cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height); URL.revokeObjectURL(url);
+      return {nome: (f.name || 'foto').replace(/\.\w+$/, '') + '.jpg', tipo: 'image/jpeg', b64: cv.toDataURL('image/jpeg', 0.78).split(',')[1]};
+    }catch(_){ return /^image\/(jpeg|png|webp)$/.test(f.type) && f.size <= 3 * 1048576 ? {nome: f.name, tipo: f.type, b64: await lerB64(f)} : null; }
+  }
+  function lerForm(){
+    const fm = document.getElementById('chForm'), o = {};
+    fm.querySelectorAll('textarea[name],input[name]:not([type=radio]):not([type=checkbox]):not([type=file]),select[name]').forEach(e => { if(e.name !== 'usina' && e.value.trim()) o[e.name] = e.value.trim(); });
+    const nomes = new Set([...fm.querySelectorAll('input[type=radio],input[type=checkbox]')].map(e => e.name).filter(n => n !== 'modo'));
+    nomes.forEach(n => { const L = [...fm.querySelectorAll(`input[name="${n}"]:checked`)].map(e => e.value); const multi = fm.querySelector(`input[name="${n}"]`).type === 'checkbox'; if(L.length) o[n] = multi ? L : L[0]; });
+    if(st.tipo === 'creditos'){ guardarRec(); o.modo = st.modo || 'naosei'; const R = st.rec.map(r => ({uc: (r.uc || '').trim(), quem: (r.quem || '').trim(), consumo: (r.consumo || '').trim(), pct: (r.pct || '').trim().replace(',', '.')}));
+      o.geradora = R[0] || {}; o.receptoras = R.slice(1); }
+    return {dados: o, usina: (fm.querySelector('select[name=usina]') || {}).value || (C().usinaSel && C().usinaSel()) || (C().D && C().D() && C().D().usina ? C().D().usina.id : null)};
+  }
+  async function enviar(){
+    if(st.enviando) return;
+    const {dados, usina} = lerForm();
+    if(st.tipo === 'creditos' && dados.modo === 'eu'){ const s = [dados.geradora, ...dados.receptoras].reduce((t, r) => t + (parseFloat(r.pct) || 0), 0);
+      if(Math.abs(s - 100) > 0.05){ toast('Na divisão em %, o total precisa dar 100% (está ' + String(Math.round(s * 100) / 100).replace('.', ',') + '%).'); return; } }
+    st.enviando = true; guardarRec(); const html = box().querySelector('button[type=submit]'); if(html){ html.disabled = true; html.textContent = 'Enviando…'; }
+    try{
+      const r = await chamar({acao: 'abrir', tipo: st.tipo, usina, dados, arquivos: st.arqs});
+      if(!r || !r.ok){ toast(r && r.erro === 'soma' ? 'O total da divisão precisa dar 100%.' : r && r.erro === 'grande' ? 'Os arquivos ficaram grandes demais: tire alguns.' : 'Não consegui enviar. Tente de novo.'); return; }
+      st.lista = [r.chamado, ...(st.lista || [])]; st.tela = 'ver'; st.ver = r.chamado.id; st.arqs = []; st.rec = []; st.modo = null; st.grupo = 'aberto';
+      toast('Chamado nº ' + r.chamado.num + ' enviado. A GAP vai te responder por aqui.');
+    }catch(e){ toast('Não consegui enviar. Confira a internet e tente de novo.'); }
+    finally{ st.enviando = false; render(); window.scrollTo(0, 0); }
+  }
+  // ---------- eventos (a tela é toda desenhada aqui dentro)
+  document.addEventListener('click', async ev => {
+    const raiz = box(); if(!raiz || !raiz.contains(ev.target)) return;
+    const q = s => ev.target.closest(s);
+    if(q('[data-chnovo]')){ st.tela = 'tipos'; render(); window.scrollTo(0, 0); return; }
+    if(q('[data-chvolta]')){ st.tela = 'lista'; st.ver = null; render(); return; }
+    const g = q('[data-chg]'); if(g){ st.grupo = g.dataset.chg; render(); return; }
+    const t = q('[data-chtipo]'); if(t){ st.tipo = t.dataset.chtipo; st.tela = 'form'; st.arqs = []; st.modo = null; st.rec = [{}, {}]; render(); window.scrollTo(0, 0); return; }
+    const v = q('[data-chver]'); if(v){ st.ver = v.dataset.chver; st.tela = 'ver'; render(); window.scrollTo(0, 0); return; }
+    const rm = q('[data-chrm]'); if(rm){ st.arqs.splice(+rm.dataset.chrm, 1); document.getElementById('chArqs').innerHTML = listaArqs(); return; }
+    if(q('[data-chucmais]')){ guardarRec(); st.rec.push({}); render(); return; }
+    const ux = q('[data-chucx]'); if(ux){ guardarRec(); st.rec.splice(+ux.dataset.chucx, 1); render(); return; }
+    if(q('[data-chcanc]')){
+      const b = q('[data-chcanc]'); if(b.dataset.conf !== '1'){ b.dataset.conf = '1'; b.textContent = 'Toque de novo para confirmar o cancelamento'; return; }
+      try{ const r = await chamar({acao: 'cancelar', id: st.ver}); if(r && r.ok){ st.lista = st.lista.map(c => c.id === st.ver ? r.chamado : c); toast('Chamado cancelado.'); render(); } }catch(_){ toast('Não consegui cancelar agora.'); }
+    }
+  });
+  document.addEventListener('change', async ev => {
+    const raiz = box(); if(!raiz || !raiz.contains(ev.target)) return;
+    if(ev.target.matches('[data-chmodo]')){ guardarRec(); st.modo = ev.target.value; render(); return; }
+    if(ev.target.matches('input[name=problemas]')){ const u = document.getElementById('chUrg'); if(u) u.hidden = ![...raiz.querySelectorAll('input[name=problemas]:checked')].some(e => /fuma|queim/i.test(e.value)); }
+    if(ev.target.matches('[data-charq]')){
+      const fs = [...ev.target.files]; ev.target.value = '';
+      for(const f of fs){ if(st.arqs.length >= 8){ toast('No máximo 8 arquivos por chamado.'); break; }
+        const a = await reduzir(f); if(a) st.arqs.push(a); else toast('Não consegui usar ' + f.name + ' (grande demais ou formato diferente).'); }
+      const L = document.getElementById('chArqs'); if(L) L.innerHTML = listaArqs();
+    }
+  });
+  document.addEventListener('input', ev => {
+    if(!ev.target.matches('#chLista [data-uck="pct"]')) return;
+    guardarRec(); const s = st.rec.reduce((t, r) => t + (parseFloat(String(r.pct || '').replace(',', '.')) || 0), 0), el = document.getElementById('chSoma'), okk = Math.abs(s - 100) <= 0.05;
+    if(el){ el.className = 'ch-soma ' + (okk ? 'ok' : 'al'); el.innerHTML = `Total: <b>${String(Math.round(s * 100) / 100).replace('.', ',')}%</b>${okk ? ' ✓' : ' — precisa dar 100%'}`; }
+  });
+  document.addEventListener('submit', ev => {
+    if(ev.target.id === 'chForm'){ ev.preventDefault(); enviar(); }
+    if(ev.target.id === 'chResp'){ ev.preventDefault(); const tx = ev.target.texto.value.trim(); if(!tx) return; const bt = ev.target.querySelector('button'); bt.disabled = true;
+      chamar({acao: 'responder', id: st.ver, texto: tx}).then(r => { if(r && r.ok){ st.lista = st.lista.map(c => c.id === st.ver ? r.chamado : c); toast('Mensagem enviada.'); render(); } else toast('Não consegui enviar.'); })
+        .catch(() => toast('Não consegui enviar.')).finally(() => { bt.disabled = false; }); }
+  });
+  window.GAP_CH_CLI = {
+    abrir(){ if(st.tela === 'form' || st.tela === 'tipos') { render(); return; } st.tela = st.tela === 'ver' ? 'ver' : 'lista'; render(); carregar(); },
+    _st: st, _TIPOS: TIPOS,
+  };
 })();
 </script>
 </body>
