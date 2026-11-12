@@ -45,4 +45,11 @@
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- (12/11) Conectar inversor: achar o Wi-Fi do datalogger e prender o socket UDP nele -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- (12/11) ler o QR Code da etiqueta do datalogger pela câmera (página do site); Bluetooth (Auxsol etc.) vem do plugin bluetooth-le -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 </manifest>

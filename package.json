@@ -1,12 +1,13 @@
 {
   "name": "gap-clientes-app",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "private": true,
   "scripts": {
     "web": "node scripts/copiar-web.mjs",
     "sync": "npm run web && npx cap sync android"
   },
   "dependencies": {
+    "@capacitor-community/bluetooth-le": "8.3.0",
     "@capacitor/android": "^8.6.0",
     "@capacitor/app": "^8.0.0",
     "@capacitor/browser": "^8.0.0",

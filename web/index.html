@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>GAP Clientes</title>
 <meta name="description" content="Acompanhe a geração da sua usina solar — GAP Engenharia">
 <meta name="theme-color" content="#141414">
@@ -105,6 +105,45 @@ h1.t{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.05;
 .usina select{min-height:44px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:16px;font-weight:600;padding:0 12px;max-width:100%}
 .usina select:focus-visible{outline:3px solid var(--yellow);outline-offset:1px}
 .usina-nome{font-size:14px;color:var(--muted)}
+/* (11/11, Gerson) nome e desenho de cada usina: quadro + janela grande (usinas-nome.js) */
+.usina-lb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.un-ic{display:inline-block;flex:none;width:40px;height:40px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px var(--panel),0 0 0 3px var(--line)}
+.un-ic svg{display:block;width:100%;height:100%}
+.un-ic.g{width:64px;height:64px}
+.un-bt{display:flex;align-items:center;gap:10px;min-height:56px;max-width:100%;padding:7px 10px 7px 8px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;text-align:left;font:inherit}
+.un-bt:focus-visible{outline:3px solid var(--yellow);outline-offset:1px}
+.un-bt-t{display:grid;min-width:0}.un-bt-t b{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.un-bt-t small{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.un-seta{width:20px;height:20px;flex:none;fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;margin-left:auto}
+.un-pop{position:fixed;inset:0;z-index:70;background:rgba(15,15,15,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.un-c{background:var(--bg);border-radius:18px;width:100%;max-width:560px;max-height:90vh;overflow:auto;padding:16px 16px calc(18px + env(safe-area-inset-bottom,0px));display:grid;gap:12px;align-content:start;border-top:5px solid var(--yellow)}
+@media (max-width:640px){.un-pop{padding:0}.un-c{max-width:none;height:100%;max-height:none;border-radius:0;padding-top:calc(14px + env(safe-area-inset-top,0px))}}
+.un-h{display:flex;align-items:center;gap:8px}.un-h h2{margin:0;font-family:var(--display);font-size:24px;flex:1}
+.un-x,.un-no{min-height:40px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-weight:600;cursor:pointer}
+.un-volta{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:24px;line-height:1;cursor:pointer}
+.un-dica{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+.un-l{display:grid;gap:8px}
+.un-li{display:flex;align-items:stretch;gap:6px}
+.un-ir{flex:1;min-width:0;display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;text-align:left;font:inherit}
+.un-li.at .un-ir{border-color:var(--yellow);box-shadow:inset 0 0 0 1px var(--yellow)}
+.un-ir .un-ic{width:52px;height:52px}
+.un-t{display:grid;min-width:0;flex:1}.un-t b{font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.un-t small{font-size:13px;color:var(--muted);line-height:1.3}
+.un-e{width:12px;height:12px;border-radius:50%;background:var(--c);flex:none}
+.un-ag{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.un-ed{width:52px;flex:none;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.un-ed svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linejoin:round;stroke-linecap:round}
+.un-ir:focus-visible,.un-ed:focus-visible,.un-g button:focus-visible{outline:3px solid var(--yellow);outline-offset:1px}
+.un-prev{display:flex;align-items:center;gap:14px;padding:12px;border-radius:14px;background:var(--panel);border:1px solid var(--line)}
+.un-prev div{display:grid;min-width:0}.un-prev b{font-size:19px;overflow-wrap:anywhere}.un-prev small{color:var(--muted);font-size:13px}
+.un-f{display:grid;gap:5px}.un-f span,.un-g legend{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.un-f input{min-height:48px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:17px;padding:0 12px}
+.un-f input:focus{outline:3px solid var(--yellow);outline-offset:1px}.un-f small{color:var(--muted);font-size:12.5px}
+.un-g{border:0;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.un-g legend{margin-bottom:6px}
+.un-g button{display:grid;justify-items:center;gap:6px;padding:10px 4px 8px;border-radius:14px;border:2px solid transparent;background:var(--panel);color:var(--ink);cursor:pointer;font:inherit;font-size:12.5px;font-weight:600;line-height:1.2;text-align:center}
+.un-g button .un-ic{width:58px;height:58px}
+.un-g button[aria-pressed="true"]{border-color:var(--yellow);background:color-mix(in srgb,var(--yellow) 14%,var(--panel))}
+.un-b{display:flex;gap:8px}.un-ok{flex:1;min-height:48px;border-radius:12px;border:0;background:var(--yellow);color:#161616;font-weight:700;font-size:16px;cursor:pointer}.un-ok:disabled{opacity:.6}
+.un-orig{justify-self:start;background:none;border:0;color:var(--muted);text-decoration:underline;font:inherit;font-size:14px;cursor:pointer;padding:4px 0}
+.un-msg{margin:0;color:var(--neg);font-weight:600}
 /* (09/11 13h15, Gerson) cliente com 2+ usinas: resumo no topo (bolinha verde · triângulo de alerta · bolinha vermelha com X) */
 .resU{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}   /* (09/11 18h17) antes -4px: encostava no seletor da usina */
 .resU button{display:inline-flex;align-items:center;gap:7px;padding:7px 12px 7px 9px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:14px;font-weight:600;cursor:pointer;line-height:1}
@@ -134,6 +173,7 @@ h1.t{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.05;
 .seg button[aria-pressed="true"]{background:var(--head);color:var(--yellow)}
 .seg button:focus-visible{outline:3px solid var(--yellow);outline-offset:1px}
 .graf{width:100%;height:auto;display:block;touch-action:pan-y;cursor:crosshair}
+html,body{touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;text-size-adjust:100%}   /* (11/11, Gerson) app sem zoom: nem pinça nem dois toques */
 .graf text{font-family:var(--body);font-size:10.5px;fill:var(--muted)}
 .graf .grade{stroke:var(--line);stroke-dasharray:3 4}
 .graf .eixo{stroke:var(--line)}
@@ -292,15 +332,44 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .msg-ok{color:var(--pos);font-size:14px;margin:0;min-height:18px}.msg-er{color:var(--neg);font-size:14px;margin:0;min-height:18px}
 .linha-c{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}.linha-c:last-child{border-bottom:0}
 .linha-c span{color:var(--muted)}.linha-c b{text-align:right;overflow-wrap:anywhere}
+/* (12/11) Conectar inversor */
+.adm-cx{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:12px;padding:12px 14px;cursor:pointer;font:inherit;margin:4px 0}
+.adm-cx b{display:block;font-size:15px}.adm-cx small{color:var(--muted);font-size:12.5px}
+.cx-body{display:grid;gap:14px;max-width:640px;margin-top:6px}
+.cx-plat{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.cx-pl{display:grid;gap:3px;text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:12px;padding:14px;cursor:pointer;font:inherit;min-height:72px}
+.cx-pl b{font-size:16px}.cx-pl small{color:var(--muted);font-size:12.5px}.cx-pl:disabled{opacity:.5;cursor:default}
+.cx-pl:not(:disabled){border-color:var(--yellow);box-shadow:inset 4px 0 0 var(--yellow)}
+.cx-volta{justify-self:start;border:0;background:none;color:var(--muted);font:inherit;font-size:14px;cursor:pointer;padding:4px 0}
+.cx-h{font-family:var(--display);font-size:22px;margin:0}
+.cx-ol{margin:0;padding-left:20px;display:grid;gap:8px;font-size:15px;line-height:1.4}
+.cx-bts{display:flex;flex-wrap:wrap;gap:10px}
+.cx-av,.cx-err{border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.4}
+.cx-av{background:rgba(245,201,22,.15);border:1px solid rgba(245,201,22,.5)}
+.cx-err{background:rgba(185,64,43,.12);border:1px solid var(--neg);color:var(--ink)}
+.cx-ok,.cx-st{margin:0;font-size:14px}
+.cx-redes{display:grid;gap:6px}
+.cx-rede{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:10px 12px;cursor:pointer;font:inherit;text-align:left;min-height:52px}
+.cx-rede>span:first-child{flex:1;min-width:0;display:grid}.cx-rede b{overflow-wrap:anywhere;font-size:15px}.cx-rede small{color:var(--muted);font-size:12px}
+.cx-rede em{font-style:normal;font-size:12px;color:var(--muted);width:24px;text-align:right}
+.cx-manual{border-style:dashed}
+.cx-bar{display:inline-flex;align-items:flex-end;gap:2px}.cx-bar i{width:4px;background:var(--line);border-radius:1px}.cx-bar i.on{background:var(--pos)}
+.cx-campo{display:grid;gap:6px;font-size:14px}.cx-campo input{min-height:48px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:inherit;font-size:16px;padding:0 12px;min-width:0}
+.cx-senha{display:flex;gap:8px}.cx-senha input{flex:1}
+.cx-gira{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--yellow);border-radius:50%;animation:cxg 1s linear infinite}
+@keyframes cxg{to{transform:rotate(360deg)}}
+.cx-fim{border-radius:12px;padding:14px;display:grid;gap:4px}.cx-fim b{font-size:18px}.cx-fim p{margin:0;font-size:14px;line-height:1.45}
+.cx-fim.ok{background:rgba(29,127,71,.14);border:1px solid var(--pos)}.cx-fim.erro{background:rgba(185,64,43,.12);border:1px solid var(--neg)}
+.cx-log summary{cursor:pointer;color:var(--muted);font-size:13px}.cx-log pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11.5px;max-height:260px;overflow:auto;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;margin:6px 0 0}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--head);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:40;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 
 /* ---------- (09/11) administração: resumo, busca e lista ---------- */
-.adm-res{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px}
-@media (max-width:560px){.adm-res{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.adm-res{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:14px}
 .adm-t{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:76px;padding:12px 12px 10px;border-radius:14px;border:1px solid var(--line);border-left:5px solid var(--c);background:var(--panel);color:var(--ink);cursor:pointer;text-align:left;font:inherit}
 .adm-t b{font-family:var(--display);font-size:30px;line-height:1;color:var(--c)}.adm-t span{font-size:13px;font-weight:600;color:var(--muted)}
 .adm-t[aria-pressed="true"]{background:color-mix(in srgb,var(--c) 14%,var(--panel));outline:2px solid var(--c);outline-offset:-1px}
 .adm-t:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+@media (max-width:560px){.adm-res{gap:4px}.adm-t{min-width:0;min-height:64px;padding:9px 2px 8px 5px;border-left-width:4px}.adm-t b{font-size:24px}.adm-t span{font-size:9.6px;line-height:1.15;letter-spacing:-.02em}}
 .adm-quando{margin:8px 2px 0;font-size:12.5px;color:var(--muted);min-height:16px}
 .adm-busca{display:flex;align-items:center;gap:8px;margin:12px 0 10px;padding:0 12px;min-height:48px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
 .adm-busca svg{width:20px;height:20px;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;flex:none}
@@ -320,6 +389,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .cx-it.cx-ext{text-decoration:none}
 /* ---------- cena 3D (aprovada em 07/11 à noite): imagens + cabos animados (SVG) + cartões ---------- */
 .cena{position:relative;aspect-ratio:560/419;max-width:100%;border-radius:18px;overflow:hidden;background:#dfe6f3;box-shadow:0 10px 30px rgba(20,20,20,.12)}
+/* (11/11, Gerson) no celular a cena vai de ponta a ponta (sem a faixa vazia dos lados), como se a imagem continuasse */
+@media (max-width:640px){.cena{margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)));max-width:none;border-radius:0;box-shadow:none}}
 .cena img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 2.4s ease}
 .cena .c3-noite{opacity:0}.cena[data-estado="noite"] .c3-noite{opacity:1}
 .cena svg.c3-svg{position:absolute;inset:0;width:100%;height:100%}
@@ -524,6 +595,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   <!-- (09/11, Gerson) GAP Clientes do Gerson e do Adriano: as usinas que cada um acompanha, com o resumo e a busca; tocar abre a tela do cliente -->
   <section id="v-usinas" aria-labelledby="t-usinas" hidden>
     <div class="cab"><div><p class="olho" id="admOlho">Administração</p><h1 class="t" id="t-usinas">Usinas</h1></div></div>
+    <button type="button" class="adm-cx" data-ir="conectar"><span class="cx-ic" style="--c:#06b6d4"><svg viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01"/></svg></span><span><b>Conectar inversor</b><small>Trocar o Wi-Fi do datalogger (teste)</small></span></button>
     <div class="adm-res" id="admRes"></div>
     <p class="adm-quando" id="admQuando"></p>
     <label class="adm-busca"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="admBusca" type="search" placeholder="Buscar usina ou cidade" autocomplete="off" aria-label="Buscar usina ou cidade"></label>
@@ -710,6 +782,12 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 
   <section id="v-chamados" hidden aria-labelledby="t-chamados"><div id="chLista"></div></section>
 
+  <!-- (12/11, Gerson) CONECTAR INVERSOR: só administração por enquanto (testes); conectar-cli.js -->
+  <section id="v-conectar" hidden aria-labelledby="t-conectar">
+    <div class="cab"><div><p class="olho">Wi-Fi do inversor</p><h1 class="t" id="t-conectar">Conectar inversor</h1></div></div>
+    <div id="cxBody" class="cx-body"></div>
+  </section>
+
   <section id="v-breve" hidden aria-labelledby="t-breve">
     <p class="olho">Em breve</p>
     <h1 class="t" id="t-breve">Esta parte ainda está sendo feita</h1>
@@ -721,6 +799,11 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 </div>
 
 <script src="../config.js"></script>
+<script>
+  // (11/11, Gerson) sem zoom no app: o iPhone/Safari ignora user-scalable=no, então barra a pinça e o duplo toque
+  ['gesturestart','gesturechange','gestureend'].forEach(function(t){ document.addEventListener(t, function(e){ e.preventDefault(); }, {passive: false}); });
+  document.addEventListener('touchmove', function(e){ if(e.touches && e.touches.length > 1) e.preventDefault(); }, {passive: false});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 (function(){
@@ -757,7 +840,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     for(const [id, k] of [['s-login', 'login'], ['s-carr', 'carr'], ['s-sem', 'sem'], ['s-app', 'app']]) $(id).hidden = t !== k;
     if(txt) $('carr-txt').textContent = txt;
   }
-  window.__cli = {sb: () => sb, D: () => D, usinaSel: () => usinaSel};   // (10/11) para o módulo de chamados
+  window.__cli = {sb: () => sb, D: () => D, usinaSel: () => usinaSel,   // (10/11) para o módulo de chamados
+    trocar: id => { usinaSel = id; idx = null; curva = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); },   // (11/11) janela das usinas (usinas-nome.js)
+    render: () => { if(D) render(); }};
   function toast(m){ const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 3200); }
 
   // ---------- login ----------
@@ -818,9 +903,10 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
       }
       // (09/11) Gerson/Adriano sem usina aberta: a lista das usinas que acompanham (resumo + busca)
       if(data && data.lista){ ADM = data; usinaSel = null; ultCarga = Date.now(); menu(true); tela('app'); pedirResumo();
-        if(!['usinas', 'chamados', 'conta'].includes(vista)){ if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); } else if(vista === 'usinas') renderAdm(); else ir(vista); return; }
+        if(!['usinas', 'chamados', 'conta', 'conectar'].includes(vista)){ if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); } else if(vista === 'usinas') renderAdm(); else ir(vista); return; }
       const trocou = !D || !D.usina || D.usina.id !== data.usina.id;
       D = data; ultCarga = Date.now(); usinaSel = D.usina.id; try{ if(!D.admin) localStorage.setItem('gapcli-usina', usinaSel); }catch(_){}
+      menu(!!D.admin || !!ADM);   // (12/11) cliente com "Conectar inversor" liberado: troca "Documentos" no menu
       if(D.admin){ if(!ADM) ADM = {admin: D.admin, lista: []}; menu(true); if(vista === 'usinas'){ if(location.hash !== '#inicio') location.hash = 'inicio'; else ir('inicio'); } }   // (09/11 16h47) endereço já em #inicio: abre direto (antes ficava na lista)
       // (08/11 13h12) off-grid (cadastro da GAP): a economia abre pelo consumo; on-grid e híbrido, pela geração. O cliente troca no botão
       if(trocou) modoG = D.usina.tipo === 'offgrid' && D.temConsumo ? 'cons' : 'ger';
@@ -1104,11 +1190,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     $('dataTxt').textContent = new Date().toLocaleDateString('pt-BR', {timeZone: TZ, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'});
     $('t-inicio').textContent = (h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite') + (nome ? ', ' + nome : '');
     // seletor de usina
-    $('boxUsina').innerHTML = D.usinas.length > 1
-      ? '<label for="selUsina">Usina</label><select id="selUsina">' + D.usinas.map(x => '<option value="' + esc(x.id) + '"' + (x.id === u.id ? ' selected' : '') + '>' + esc(x.nome + (x.kwp ? ' · ' + f1(x.kwp) + ' kWp' : '')) + '</option>').join('') + '</select>'
-      : '<span class="usina-nome">' + esc(u.nome + (u.cidade ? ' · ' + u.cidade : '') + (u.kwp ? ' · ' + f1(u.kwp) + ' kWp' : '')) + '</span>';
+    // (11/11, Gerson) no lugar do seletor: quadro com o desenho e o nome que o cliente deu; abre a janela das usinas (usinas-nome.js)
+    $('boxUsina').innerHTML = window.GAP_UNOME ? GAP_UNOME.botao(D) : '<span class="usina-nome">' + esc(u.nome) + '</span>';
     $('admVolta').hidden = !D.admin; $('admDono').textContent = D.admin && D.dono ? 'cliente: ' + D.dono : '';
-    const sel = $('selUsina'); if(sel) sel.onchange = () => { usinaSel = sel.value; idx = null; curva = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); };
     resumoUsinas(u, est);
     // faixa: só quando gerou 1% ou mais acima
     const a = D.acima;
@@ -1515,23 +1599,28 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   const ic = (k, c) => '<span class="cx-ic" style="--c:' + c + '"><svg viewBox="0 0 24 24">' + IC[k] + '</svg></span>';
   // (09/11) Gerson/Adriano: "Usinas" em primeiro e o atalho para o GAP Administração (o site da GAP)
   IC.usinas = '<path d="M4 20h16M6 20V9l6-5 6 5v11"/><path d="M9.5 13.5h5M9.5 16.5h5"/>';
+  IC.conectar = '<path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01"/>';
   IC.adm = '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>';
   let menuAdm = null;
   function menu(adm){
-    if(menuAdm === adm) return; menuAdm = adm;
-    const M = adm ? [['usinas', 'Usinas', '#22c55e'], ...MENU] : MENU;
+    // (12/11 11h45, Gerson) cliente com "Conectar inversor" liberado (pelo site): ele entra no lugar de "Documentos" (em breve)
+    const lib = !adm && !!(window.GAP_CONECTAR && GAP_CONECTAR.cliente()), chave = adm + '|' + lib;
+    if(menuAdm === chave) return; menuAdm = chave;
+    const MC = lib ? MENU.map(x => x[0] === 'documentos' ? ['conectar', 'Wi-Fi do inversor', '#06b6d4'] : x) : MENU;
+    const M = adm ? [['usinas', 'Usinas', '#22c55e'], ...MENU.slice(0, 3), ['conectar', 'Conectar inversor', '#06b6d4'], ...MENU.slice(3)] : MC;
     let lado = '<div class="cx-marca"><b>' + (adm ? 'Administração' : 'Minha usina') + '</b><small>GAP Clientes</small></div>';
     M.forEach(([k, n, c]) => { if(k === 'chamados') lado += '<div class="cx-g">Atendimento</div>'; if(k === 'conta') lado += '<div class="cx-g">Conta</div>';
       lado += '<button type="button" class="cx-it" data-ir="' + k + '">' + ic(k, c) + '<span>' + n + '</span>' + (k === 'documentos' ? '<small>em breve</small>' : '') + '</button>'; });
     if(adm) lado += '<a class="cx-it cx-ext" href="https://gap-controle.pages.dev/" target="_blank" rel="noopener">' + ic('adm', '#94a3b8') + '<span>GAP Administração</span></a>';
     $('lado').innerHTML = lado;
-    const B = adm ? M.filter(([k]) => k !== 'documentos') : M;
+    const B = adm ? M.filter(([k]) => k !== 'documentos' && k !== 'conectar') : M;   // (12/11) Conectar inversor: no menu do lado e no botão da tela Usinas
     $('baixo').innerHTML = B.map(([k, n, c]) => '<button type="button" data-ir="' + k + '">' + ic(k, c) + (k === 'conta' ? 'Conta' : n) + '</button>').join('');
     document.querySelectorAll('#lado [data-ir],#baixo [data-ir]').forEach(b => { if(b.dataset.ir === vista) b.setAttribute('aria-current', 'page'); });
   }
   menu(false);
+  addEventListener('load', () => { if(D) menu(!!D.admin || !!ADM); });   // (12/11) o conectar-cli.js carrega depois: confere o menu de novo
   // ---------- (09/11) administração: resumo (igual ao do site), busca (sem travar: só a lista é redesenhada, 0,25 s depois de parar de digitar) e lista ----------
-  const ADM_G = [['normal', 'Online', '#16a34a'], ['alerta', 'Em alerta', '#dc2626'], ['baixo', 'Rendimento baixo', '#d4a106'], ['offline', 'Offline', '#8a8f98']];
+  const ADM_G = [['normal', 'Online', '#16a34a'], ['alerta', 'Alarme inversor', '#dc2626'], ['gap', 'Alarme GAP', '#c2410c'], ['baixo', 'Rendimento', '#d4a106'], ['offline', 'Offline', '#8a8f98']];
   const semAc = t => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   function renderAdm(){
     if(!ADM) return; const L = ADM.lista || [], h = horaBR(), nome = ((ADM.admin && ADM.admin.nome) || '').trim().split(/\s+/)[0] || '';
@@ -1556,16 +1645,17 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const u = ev.target.closest('[data-admu]'); if(u){ usinaSel = u.dataset.admu; idx = null; curva = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); return; }
     if(ev.target.closest('#admVolta')){ usinaSel = null; if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); carregar(false); }
   });
-  const NOMES = {usinas: 'Usinas', inicio: 'Minha usina', geracao: 'Geração', chamados: 'Chamados', documentos: 'Documentos', conta: 'Minha conta', inversores: 'Equipamentos'};
+  const NOMES = {usinas: 'Usinas', inicio: 'Minha usina', geracao: 'Geração', chamados: 'Chamados', documentos: 'Documentos', conta: 'Minha conta', inversores: 'Equipamentos', conectar: 'Conectar inversor'};
   function ir(v){
     // (11/11) aviso de chamado: #chamado=ID abre a lista e já o chamado
     const mch = String(v || '').match(/^chamado=([\w-]{1,64})$/); if(mch){ v = 'chamados'; if(window.GAP_CH_CLI) GAP_CH_CLI.verDepois(mch[1]); }
-    if(!NOMES[v] || (v === 'usinas' && !ADM)) v = 'inicio';
+    // (12/11) "Conectar inversor": administração sempre; cliente só quando liberado pelo site (GAP_CONECTAR.cliente)
+    if(!NOMES[v] || (v === 'usinas' && !ADM) || (v === 'conectar' && !ADM && !(window.GAP_CONECTAR && GAP_CONECTAR.cliente()))) v = 'inicio';
     if(ADM && !D && ['inicio', 'geracao', 'inversores'].includes(v)) v = 'usinas';   // administração sem usina aberta: a lista
     if(v === 'usinas' && location.hash !== '#usinas') try{ history.replaceState(null, '', '#usinas'); }catch(_){}   // endereço igual à tela
     vista = v;
-    const vv = ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'chamados'].includes(v) ? v : 'breve';
-    for(const k of ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'chamados', 'breve']) $('v-' + k).hidden = vv !== k;
+    const vv = ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'chamados', 'conectar'].includes(v) ? v : 'breve';
+    for(const k of ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'chamados', 'conectar', 'breve']) $('v-' + k).hidden = vv !== k;
     fecharInv(); fecharEscolhe();
     document.querySelectorAll('#lado [data-ir],#baixo [data-ir]').forEach(b => { if(b.dataset.ir === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
     $('topoSub').textContent = NOMES[v];
@@ -1573,6 +1663,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     if(v === 'geracao' && D) mostrarGeracao();
     if(v === 'inversores' && D) mostrarInv();
     if(v === 'chamados' && window.GAP_CH_CLI) GAP_CH_CLI.abrir();   // (10/11) chamados
+    if(v === 'conectar' && window.GAP_CONECTAR) GAP_CONECTAR.abrir();   // (12/11) conectar inversor
     window.scrollTo(0, 0);
   }
   document.addEventListener('click', ev => { const b = ev.target.closest('[data-ir]'); if(!b) return; const v = b.dataset.ir; if(location.hash !== '#' + v) location.hash = v; else ir(v); });
@@ -2107,6 +2198,330 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     verDepois(id){ st.verDepois = id; },
     _st: st, _TIPOS: TIPOS,
   };
+})();
+</script>
+<script>
+// GAP Clientes · CONECTAR INVERSOR (12/11/2026, Gerson). Entra no cliente.html pelo build_cliente.py.
+// Por enquanto só para a administração (testes). 1º escolhe a plataforma; cada uma tem o seu passo a passo.
+// Solarman (Sofar · Deye, datalogger LSW3): fala por UDP com o datalogger no Wi-Fi dele (AP_<serial>, 10.10.100.254:48899)
+// pelo plugin nativo "GapWifi" do app Android (1.0.12+). Comandos testados no campo em 12/11 (docs/teste-reconexao-sofar.md):
+//   WIFIKIT-214028-READ → +ok → AT+WSCAN / AT+WSSSID=<rede> / AT+WSKEY=<seg>,<cripto>,<senha> / AT+Z (reinicia) → AT+WSLK / AT+WANN.
+// A senha do Wi-Fi do cliente vai só para o datalogger: não é guardada, não vai para o banco e não aparece no registro.
+(function(){
+  'use strict';
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+  const $ = id => document.getElementById(id);
+  const HOST = '10.10.100.254', PORTA = 48899, READ = 'WIFIKIT-214028-READ', FIM = '\r\n\r\n';
+  // (12/11, Gerson) CLIENTES: a tela já está pronta para eles, mas fica BLOQUEADA até o Gerson mandar liberar.
+  // Para liberar: true aqui e publicar o site (não precisa de APK novo). O cliente só vê as plataformas das usinas dele.
+  const CLIENTES = false || window.__CX_CLIENTES === true;   // (__CX_CLIENTES: só para o teste automático)
+  // usina (id "<plataforma>:<n>") → plataforma desta tela
+  const DA_USINA = {solarman: 'solarman', aiswei: 'solplanet', solplanet: 'solplanet', growatt: 'growatt', auxsol: 'auxsol', auxsolapp: 'auxsol', auxsolcloud: 'auxsol', elekeeper: 'saj', saj: 'saj', soliscloud: 'solis', solis: 'solis', goodwe: 'goodwe', sems: 'goodwe', semsplus: 'goodwe'};
+  const PLAT = [
+    {k: 'solarman', n: 'Solarman', d: 'Inversores Sofar e Deye (datalogger Wi-Fi)', ok: true},
+    {k: 'solplanet', n: 'Solplanet', d: 'Em breve'},
+    {k: 'growatt', n: 'Growatt', d: 'Em breve'},
+    {k: 'auxsol', n: 'Auxsol', d: 'Em breve (Bluetooth)'},
+    {k: 'saj', n: 'SAJ (Elekeeper)', d: 'Em breve'},
+    {k: 'solis', n: 'Solis', d: 'Em breve'},
+    {k: 'goodwe', n: 'GoodWe', d: 'Em breve'},
+  ];
+  const S = {plat: null, passo: 'plataforma', serial: '', atual: '', redes: [], rede: null, msg: '', ocupado: false, log: [], fimConf: 0, conf: null};
+  const plugin = () => window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.GapWifi;
+  const temPlugin = () => !!(window.Capacitor && Capacitor.isNativePlatform && Capacitor.isNativePlatform() && plugin());
+  const dados = () => { try{ return (window.__cli && __cli.D && __cli.D()) || null; }catch(_){ return null; } };
+  const ehCliente = () => { const d = dados(); return !!d && !d.admin; };
+  function platsCliente(){
+    const d = dados(); if(!d) return [];
+    const ks = new Set(((d.usinas && d.usinas.length ? d.usinas : [d.usina]) || []).map(u => DA_USINA[String(u && u.id || '').split(':')[0]]).filter(Boolean));
+    return PLAT.filter(p => ks.has(p.k));
+  }
+  const clienteLiberado = () => CLIENTES && temPlugin() && platsCliente().some(p => p.ok);
+
+  // ---------- conversa com o datalogger ----------
+  const ESCONDE = /^(AT\+WSKEY=[^,]*,[^,]*,).*/s;
+  function registra(passos, r){
+    passos.forEach((p, i) => { if(p.envia) S.log.push('→ ' + p.envia.replace(ESCONDE, '$1••••••').replace(/\r\n$/, ''));
+      ((r && r.passos && r.passos[i] && r.passos[i].respostas) || []).forEach(t => S.log.push('← ' + t.replace(/[\r\n]+/g, ' ').trim())); });
+    if(S.log.length > 400) S.log = S.log.slice(-400);
+  }
+  async function conversa(passos){
+    const r = await plugin().sessao({host: HOST, porta: PORTA, passos});
+    registra(passos, r); return (r.passos || []).map(p => p.respostas || []);
+  }
+  const cmd = (c, espera, fim) => ({envia: c + '\r\n', espera: espera || 2500, fim: fim == null ? FIM : fim});
+  const abre = () => [{envia: READ, espera: 2500, fim: ','}, {envia: '+ok', espera: 250, fim: ''}];
+  const valor = L => { const t = (L || []).join(''); const m = t.match(/\+ok=?([^\r\n]*)/); return m ? m[1].trim() : null; };
+  const erro = L => { const m = (L || []).join('').match(/\+ERR=?(-?\d+)/); return m ? m[1] : null; };
+  // achou o datalogger? (a 1ª resposta é "10.10.100.254,<MAC>,<serial>")
+  const serialDe = L => { const p = String((L || [])[0] || '').trim().split(','); return p.length >= 3 ? p[2] : p.length === 2 ? p[1] : ''; };
+
+  // linha do AT+WSCAN: "Ch,SSID,BSSID,Security,Indicator" — o nome da rede pode ter vírgula: lê o canal do começo e o resto do fim
+  function linhaRede(l){
+    const p = String(l).replace(/[\r\n]+/g, '').split(','); if(p.length < 5 || !/^\d+$/.test(p[0])) return null;
+    const sinal = Number(p[p.length - 1]), seg = p[p.length - 2], bssid = p[p.length - 3], ssid = p.slice(1, p.length - 3).join(',');
+    if(!/^[0-9A-Fa-f:]{17}$/.test(bssid) || !isFinite(sinal)) return null;
+    return {ch: Number(p[0]), ssid, bssid, seg, sinal};
+  }
+  function lerScan(L){
+    const linhas = []; (L || []).forEach(t => String(t).split(/\n\r|\r\n|\n|\r/).forEach(x => { if(x.trim()) linhas.push(x); }));
+    const por = {};
+    linhas.map(linhaRede).filter(r => r && r.ssid.trim()).forEach(r => { if(!por[r.ssid] || por[r.ssid].sinal < r.sinal) por[r.ssid] = r; });   // redes ocultas (sem nome) não aparecem
+    return Object.values(por).sort((a, b) => b.sinal - a.sinal);
+  }
+  // segurança da lista ("WPA2PSK/AES", "WPAPSKWPA2PSK/TKIPAES", "OPEN/NONE") → AT+WSKEY=<seg>,<cripto>
+  function chaveDe(seg){
+    const s = String(seg || '').toUpperCase(), [a, c] = s.split('/');
+    if(!a || a.startsWith('OPEN') || a === 'NONE') return {aberta: true, auth: 'OPEN', enc: 'NONE'};
+    return {aberta: false, auth: a.includes('WPA2') ? 'WPA2PSK' : a.includes('WPA') ? 'WPAPSK' : 'WPA2PSK', enc: (c || '').includes('AES') ? 'AES' : (c || '').includes('TKIP') ? 'TKIP' : 'AES'};
+  }
+
+  async function procurar(){
+    if(S.ocupado) return; S.ocupado = true; S.msg = 'Procurando o datalogger…'; tela();
+    try{
+      const R = await conversa([...abre(), cmd('AT+WSSSID'), cmd('AT+WSCAN', 9000, '+ok\r\n\r\n'), {envia: 'AT+Q\r\n', espera: 200, fim: ''}]);
+      if(!R[0].length){ S.msg = 'nao-achou'; S.passo = 'wifi'; return; }
+      S.serial = serialDe(R[0]); S.atual = valor(R[2]) || ''; S.redes = lerScan(R[3]);
+      S.msg = S.redes.length ? '' : 'O datalogger respondeu, mas não mandou a lista de redes. Toque em "Procurar de novo".';
+      S.passo = 'redes';
+    }catch(e){ S.msg = 'Erro: ' + (e && e.message || e); }
+    finally{ S.ocupado = false; tela(); }
+  }
+
+  async function gravar(){
+    if(S.ocupado || !S.rede) return;
+    const k = chaveDe(S.rede.seg), senha = k.aberta ? '' : ($('cxSenha') && $('cxSenha').value) || '';
+    const ssid = (S.rede.manual ? (($('cxSsid') && $('cxSsid').value) || '') : S.rede.ssid);
+    if(!ssid.trim()){ S.msg = 'Digite o nome da rede.'; tela(); return; }
+    if(!k.aberta && (senha.length < 8 || senha.length > 63)){ S.msg = 'A senha do Wi-Fi tem de 8 a 63 letras.'; tela(); return; }
+    S.rede.ssid = ssid;
+    S.ocupado = true; S.msg = 'Gravando no datalogger…'; tela();
+    try{
+      const R = await conversa([...abre(), cmd('AT+WSSSID=' + ssid), cmd('AT+WSKEY=' + k.auth + ',' + k.enc + (k.aberta ? '' : ',' + senha))]);
+      if(!R[0].length){ S.msg = 'O datalogger não respondeu. Confira se o tablet ainda está no Wi-Fi AP_ dele.'; return; }
+      const e1 = erro(R[2]), e2 = erro(R[3]);
+      if(e1 || e2 || valor(R[2]) == null || valor(R[3]) == null){ S.msg = 'O datalogger recusou (' + (e1 ? 'rede: erro ' + e1 : e2 ? 'senha: erro ' + e2 : 'sem resposta') + '). Nada foi trocado: tente de novo.'; return; }
+      await conversa([...abre(), {envia: 'AT+Z\r\n', espera: 600, fim: ''}]);   // reinicia para usar a rede nova
+      S.passo = 'conferir'; S.conf = null; S.fimConf = Date.now() + 180000; S.msg = '';
+      setTimeout(conferir, 15000);
+    }catch(e){ S.msg = 'Erro: ' + (e && e.message || e); }
+    finally{ S.ocupado = false; tela(); }
+  }
+
+  // depois do AT+Z: pergunta a cada 6 s (até 3 min) se ligou na rede do cliente
+  async function conferir(){
+    if(S.passo !== 'conferir') return;
+    try{
+      const R = await conversa([...abre(), cmd('AT+WSLK'), cmd('AT+WANN'), {envia: 'AT+Q\r\n', espera: 200, fim: ''}]);
+      if(R[0].length){
+        const lk = valor(R[2]) || '', ip = (valor(R[3]) || '').split(','), alvo = S.rede && S.rede.ssid;
+        const ligado = alvo && lk.startsWith(alvo + '(') && ip[1] && ip[1] !== '0.0.0.0';
+        S.conf = {resposta: true, lk, ip: ip[1] || ''};
+        if(ligado){ S.passo = 'pronto'; tela(); return; }
+      }else S.conf = {resposta: false};
+    }catch(_){ S.conf = {resposta: false}; }
+    if(Date.now() > S.fimConf){ S.passo = 'falhou'; tela(); return; }
+    tela(); setTimeout(conferir, 6000);
+  }
+
+  // ---------- telas ----------
+  const barras = n => { const b = n >= 70 ? 4 : n >= 50 ? 3 : n >= 30 ? 2 : 1; return '<span class="cx-bar" aria-label="sinal ' + n + '">' + [1, 2, 3, 4].map(i => '<i class="' + (i <= b ? 'on' : '') + '" style="height:' + (i * 4 + 2) + 'px"></i>').join('') + '</span>'; };
+  const passoT = (n, t) => '<p class="olho">Passo ' + n + ' de 4</p><h2 class="cx-h">' + t + '</h2>';
+  function tela(){
+    const box = $('cxBody'); if(!box) return;
+    let h = '';
+    if(!temPlugin()) h += '<div class="cx-av">Esta parte só funciona dentro do app <b>GAP Clientes para Android</b> (versão 1.0.12 ou mais nova). No navegador dá para ver as telas, mas não conversa com o datalogger.</div>';
+    const lista = ehCliente() ? platsCliente() : PLAT;
+    if(S.passo === 'plataforma' && ehCliente() && lista.filter(p => p.ok).length === 1){ S.plat = lista.find(p => p.ok).k; S.passo = 'antes'; }   // cliente com uma plataforma só: direto
+    if(S.passo === 'plataforma'){
+      h += '<p class="nota-g">' + (ehCliente() ? 'Escolha o monitoramento do seu inversor.' : 'Escolha a plataforma de monitoramento do inversor. Cada uma tem o seu passo a passo.') + '</p><div class="cx-plat">'
+        + lista.map(p => '<button type="button" class="cx-pl" data-cxplat="' + p.k + '"' + (p.ok ? '' : ' disabled') + '><b>' + esc(p.n) + '</b><small>' + esc(p.d) + '</small></button>').join('') + '</div>';
+    }else{
+      if(!ehCliente() || platsCliente().filter(p => p.ok).length > 1) h += '<button type="button" class="cx-volta" data-cxvolta>‹ Outra plataforma</button>';
+      if(S.passo === 'antes'){
+        h += passoT(1, 'Antes de começar')
+          + '<ol class="cx-ol"><li>Deixe <b>esta tela aberta</b>. Sem internet o app não abre de novo, então não feche.</li>'
+          + '<li>Se o tablet tiver chip, <b>desligue os dados móveis</b>.</li>'
+          + '<li>Tenha a <b>senha do Wi-Fi do cliente</b> (você digita aqui; ela vai só para o datalogger).</li>'
+          + '<li>Na etiqueta do datalogger: o <b>SN</b> e a <b>senha</b> (PWD) do Wi-Fi dele.</li></ol>'
+          + '<button type="button" class="btn-p" data-cxir="wifi">Continuar</button>';
+      }else if(S.passo === 'wifi'){
+        h += passoT(2, 'Entre no Wi-Fi do datalogger')
+          + '<p class="nota-g">Nas configurações de Wi-Fi do tablet, conecte na rede <b>AP_</b> seguida do número do datalogger (ex.: AP_2900368496). A senha é a <b>PWD</b> da etiqueta.<br>Se o Android avisar que a rede não tem internet, escolha <b>manter conectado</b>. Depois volte para cá.</p>'
+          + (S.msg === 'nao-achou' ? '<div class="cx-err">O datalogger não respondeu. Confira se o tablet está no Wi-Fi <b>AP_…</b> (e não na rede do cliente) e tente de novo.</div>' : '')
+          + '<div class="cx-bts"><button type="button" class="btn-o" data-cxwifi>Abrir Wi-Fi do tablet</button><button type="button" class="btn-p" data-cxprocura' + (S.ocupado ? ' disabled' : '') + '>' + (S.ocupado ? 'Procurando…' : 'Já conectei: procurar') + '</button></div>';
+      }else if(S.passo === 'redes'){
+        h += passoT(3, 'Escolha a rede do cliente')
+          + '<p class="cx-ok">Datalogger <b>' + esc(S.serial || '?') + '</b> encontrado.' + (S.atual ? ' Rede gravada nele agora: <b>' + esc(S.atual) + '</b>.' : '') + '</p>'
+          + (S.msg && !S.ocupado ? '<div class="cx-err">' + esc(S.msg) + '</div>' : '')
+          + '<div class="cx-redes">' + S.redes.map((r, i) => '<button type="button" class="cx-rede" data-cxrede="' + i + '"><span><b>' + esc(r.ssid) + '</b><small>' + (chaveDe(r.seg).aberta ? 'aberta, sem senha' : 'com senha') + ' · canal ' + r.ch + '</small></span>' + barras(r.sinal) + '<em>' + r.sinal + '</em></button>').join('')
+          + '<button type="button" class="cx-rede cx-manual" data-cxrede="manual"><span><b>Outra rede (oculta)</b><small>digitar o nome</small></span></button></div>'
+          + '<button type="button" class="btn-o" data-cxprocura' + (S.ocupado ? ' disabled' : '') + '>' + (S.ocupado ? 'Procurando…' : 'Procurar de novo') + '</button>';
+      }else if(S.passo === 'senha'){
+        const r = S.rede, k = chaveDe(r.seg);
+        h += passoT(3, r.manual ? 'Rede oculta' : 'Senha de “' + esc(r.ssid) + '”')
+          + (r.manual ? '<label class="cx-campo"><span>Nome da rede (igual, com maiúsculas e minúsculas)</span><input id="cxSsid" autocomplete="off" autocapitalize="none" spellcheck="false"></label>' : '')
+          + (k.aberta ? '<p class="nota-g">Rede aberta: não precisa de senha.</p>'
+            : '<label class="cx-campo"><span>Senha do Wi-Fi do cliente</span><span class="cx-senha"><input id="cxSenha" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="63"><button type="button" class="btn-o" data-cxver aria-label="Mostrar a senha">Ver</button></span></label>'
+              + '<p class="nota-g">A senha não fica guardada no app nem na GAP: vai só para o datalogger.</p>')
+          + (S.msg && !S.ocupado ? '<div class="cx-err">' + esc(S.msg) + '</div>' : '')
+          + '<div class="cx-bts"><button type="button" class="btn-o" data-cxir="redes">Voltar</button><button type="button" class="btn-p" data-cxgrava' + (S.ocupado ? ' disabled' : '') + '>' + (S.ocupado ? 'Gravando…' : 'Gravar no datalogger') + '</button></div>';
+      }else if(S.passo === 'conferir'){
+        const seg = Math.max(0, Math.round((S.fimConf - Date.now()) / 1000));
+        h += passoT(4, 'Conferindo a conexão…')
+          + '<p class="nota-g">O datalogger reiniciou para entrar na rede <b>' + esc(S.rede.ssid) + '</b>. Leva cerca de 1 minuto.<br>Se o tablet sair do Wi-Fi <b>AP_…</b>, entre nele de novo: o app continua perguntando sozinho (mais ' + seg + ' s).</p>'
+          + '<div class="cx-gira" aria-hidden="true"></div>'
+          + (S.conf ? '<p class="cx-st">' + (S.conf.resposta ? 'Datalogger respondeu: ' + esc(S.conf.lk || 'ainda sem rede') + (S.conf.ip && S.conf.ip !== '0.0.0.0' ? ' · IP ' + esc(S.conf.ip) : '') : 'Aguardando o datalogger voltar…') + '</p>' : '')
+          + '<button type="button" class="btn-o" data-cxwifi>Abrir Wi-Fi do tablet</button>';
+      }else if(S.passo === 'pronto'){
+        h += '<div class="cx-fim ok"><b>Conectado!</b><p>O datalogger entrou na rede <b>' + esc(S.rede.ssid) + '</b> (IP ' + esc(S.conf.ip) + '). Em até 5 minutos os dados voltam no portal da Solarman.</p></div>'
+          + '<p class="nota-g">Pode voltar o tablet para a internet normal.</p><button type="button" class="btn-p" data-cxvolta>Concluir</button>';
+      }else if(S.passo === 'falhou'){
+        h += '<div class="cx-fim erro"><b>Não conectou</b><p>Em 3 minutos o datalogger não entrou na rede <b>' + esc(S.rede.ssid) + '</b>' + (S.conf && S.conf.resposta ? ' (ele respondeu: ' + esc(S.conf.lk || 'sem rede') + ')' : '') + '. O mais comum é <b>senha errada</b>, ou o roteador longe demais.</p></div>'
+          + '<div class="cx-bts"><button type="button" class="btn-p" data-cxir="senha">Digitar a senha de novo</button><button type="button" class="btn-o" data-cxprocura>Escolher outra rede</button></div>';
+      }
+      if(S.log.length) h += '<details class="cx-log"><summary>Registro da conversa (' + S.log.length + ')</summary><pre>' + esc(S.log.join('\n')) + '</pre></details>';
+    }
+    box.innerHTML = h;
+  }
+
+  document.addEventListener('click', ev => {
+    const t = ev.target; if(!t.closest || !t.closest('#v-conectar')) return;
+    const pl = t.closest('[data-cxplat]'); if(pl){ S.plat = pl.dataset.cxplat; S.passo = 'antes'; S.msg = ''; tela(); return; }
+    if(t.closest('[data-cxvolta]')){ S.passo = 'plataforma'; S.msg = ''; S.rede = null; tela(); return; }
+    const ir = t.closest('[data-cxir]'); if(ir){ S.passo = ir.dataset.cxir; S.msg = ''; tela(); return; }
+    if(t.closest('[data-cxwifi]')){ if(temPlugin()) plugin().abrirWifi().catch(() => {}); return; }
+    if(t.closest('[data-cxprocura]')){ if(!temPlugin()){ S.msg = 'nao-achou'; S.passo = 'wifi'; tela(); return; } procurar(); return; }
+    const rd = t.closest('[data-cxrede]'); if(rd){ S.rede = rd.dataset.cxrede === 'manual' ? {manual: true, ssid: '', seg: 'WPA2PSK/AES'} : {...S.redes[+rd.dataset.cxrede]}; S.passo = 'senha'; S.msg = ''; tela(); setTimeout(() => { const i = $('cxSsid') || $('cxSenha'); if(i) i.focus(); }, 50); return; }
+    if(t.closest('[data-cxver]')){ const i = $('cxSenha'); if(i){ i.type = i.type === 'password' ? 'text' : 'password'; t.closest('[data-cxver]').textContent = i.type === 'password' ? 'Ver' : 'Esconder'; } return; }
+    if(t.closest('[data-cxgrava]')){ if(!temPlugin()){ S.msg = 'Só no app Android.'; tela(); return; } gravar(); }
+  });
+
+  window.GAP_CONECTAR = {abrir: () => tela(), cliente: clienteLiberado, _t: {linhaRede, lerScan, chaveDe, serialDe, valor, erro}};
+})();
+</script>
+<script>
+// =============== GAP Clientes · NOME E DESENHO DE CADA USINA (11/11, Gerson 14h37/14h59) ===============
+// O cliente dá um nome e escolhe um desenho (ícone redondo, sempre com placa solar) para cada usina dele.
+// Vale só no GAP Clientes dele: a equipe GAP continua vendo o nome da planta do portal. Grava pela função
+// cliente-dados ({renomear: {usina, nome, icone}}, tabela cliente_usina_nomes do SQL 50).
+// Tocar no quadro da usina abre uma janela grande (tela inteira no celular) com todas as usinas.
+(function(){
+  'use strict';
+  const C = () => window.__cli || {};
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+  const f1 = n => (Math.round(+n * 10) / 10).toLocaleString('pt-BR');
+
+  // ---------- desenhos (64×64, recortados em círculo pelo CSS) ----------
+  const P = (pts) => {   // placa solar: [embaixo-esq, cima-esq, cima-dir, embaixo-dir], com a grade das células
+    const L = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t], [bl, tl, tr, br] = pts, g = [];
+    for(const t of [1 / 3, 2 / 3]){ const a = L(bl, br, t), b = L(tl, tr, t); g.push(`M${a[0].toFixed(1)} ${a[1].toFixed(1)}L${b[0].toFixed(1)} ${b[1].toFixed(1)}`); }
+    const m1 = L(bl, tl, .5), m2 = L(br, tr, .5); g.push(`M${m1[0].toFixed(1)} ${m1[1].toFixed(1)}L${m2[0].toFixed(1)} ${m2[1].toFixed(1)}`);
+    return `<polygon points="${pts.map(p => p.join(',')).join(' ')}" fill="#1f3d74" stroke="#0d2147" stroke-width=".9" stroke-linejoin="round"/><path d="${g.join('')}" stroke="#86acea" stroke-width=".7"/>`;
+  };
+  const casa = (x, y, w, h, parede, telhado, porta = '#7a5230') =>   // casa vista de frente com o telhado (e a placa) virado para quem olha
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${parede}" stroke="#00000022"/>` +
+    `<polygon points="${x - 3},${y} ${x + 4},${y - 11} ${x + w - 4},${y - 11} ${x + w + 3},${y}" fill="${telhado}"/>` +
+    P([[x + 1.5, y - 1.8], [x + 6.5, y - 9.4], [x + w - 6.5, y - 9.4], [x + w - 1.5, y - 1.8]]) +
+    `<rect x="${x + w / 2 - 2.8}" y="${y + h - 8}" width="5.6" height="8" rx=".8" fill="${porta}"/>` +
+    `<rect x="${x + 2.5}" y="${y + 3}" width="5" height="4.5" fill="#bfe3f7" stroke="#00000030" stroke-width=".6"/><rect x="${x + w - 7.5}" y="${y + 3}" width="5" height="4.5" fill="#bfe3f7" stroke="#00000030" stroke-width=".6"/>`;
+  const ceu = c => `<rect width="64" height="64" fill="${c || '#cde8f7'}"/>`, sol = (x = 50, y = 13, r = 5) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#f5c916"/><circle cx="${x}" cy="${y}" r="${r + 2.5}" fill="#f5c91640"/>`;
+  const ICONES = [
+    ['roca', 'Casa na roça', ceu() + sol() + `<ellipse cx="12" cy="52" rx="26" ry="11" fill="#a6d48b"/><ellipse cx="34" cy="64" rx="46" ry="17" fill="#7fbc61"/>` +
+      `<rect x="8.6" y="35" width="2.6" height="12" fill="#7a5230"/><circle cx="10" cy="32" r="6.5" fill="#4d9a3d"/>` + casa(22, 39, 24, 14, '#f5ecd9', '#b5583c')],
+    ['cidade', 'Casa na cidade', ceu('#d6e6f3') + `<rect x="3" y="22" width="13" height="34" fill="#9fb0c4"/><rect x="47" y="15" width="14" height="41" fill="#8ea1b7"/>` +
+      [26, 31, 36, 41].map(y => `<rect x="6" y="${y}" width="3" height="3" fill="#e8f0f8"/><rect x="11" y="${y}" width="3" height="3" fill="#e8f0f8"/><rect x="50" y="${y - 6}" width="3" height="3" fill="#e8f0f8"/><rect x="55" y="${y - 6}" width="3" height="3" fill="#e8f0f8"/>`).join('') +
+      `<rect y="53" width="64" height="11" fill="#7c8691"/><path d="M4 58.5h8M18 58.5h8M32 58.5h8M46 58.5h8" stroke="#f1f1ec" stroke-width="1.4"/>` + casa(20, 40, 24, 13, '#ffffff', '#5b6470')],
+    ['sitio', 'Sítio / fazenda', ceu() + sol(13, 13) + `<ellipse cx="32" cy="64" rx="48" ry="16" fill="#9ccd6d"/>` +
+      `<rect x="15" y="37" width="34" height="17" fill="#b8432f"/><polygon points="12,37 20,25 44,25 52,37" fill="#6e2a1f"/>` + P([[16, 35], [22, 27], [42, 27], [48, 35]]) +
+      `<rect x="26" y="43" width="12" height="11" fill="#f2e6d0"/><path d="M26 43l12 11M38 43l-12 11" stroke="#b8432f" stroke-width="1.3"/>` +
+      `<path d="M0 57h14M0 61h14M50 57h14M50 61h14M3 55v8M9 55v8M54 55v8M60 55v8" stroke="#8a6238" stroke-width="1.3"/>`],
+    ['comercio', 'Comércio / loja', ceu() + sol(48, 13, 4) + `<rect y="53" width="64" height="11" fill="#8a929b"/>` +
+      `<rect x="11" y="29" width="42" height="24" fill="#f3efe7" stroke="#00000022"/><rect x="9" y="27" width="46" height="3" fill="#545b63"/>` +
+      P([[12, 26.5], [15.5, 18], [30, 18], [30, 26.5]]) + P([[34, 26.5], [37.5, 18], [52, 18], [52, 26.5]]) +
+      [0, 1, 2, 3, 4, 5, 6].map(i => `<rect x="${11 + i * 6}" y="32" width="6" height="5" fill="${i % 2 ? '#ffffff' : '#d4432f'}"/>`).join('') +
+      `<rect x="14" y="40" width="20" height="10" fill="#bfe3f7" stroke="#00000030" stroke-width=".6"/><rect x="38" y="39" width="10" height="14" fill="#7a5230"/>`],
+    ['predio', 'Prédio', ceu('#d6e6f3') + `<rect x="6" y="34" width="12" height="24" fill="#a9b7c8"/><rect x="21" y="21" width="24" height="37" fill="#c7ced8" stroke="#00000022"/>` +
+      P([[22, 20], [24.5, 13], [32, 13], [32, 20]]) + P([[34, 20], [36.5, 13], [44, 13], [44, 20]]) +
+      [25, 31, 37, 43, 49].map(y => [24, 30.5, 37].map(x => `<rect x="${x}" y="${y}" width="4.5" height="3.6" fill="#8fc3e6"/>`).join('')).join('') +
+      `<rect x="48" y="40" width="11" height="18" fill="#9aa9bb"/><rect y="56" width="64" height="8" fill="#7c8691"/>`],
+    ['galpao', 'Galpão / indústria', ceu() + sol(47, 13, 4) + `<rect y="52" width="64" height="12" fill="#8f9a8a"/>` +
+      `<rect x="8" y="35" width="48" height="19" fill="#d8d3c5" stroke="#00000022"/><polygon points="5,35 12,23 52,23 59,35" fill="#7b8088"/>` + P([[9, 33], [14.5, 25], [49.5, 25], [55, 33]]) +
+      `<rect x="25" y="40" width="14" height="14" fill="#8b8f95"/><path d="M25 43h14M25 46h14M25 49h14" stroke="#73777d" stroke-width=".8"/><rect x="12" y="39" width="8" height="5" fill="#bfe3f7"/><rect x="44" y="39" width="8" height="5" fill="#bfe3f7"/>`],
+    ['praia', 'Casa de praia', ceu('#c9ecfb') + sol(14, 12) + `<rect y="38" width="64" height="12" fill="#3aa0d8"/><path d="M0 42q4-2 8 0t8 0 8 0 8 0 8 0 8 0 8 0 8 0" stroke="#bfe8fb" stroke-width="1" fill="none"/>` +
+      `<ellipse cx="32" cy="64" rx="46" ry="15" fill="#f1d9a0"/>` +
+      `<path d="M50 56q-1-12 3-20" stroke="#8a6238" stroke-width="2.4" fill="none"/><path d="M53 36q-8-3-12 2M53 36q7-4 11 1M53 36q-3-7-9-7M53 36q4-6 9-5" stroke="#3f8f3a" stroke-width="2.6" fill="none" stroke-linecap="round"/>` +
+      casa(14, 45, 24, 12, '#fff7e8', '#d0844a')],
+    ['chacara', 'Chácara / piscina', ceu() + sol(45, 13, 4) + `<ellipse cx="32" cy="64" rx="48" ry="19" fill="#8cc66c"/>` + casa(8, 39, 24, 14, '#f7f1e3', '#9a5b3c') +
+      `<rect x="36" y="45" width="22" height="11" rx="3" fill="#4bb8e8" stroke="#e6f6fd" stroke-width="1.6"/><path d="M39 49.5q2-1.4 4 0t4 0 4 0 4 0M39 53q2-1.4 4 0t4 0 4 0 4 0" stroke="#d8f2fc" stroke-width=".9" fill="none"/>` +
+      `<rect x="56" y="33" width="2.2" height="10" fill="#7a5230"/><circle cx="57" cy="30" r="5" fill="#4d9a3d"/>`],
+    ['solo', 'Usina no solo', ceu() + sol(14, 12) + `<ellipse cx="32" cy="66" rx="48" ry="22" fill="#86c06a"/>` +
+      [[4, 44], [22, 44], [40, 44]].map(([x, y]) => `<path d="M${x + 4} ${y}v8M${x + 15} ${y - 4}v12" stroke="#5d6670" stroke-width="1.4"/>` + P([[x, y + 1], [x + 3.5, y - 9], [x + 19.5, y - 9], [x + 17, y + 1]])).join('') +
+      [[12, 57], [32, 58]].map(([x, y]) => `<path d="M${x - 8} ${y}h16" stroke="#6aa64f" stroke-width="1.2"/>`).join('')]
+  ];
+  const PADRAO = ceu('#fdf1c4') + sol(32, 18, 8) + `<ellipse cx="32" cy="66" rx="46" ry="20" fill="#e9c74a"/>` + P([[14, 52], [19, 38], [45, 38], [50, 52]]);
+  const SVG = Object.fromEntries(ICONES.map(([k, , s]) => [k, s]));
+  const icone = (k, cls = '') => `<span class="un-ic ${cls}" aria-hidden="true"><svg viewBox="0 0 64 64">${SVG[k] || PADRAO}</svg></span>`;
+  const EST = {normal: ['#22a95b', 'online'], alarme: ['#e0a400', 'em alerta'], sem_dados: ['#d83a2c', 'offline']};
+  const sub = u => [u.kwp ? f1(u.kwp) + ' kWp' : '', u.cidade || ''].filter(Boolean).join(' · ');
+
+  // ---------- botão do quadro da usina (no lugar do antigo seletor) ----------
+  function botao(D){
+    const u = D.usina, x = (D.usinas || []).find(y => y.id === u.id) || u, n = (D.usinas || []).length;
+    return `<span class="usina-lb">${n > 1 ? 'Usina · ' + n + ' no total' : 'Usina'}</span><button type="button" class="un-bt" data-unabre aria-haspopup="dialog" aria-label="${esc(x.nome)}: ${n > 1 ? 'trocar de usina ou mudar o nome' : 'mudar o nome e o desenho'}">${icone(x.icone)}<span class="un-bt-t"><b>${esc(x.nome)}</b><small>${esc(sub({...x, kwp: x.kwp || u.kwp, cidade: x.cidade || u.cidade}))}</small></span><svg class="un-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg></button>`;
+  }
+
+  // ---------- janela ----------
+  let st = {modo: 'lista', id: null, ic: null, msg: '', salvando: false};
+  function garantir(){ if($('unPop')) return; const d = document.createElement('div'); d.className = 'un-pop'; d.id = 'unPop'; d.hidden = true; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); d.setAttribute('aria-labelledby', 'unT'); d.innerHTML = '<div class="un-c" id="unC"></div>'; document.body.appendChild(d); }
+  function abrir(){ garantir(); st = {modo: 'lista', id: null, ic: null, msg: '', salvando: false}; desenhar(); $('unPop').hidden = false; document.body.style.overflow = 'hidden'; const f = $('unC').querySelector('[data-unx]'); if(f) f.focus(); }
+  function fechar(){ const p = $('unPop'); if(p && !p.hidden){ p.hidden = true; document.body.style.overflow = ''; const b = document.querySelector('[data-unabre]'); if(b) b.focus(); } }
+  function desenhar(){
+    const D = C().D ? C().D() : null; if(!D) return; const L = D.usinas && D.usinas.length ? D.usinas : [D.usina], adm = !!D.admin, box = $('unC');
+    if(st.modo === 'lista'){
+      box.innerHTML = `<div class="un-h"><h2 id="unT">${L.length > 1 ? 'Suas usinas' : 'Sua usina'}</h2><button type="button" class="un-x" data-unx>Fechar</button></div>
+        <p class="un-dica">${adm ? 'Nome da planta no portal.' : (L.length > 1 ? 'Toque na usina para ver. ' : '') + 'No lápis, dê um nome e escolha um desenho para reconhecer cada uma. Só você vê esse nome.'}</p>
+        <div class="un-l">${L.map(x => { const e = EST[x.estado] || null, at = x.id === D.usina.id;
+          return `<div class="un-li${at ? ' at' : ''}"><button type="button" class="un-ir" data-unir="${esc(x.id)}"${at ? ' aria-current="true"' : ''}>${icone(x.icone)}<span class="un-t"><b>${esc(x.nome)}</b><small>${esc(sub(x))}${x.nomePortal && x.nomePortal !== x.nome ? ' · no portal: ' + esc(x.nomePortal) : ''}</small></span>${e ? `<i class="un-e" style="--c:${e[0]}" title="${e[1]}"></i>` : ''}${at ? '<em class="un-ag">vendo</em>' : ''}</button>${adm ? '' : `<button type="button" class="un-ed" data-uned="${esc(x.id)}" aria-label="Mudar o nome e o desenho de ${esc(x.nome)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg></button>`}</div>`; }).join('')}</div>`;
+      return;
+    }
+    const x = L.find(y => y.id === st.id); if(!x){ st.modo = 'lista'; return desenhar(); }
+    const meu = st.nome != null ? st.nome : (x.nomePortal && x.nome !== x.nomePortal ? x.nome : ''), ic = st.ic === undefined ? x.icone : st.ic;
+    box.innerHTML = `<div class="un-h"><button type="button" class="un-volta" data-unvolta aria-label="Voltar para a lista">‹</button><h2 id="unT">Nome e desenho</h2><button type="button" class="un-x" data-unx>Fechar</button></div>
+      <div class="un-prev">${icone(ic, 'g')}<div><b id="unPrevN">${esc(meu || x.nomePortal || x.nome)}</b><small>${esc(sub(x))}</small></div></div>
+      <label class="un-f"><span>Nome da usina</span><input id="unNome" type="text" maxlength="40" autocomplete="off" enterkeyhint="done" value="${esc(meu)}" placeholder="${esc(x.nomePortal || x.nome)}"><small>No portal: ${esc(x.nomePortal || x.nome)}. Até 40 letras.</small></label>
+      <fieldset class="un-g"><legend>Desenho</legend>${ICONES.map(([k, t]) => `<button type="button" data-unic="${k}" aria-pressed="${ic === k}">${icone(k)}<span>${esc(t)}</span></button>`).join('')}</fieldset>
+      ${st.msg ? `<p class="un-msg" role="status">${esc(st.msg)}</p>` : ''}
+      <div class="un-b"><button type="button" class="un-ok" data-unsalva${st.salvando ? ' disabled' : ''}>${st.salvando ? 'Salvando…' : 'Salvar'}</button><button type="button" class="un-no" data-unvolta>Cancelar</button></div>
+      ${meu || x.icone ? '<button type="button" class="un-orig" data-unorig>Voltar ao nome do portal, sem desenho</button>' : ''}`;
+  }
+  async function salvar(id, nome, ic){
+    const D = C().D ? C().D() : null, sb = C().sb ? C().sb() : null; if(!D || !sb) return;
+    st.salvando = true; st.msg = ''; st.nome = nome; st.ic = ic || null; desenhar();
+    try{
+      const {data, error} = await sb.functions.invoke('cliente-dados', {body: {renomear: {usina: id, nome, icone: ic || null}}});
+      if(error || !data || !data.ok) throw new Error((data && data.erro) || 'erro');
+      for(const x of [...(D.usinas || []), D.usina]) if(x && x.id === id){ if(!x.nomePortal) x.nomePortal = x.nome; x.nome = data.nome || x.nomePortal; x.icone = data.icone || null; }
+      st = {modo: 'lista', id: null, ic: undefined, msg: '', salvando: false}; desenhar(); if(C().render) C().render();
+    }catch(_){ st.salvando = false; st.msg = 'Não deu para salvar agora. Confira a internet e tente de novo.'; desenhar(); }
+  }
+  document.addEventListener('click', ev => {
+    const t = ev.target; if(!t.closest) return;
+    if(t.closest('[data-unabre]')){ abrir(); return; }
+    if(!t.closest('#unPop')) return;
+    if(t.id === 'unPop' || t.closest('[data-unx]')){ fechar(); return; }
+    const ir = t.closest('[data-unir]'); if(ir){ const D = C().D(); fechar(); if(ir.dataset.unir !== D.usina.id && C().trocar) C().trocar(ir.dataset.unir); return; }
+    const ed = t.closest('[data-uned]'); if(ed){ st = {modo: 'edita', id: ed.dataset.uned, ic: undefined, msg: '', salvando: false}; desenhar(); const i = $('unNome'); if(i) i.focus(); return; }
+    if(t.closest('[data-unvolta]')){ st = {modo: 'lista', id: null, ic: undefined, msg: '', salvando: false}; desenhar(); return; }
+    const ic = t.closest('[data-unic]'); if(ic){ const nome = ($('unNome') || {}).value; st.ic = st.ic === ic.dataset.unic || (st.ic === undefined && (C().D().usinas || [C().D().usina]).find(y => y.id === st.id).icone === ic.dataset.unic) ? null : ic.dataset.unic; if(nome != null) st.nome = nome; desenhar(); return; }
+    if(t.closest('[data-unsalva]')){ const D = C().D(), x = (D.usinas || [D.usina]).find(y => y.id === st.id); salvar(st.id, ($('unNome').value || '').trim(), st.ic === undefined ? x.icone : st.ic); return; }
+    if(t.closest('[data-unorig]')){ salvar(st.id, '', null); return; }
+  });
+  document.addEventListener('input', ev => { if(ev.target && ev.target.id === 'unNome'){ const p = $('unPrevN'), D = C().D(), x = (D.usinas || [D.usina]).find(y => y.id === st.id); if(p) p.textContent = ev.target.value.trim() || (x && (x.nomePortal || x.nome)) || ''; } });
+  document.addEventListener('keydown', ev => { const p = $('unPop'); if(!p || p.hidden) return; if(ev.key === 'Escape'){ fechar(); return; } if(ev.key === 'Enter' && ev.target && ev.target.id === 'unNome'){ ev.preventDefault(); const b = p.querySelector('[data-unsalva]'); if(b) b.click(); } });
+  window.GAP_UNOME = {botao, icone, abrir, fechar, ICONES: ICONES.map(([k, t]) => [k, t])};
+  try{ if(C().render) C().render(); }catch(_){}   // a tela pode ter sido desenhada antes deste arquivo carregar
 })();
 </script>
 </body>
