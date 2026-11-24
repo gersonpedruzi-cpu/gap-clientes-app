@@ -12,7 +12,19 @@ package br.com.gapengenharia.clientes;
 // (12/11, Gerson) tudo genérico de propósito: as outras marcas (Solplanet, Growatt, Auxsol por Bluetooth…) entram só pelo site, sem APK novo.
 // A senha do Wi-Fi do cliente passa por aqui só para ir ao datalogger: não é gravada nem mostrada em log.
 
+import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.IntentFilter;
+import android.location.LocationManager;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
+import android.os.Handler;
+import android.os.Looper;
+import com.getcapacitor.PermissionState;
+import com.getcapacitor.annotation.Permission;
+import com.getcapacitor.annotation.PermissionCallback;
+import java.util.List;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -45,7 +57,11 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.nio.charset.StandardCharsets;
 
-@CapacitorPlugin(name = "GapWifi")
+// (24/11, Gerson) buscarWifi() → {redes: [{ssid, dbm, seg, mhz}], localizacao}: Wi-Fi por perto, para o app mostrar só os de datalogger e entrar tocando.
+@CapacitorPlugin(name = "GapWifi", permissions = {
+    @Permission(alias = "perto", strings = { Manifest.permission.NEARBY_WIFI_DEVICES }),
+    @Permission(alias = "local", strings = { Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION })
+})
 public class GapWifiPlugin extends Plugin {
 
     private Network redeFixa = null;
@@ -240,7 +256,7 @@ public class GapWifiPlugin extends Plugin {
 
     @PluginMethod
     public void info(PluginCall call) {
-        JSObject r = new JSObject(); r.put("versao", 1); r.put("android", Build.VERSION.SDK_INT); r.put("wifi", redeWifi() != null); r.put("fixa", redeFixa != null);
+        JSObject r = new JSObject(); r.put("versao", 2); r.put("android", Build.VERSION.SDK_INT); r.put("wifi", redeWifi() != null); r.put("fixa", redeFixa != null);
         call.resolve(r);
     }
 
@@ -255,4 +271,60 @@ public class GapWifiPlugin extends Plugin {
             call.reject("Não abriu as configurações de Wi-Fi");
         }
     }
+
+    // ---------- (24/11) Wi-Fi por perto ----------
+    private String aliasBusca() { return Build.VERSION.SDK_INT >= 33 ? "perto" : "local"; }
+
+    @PluginMethod
+    public void buscarWifi(PluginCall call) {
+        String a = aliasBusca();
+        if (getPermissionState(a) != PermissionState.GRANTED) { requestPermissionForAlias(a, call, "permBusca"); return; }
+        fazBusca(call);
+    }
+
+    @PermissionCallback
+    private void permBusca(PluginCall call) {
+        if (getPermissionState(aliasBusca()) == PermissionState.GRANTED) fazBusca(call);
+        else call.reject("Sem permissão para procurar Wi-Fi", "SEMPERM");
+    }
+
+    private void fazBusca(final PluginCall call) {
+        final Context ctx = getContext().getApplicationContext();
+        final WifiManager wm = (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
+        if (wm == null) { call.reject("Sem Wi-Fi neste aparelho"); return; }
+        if (!wm.isWifiEnabled()) { call.reject("O Wi-Fi do tablet está desligado", "WIFIOFF"); return; }
+        rcOk[0] = false;
+        final boolean[] feito = {false};
+        final Handler h = new Handler(Looper.getMainLooper());
+        final BroadcastReceiver[] rc = {null};
+        final Runnable responde = () -> {
+            if (feito[0]) return; feito[0] = true;
+            try { if (rc[0] != null) ctx.unregisterReceiver(rc[0]); } catch (Exception ignorado) { }
+            JSArray lista = new JSArray();
+            try {
+                List<ScanResult> L = wm.getScanResults();
+                for (ScanResult x : L) {
+                    String ssid = x.SSID == null ? "" : x.SSID;
+                    if (ssid.isEmpty()) continue;
+                    JSObject o = new JSObject();
+                    o.put("ssid", ssid); o.put("dbm", x.level); o.put("seg", x.capabilities == null ? "" : x.capabilities); o.put("mhz", x.frequency);
+                    lista.put(o);
+                }
+            } catch (SecurityException e) { call.reject("Sem permissão para ler o Wi-Fi", "SEMPERM"); return; }
+            boolean loc = true;
+            try { LocationManager lm = (LocationManager) ctx.getSystemService(Context.LOCATION_SERVICE); if (lm != null && Build.VERSION.SDK_INT >= 28) loc = lm.isLocationEnabled(); } catch (Exception ignorado) { }
+            JSObject r = new JSObject(); r.put("redes", lista); r.put("localizacao", loc); r.put("nova", rcOk[0]);
+            call.resolve(r);
+        };
+        rc[0] = new BroadcastReceiver() { @Override public void onReceive(Context c, Intent i) { rcOk[0] = true; h.post(responde); } };
+        try {
+            if (Build.VERSION.SDK_INT >= 33) ctx.registerReceiver(rc[0], new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION), Context.RECEIVER_NOT_EXPORTED);
+            else ctx.registerReceiver(rc[0], new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+        } catch (Exception e) { rc[0] = null; }
+        boolean pediu = false;
+        try { pediu = wm.startScan(); } catch (Exception ignorado) { }
+        // o Android limita a 4 buscas a cada 2 min: se recusou, devolve a última lista que ele tem
+        h.postDelayed(responde, pediu ? 8000 : 300);
+    }
+    private final boolean[] rcOk = {false};
 }
