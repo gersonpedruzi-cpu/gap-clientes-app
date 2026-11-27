@@ -1,4 +1,4 @@
-# App GAP Clientes (Android; depois iPhone)
+# App GAP (antes "GAP Clientes") — Android; depois iPhone
 
 App **híbrido** (Capacitor 8): o GAP Clientes vai **dentro** do app (pasta `web/`, cópia de `site/cliente` do GAP Controle).
 Não é site empacotado: abre sem barra do Chrome, sem zoom, com ícone e tela de abertura, e os avisos vêm pelo **Firebase**.

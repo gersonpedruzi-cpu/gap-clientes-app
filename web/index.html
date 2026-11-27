@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>GAP Clientes</title>
+<title>GAP</title>
 <meta name="description" content="Acompanhe a geração da sua usina solar — GAP Engenharia">
 <meta name="theme-color" content="#141414">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="GAP Clientes">
-<meta name="application-name" content="GAP Clientes">
+<meta name="apple-mobile-web-app-title" content="GAP">
+<meta name="application-name" content="GAP">
 <meta name="robots" content="noindex, nofollow">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -42,6 +42,7 @@ a{color:inherit}
 .lg{width:100%;max-width:380px;display:flex;flex-direction:column;gap:22px}
 .lg-logo{display:flex;flex-direction:column;align-items:center;gap:12px}
 .lg-logo svg{width:132px;height:132px;filter:drop-shadow(0 12px 30px rgba(245,201,22,.18))}
+.lg-marca{width:150px;height:auto;filter:drop-shadow(0 12px 30px rgba(245,201,22,.16))}
 .lg-logo b{font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:.22em;color:var(--yellow);line-height:1}
 .lg-logo small{font-family:var(--display);font-size:13px;letter-spacing:.2em;color:#a9a9a2;text-transform:uppercase}
 .lg h1{font-family:var(--display);font-size:26px;margin:0;text-align:center;font-weight:700}
@@ -58,6 +59,8 @@ a{color:inherit}
 .btn-g{min-height:48px;border:1px solid #3a3a36;border-radius:12px;background:transparent;color:#f1f1ec;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
 .lnk{background:none;border:0;color:#d9d9d2;text-decoration:underline;font-size:15px;cursor:pointer;padding:10px;align-self:center}
 .erro{color:#ff8a7a;font-size:14px;min-height:20px;text-align:center;margin:0}
+.lg .ok-lg{color:#9be3b0;font-weight:600;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);border-radius:12px;padding:12px 14px}
+.lg .ou-lg{font-size:13px;color:#8d8d86;text-transform:uppercase;letter-spacing:.08em}
 .wa{display:flex;flex-direction:column;gap:12px;background:#151513;border:1px solid #2e2e2a;border-radius:14px;padding:16px}
 .wa b{font-family:var(--display);font-size:24px;letter-spacing:.04em;color:var(--yellow);text-align:center;user-select:all}
 .rodape-lg{font-size:12px;color:#7c7c76;text-align:center}
@@ -67,7 +70,7 @@ a{color:inherit}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--head)}
 .top{position:sticky;top:0;z-index:20;background:var(--head);color:var(--head-ink);border-bottom:4px solid var(--yellow);padding-top:env(safe-area-inset-top,0px)}
 .top-in{display:flex;align-items:center;gap:12px;padding-block:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.logo{width:42px;height:42px;flex:none}
+.logo{width:42px;height:42px;flex:none;border-radius:10px}
 .marca{display:flex;flex-direction:column;line-height:1;min-width:0;flex:1}
 .marca b{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.14em}
 .marca small{font-family:var(--display);font-size:12px;letter-spacing:.14em;color:var(--yellow);font-weight:600;margin-top:3px;text-transform:uppercase}
@@ -90,7 +93,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cx-it[aria-current="page"]{background:var(--yellow);color:#161616;font-weight:700}
 .cx-it[aria-current="page"] .cx-ic{background:#1b1b1b}
 .baixo{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--head);border-top:1px solid rgba(255,255,255,.08);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:6px max(6px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(6px,env(safe-area-inset-left,0px))}
-.baixo button{all:unset;box-sizing:border-box;cursor:pointer;display:grid;justify-items:center;gap:4px;padding:4px 2px;min-height:52px;color:#cfcfc8;font-size:11.5px;font-weight:600;text-align:center;border-radius:10px}
+.baixo button{all:unset;box-sizing:border-box;cursor:pointer;display:grid;justify-items:center;align-content:start;gap:4px;padding:4px 2px;min-height:52px;min-width:0;color:#cfcfc8;font-size:11.5px;font-weight:600;text-align:center;border-radius:10px;line-height:1.15;overflow-wrap:anywhere;hyphens:auto;-webkit-hyphens:auto}
 .baixo button .cx-ic{width:34px;height:30px;border-radius:10px}
 .baixo button[aria-current="page"]{color:var(--yellow)}
 .baixo button[aria-current="page"] .cx-ic{background:var(--yellow);color:#161616}
@@ -155,7 +158,7 @@ h1.t{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.05;
 .ini-tiles.q4 .ini-t:nth-last-child(-n+2){border-bottom:0}
 .ini-t{padding:12px 16px;border-right:1px solid var(--line);min-width:0}.ini-t:nth-child(2n){border-right:0}
 .ini-t small{display:block;color:var(--muted);font-size:13px}
-.ini-v{font-family:var(--display);font-size:30px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2;font-variant-numeric:tabular-nums}
+.ini-v{font-family:var(--display);font-size:30px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:clip;line-height:1.2;font-variant-numeric:tabular-nums}   /* (13/11) número grande: a letra diminui até caber (ajustaNums), sem reticências */
 .ini-v em{font-style:normal;font-size:16px;color:var(--muted);margin-left:3px}
 .ini-v.pos{color:var(--pos)}
 .ini-t .det{font-size:13px;color:var(--muted)}
@@ -206,6 +209,8 @@ html,body{touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;text-size-adjus
 /* atalhos (mesmo estilo da tela inicial do GAP Controle) */
 .ini-dock{background:var(--head);border-radius:16px;padding:14px 8px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 4px}
 .ini-dock .q{all:unset;cursor:pointer;display:grid;justify-items:center;align-content:start;gap:7px;color:#ececE6;font-size:12.5px;font-weight:600;text-align:center}
+/* (13/11 20h44) Android com letra grande: o nome não invade o vizinho (quebra em 2 linhas, com hífen se precisar) */
+.ini-dock .q{min-width:0;max-width:100%;line-height:1.2;overflow-wrap:anywhere;hyphens:auto;-webkit-hyphens:auto}
 .ini-dock .q .cx-ic{width:50px;height:50px;border-radius:15px;background:linear-gradient(145deg,color-mix(in srgb,var(--c) 85%,#fff),color-mix(in srgb,var(--c) 70%,#000));color:#fff;box-shadow:0 6px 14px color-mix(in srgb,var(--c) 30%,transparent),inset 0 1px 0 rgba(255,255,255,.35)}
 .ini-dock .q .cx-ic svg{width:25px;height:25px;stroke-width:2.2}
 .ini-dock .q.y{color:var(--yellow)}.ini-dock .q.y .cx-ic{background:var(--yellow);color:#161616}
@@ -240,7 +245,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .total-inst b{font-family:var(--display);font-size:26px;color:var(--yellow);white-space:nowrap}
 
 /* escolher mês e ano */
-.mesnome{all:unset;cursor:pointer;font-family:var(--display);font-size:20px;font-weight:700;min-width:140px;white-space:nowrap;text-align:center;padding:6px 8px;border-radius:10px;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:5px}
+.mesnome{all:unset;cursor:pointer;font-family:var(--display);font-size:clamp(16px,5vw,20px);font-weight:700;min-width:min(140px,46vw);flex:0 0 auto;white-space:nowrap;text-align:center;padding:6px 8px;border-radius:10px;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:5px}
 .mesnome:hover{background:var(--panel)}.mesnome:focus-visible{outline:3px solid var(--yellow);outline-offset:1px}
 .escolhe{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
 .escolhe .anos{display:flex;flex-wrap:wrap;gap:6px}
@@ -343,6 +348,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .cx-volta{justify-self:start;border:0;background:none;color:var(--muted);font:inherit;font-size:14px;cursor:pointer;padding:4px 0}
 .cx-h{font-family:var(--display);font-size:22px;margin:0}
 .cx-ol{margin:0;padding-left:20px;display:grid;gap:8px;font-size:15px;line-height:1.4}
+.cx-est{list-style:none;padding-left:0}.cx-est li{opacity:.55}.cx-est li.on{opacity:1;font-weight:600;color:var(--ok,#2e9d5b)}
 .cx-bts{display:flex;flex-wrap:wrap;gap:10px}
 .cx-av,.cx-err{border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.4}
 .cx-av{background:rgba(245,201,22,.15);border:1px solid rgba(245,201,22,.5)}
@@ -356,10 +362,17 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 .cx-bar{display:inline-flex;align-items:flex-end;gap:2px}.cx-bar i{width:4px;background:var(--line);border-radius:1px}.cx-bar i.on{background:var(--pos)}
 .cx-campo{display:grid;gap:6px;font-size:14px}.cx-campo input{min-height:48px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:inherit;font-size:16px;padding:0 12px;min-width:0}
 .cx-senha{display:flex;gap:8px}.cx-senha input{flex:1}
+.cx-aviso{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:60;width:min(92vw,520px);display:flex;gap:12px;align-items:center;background:var(--black,#111);color:#fff;border:2px solid var(--yellow);border-radius:14px;padding:14px 16px;box-shadow:0 8px 30px rgba(0,0,0,.35)}.cx-aviso b{display:block;font-size:15px}.cx-aviso small{display:block;font-size:13px;opacity:.85;margin-top:2px}.cx-aviso .cx-gira{flex:none;border-color:rgba(255,255,255,.25);border-top-color:var(--yellow)}
 .cx-gira{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--yellow);border-radius:50%;animation:cxg 1s linear infinite}
 @keyframes cxg{to{transform:rotate(360deg)}}
 .cx-fim{border-radius:12px;padding:14px;display:grid;gap:4px}.cx-fim b{font-size:18px}.cx-fim p{margin:0;font-size:14px;line-height:1.45}
 .cx-fim.ok{background:rgba(29,127,71,.14);border:1px solid var(--pos)}.cx-fim.erro{background:rgba(185,64,43,.12);border:1px solid var(--neg)}
+.cx-qr{display:flex;align-items:center;justify-content:center;gap:10px;width:100%}.cx-qr svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cx-mao summary{cursor:pointer;color:var(--muted);font-size:14px;padding:6px 0}.cx-mao[open]{display:grid;gap:10px}
+.cx-cam{position:fixed;inset:0;z-index:60;background:#000;display:grid;place-items:center}.cx-cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cx-mira{position:relative;width:min(64vw,300px);aspect-ratio:1;border:3px solid var(--yellow);border-radius:18px;box-shadow:0 0 0 100vmax rgba(0,0,0,.45)}
+.cx-cam p{position:absolute;left:16px;right:16px;top:calc(24px + env(safe-area-inset-top,0px));margin:0;color:#fff;text-align:center;font-size:16px;font-weight:600}
+.cx-cam button{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(28px + env(safe-area-inset-bottom,0px));background:#fff;color:#141414;min-width:160px}
 .cx-log summary{cursor:pointer;color:var(--muted);font-size:13px}.cx-log pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11.5px;max-height:260px;overflow:auto;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;margin:6px 0 0}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--head);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:40;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 
@@ -524,6 +537,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 }
 @media (max-width:640px){.ini-v{font-size:26px}h1.t{font-size:27px}}
 </style>
+<link rel="stylesheet" href="campo.css?v=1">
 </head>
 <body>
 
@@ -531,9 +545,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 <section id="s-login" hidden aria-labelledby="lg-t">
   <div class="lg">
     <div class="lg-logo">
-      <svg viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="10" width="80" height="80" fill="#f5c916"/><rect x="15" y="15" width="70" height="70" fill="#ffffff"/><rect x="39" y="10" width="22" height="17" fill="#141414"/><rect x="39" y="73" width="22" height="17" fill="#141414"/><path fill="#141414" d="M27.118 54.846V43.354Q27.118 40.43 28.970999999999997 38.679Q30.823999999999998 36.928 33.884 36.928Q36.944 36.928 38.814 38.696Q40.684 40.464 40.684 43.388V44.68Q40.684 44.849999999999994 40.565 44.968999999999994Q40.446 45.088 40.276 45.088H36.298Q36.128 45.088 36.009 44.968999999999994Q35.89 44.849999999999994 35.89 44.68V43.32Q35.89 42.3 35.346000000000004 41.671Q34.802 41.042 33.884 41.042Q33.0 41.042 32.456 41.671Q31.912 42.3 31.912 43.32V54.88Q31.912 55.9 32.456 56.528999999999996Q33.0 57.158 33.884 57.158Q34.802 57.158 35.346000000000004 56.528999999999996Q35.89 55.9 35.89 54.88V52.16Q35.89 51.99 35.72 51.99H34.224000000000004Q34.054 51.99 33.935 51.870999999999995Q33.816 51.751999999999995 33.816 51.582V48.556Q33.816 48.385999999999996 33.935 48.266999999999996Q34.054 48.147999999999996 34.224000000000004 48.147999999999996H40.276Q40.446 48.147999999999996 40.565 48.266999999999996Q40.684 48.385999999999996 40.684 48.556V54.846Q40.684 57.769999999999996 38.814 59.521Q36.944 61.272 33.884 61.272Q30.823999999999998 61.272 28.970999999999997 59.521Q27.118 57.769999999999996 27.118 54.846ZM52.89 60.626 52.346000000000004 57.362Q52.346000000000004 57.192 52.142 57.192H47.824000000000005Q47.620000000000005 57.192 47.620000000000005 57.362L47.07600000000001 60.626Q47.042 61.0 46.634 61.0H42.656000000000006Q42.214000000000006 61.0 42.316 60.558L47.31400000000001 37.574Q47.382000000000005 37.2 47.756 37.2H52.346000000000004Q52.720000000000006 37.2 52.788000000000004 37.574L57.752 60.558L57.786 60.694Q57.786 61.0 57.412000000000006 61.0H53.33200000000001Q52.92400000000001 61.0 52.89 60.626ZM48.43600000000001 53.486H51.496Q51.666000000000004 53.486 51.632000000000005 53.316L50.034000000000006 44.034Q50.0 43.932 49.932 43.932Q49.864000000000004 43.932 49.830000000000005 44.034L48.300000000000004 53.316Q48.300000000000004 53.486 48.43600000000001 53.486ZM73.358 44.408Q73.358 47.57 71.65800000000002 49.474000000000004Q69.95800000000001 51.378 67.20400000000001 51.378H64.65400000000001Q64.48400000000001 51.378 64.48400000000001 51.548V60.592Q64.48400000000001 60.762 64.36500000000001 60.881Q64.24600000000001 61.0 64.07600000000001 61.0H60.098000000000006Q59.92800000000001 61.0 59.80900000000001 60.881Q59.69000000000001 60.762 59.69000000000001 60.592V37.574Q59.69000000000001 37.403999999999996 59.80900000000001 37.285Q59.92800000000001 37.166 60.098000000000006 37.166H66.96600000000001Q68.83600000000001 37.166 70.298 38.083999999999996Q71.76 39.001999999999995 72.559 40.650999999999996Q73.358 42.3 73.358 44.408ZM68.56400000000001 44.51Q68.56400000000001 43.013999999999996 67.90100000000001 42.164Q67.23800000000001 41.314 66.15 41.314H64.65400000000001Q64.48400000000001 41.314 64.48400000000001 41.483999999999995V47.467999999999996Q64.48400000000001 47.638 64.65400000000001 47.638H66.15Q67.23800000000001 47.638 67.90100000000001 46.805Q68.56400000000001 45.972 68.56400000000001 44.51Z"/></svg>
-      <b>CLIENTES</b>
-      <small>GAP Engenharia</small>
+      <img class="lg-marca" src="marca-gap.png" alt="GAP Engenharia" width="160" height="168">
     </div>
     <div id="lg-entrar" class="lg" style="gap:18px">
       <div style="display:flex;flex-direction:column;gap:6px">
@@ -550,14 +562,42 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     </div>
     <div id="lg-esq" class="lg" style="gap:16px" hidden>
       <div style="display:flex;flex-direction:column;gap:6px">
-        <h1>Esqueceu a senha?</h1>
-        <p>Sem problema. Chame a GAP no WhatsApp que a gente cria uma senha nova para você.</p>
+        <h1 id="esq-t">Esqueceu a senha?</h1>
+        <p id="esq-p">Sem problema. Chame a GAP no WhatsApp que a gente cria uma senha nova para você.</p>
+      </div>
+      <!-- (12/11 22h50, Gerson) recuperar pelo e-mail: link para criar a senha nova (a GAP continua podendo trocar a senha pelo site) -->
+      <div id="esq-mail" class="lg" style="gap:12px" hidden>
+        <form id="f-esq" novalidate>
+          <label for="esq-email">E-mail<input id="esq-email" type="email" autocomplete="username" inputmode="email" autocapitalize="off" spellcheck="false" required></label>
+          <p class="erro" id="esq-erro" role="alert"></p>
+          <button type="submit" class="btn-y" id="esq-ok">Mandar o link</button>
+        </form>
+        <p class="ok-lg" id="esq-msg" role="status" hidden></p>
+        <p class="ou-lg">ou, se preferir</p>
       </div>
       <div class="wa">
         <b>(31) 98510-1043</b>
         <a class="btn-y" href="https://wa.me/5531985101043?text=Ol%C3%A1%2C%20esqueci%20a%20senha%20do%20GAP%20Clientes" target="_blank" rel="noopener">Chamar no WhatsApp</a>
       </div>
       <button type="button" class="btn-g" id="lg-voltar">Voltar para entrar</button>
+    </div>
+    <!-- (12/11) aberto pelo link do e-mail: criar a senha nova -->
+    <div id="lg-nova" class="lg" style="gap:16px" hidden>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <h1>Crie a sua senha nova</h1>
+        <p id="nova-p">Use 8 caracteres ou mais.</p>
+      </div>
+      <form id="f-nova" novalidate>
+        <label for="nova-1">Senha nova<input id="nova-1" type="password" autocomplete="new-password" required></label>
+        <label for="nova-2">Repita a senha nova<input id="nova-2" type="password" autocomplete="new-password" required></label>
+        <p class="erro" id="nova-erro" role="alert"></p>
+        <button type="submit" class="btn-y" id="nova-ok">Salvar a senha nova</button>
+      </form>
+      <div id="nova-feita" class="lg" style="gap:12px" hidden>
+        <p class="ok-lg" role="status">Pronto! Senha nova salva.</p>
+        <p id="nova-dica">No app GAP, entre com o seu e-mail e a senha nova.</p>
+        <button type="button" class="btn-y" id="nova-seguir">Ver a minha usina</button>
+      </div>
     </div>
     <p class="rodape-lg">GAP Engenharia · Energia solar · Castelo-ES</p>
   </div>
@@ -570,7 +610,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 
 <section id="s-sem" hidden>
   <div class="lg" style="gap:16px">
-    <div class="lg-logo"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="10" width="80" height="80" fill="#f5c916"/><rect x="15" y="15" width="70" height="70" fill="#ffffff"/><rect x="39" y="10" width="22" height="17" fill="#141414"/><rect x="39" y="73" width="22" height="17" fill="#141414"/><path fill="#141414" d="M27.118 54.846V43.354Q27.118 40.43 28.970999999999997 38.679Q30.823999999999998 36.928 33.884 36.928Q36.944 36.928 38.814 38.696Q40.684 40.464 40.684 43.388V44.68Q40.684 44.849999999999994 40.565 44.968999999999994Q40.446 45.088 40.276 45.088H36.298Q36.128 45.088 36.009 44.968999999999994Q35.89 44.849999999999994 35.89 44.68V43.32Q35.89 42.3 35.346000000000004 41.671Q34.802 41.042 33.884 41.042Q33.0 41.042 32.456 41.671Q31.912 42.3 31.912 43.32V54.88Q31.912 55.9 32.456 56.528999999999996Q33.0 57.158 33.884 57.158Q34.802 57.158 35.346000000000004 56.528999999999996Q35.89 55.9 35.89 54.88V52.16Q35.89 51.99 35.72 51.99H34.224000000000004Q34.054 51.99 33.935 51.870999999999995Q33.816 51.751999999999995 33.816 51.582V48.556Q33.816 48.385999999999996 33.935 48.266999999999996Q34.054 48.147999999999996 34.224000000000004 48.147999999999996H40.276Q40.446 48.147999999999996 40.565 48.266999999999996Q40.684 48.385999999999996 40.684 48.556V54.846Q40.684 57.769999999999996 38.814 59.521Q36.944 61.272 33.884 61.272Q30.823999999999998 61.272 28.970999999999997 59.521Q27.118 57.769999999999996 27.118 54.846ZM52.89 60.626 52.346000000000004 57.362Q52.346000000000004 57.192 52.142 57.192H47.824000000000005Q47.620000000000005 57.192 47.620000000000005 57.362L47.07600000000001 60.626Q47.042 61.0 46.634 61.0H42.656000000000006Q42.214000000000006 61.0 42.316 60.558L47.31400000000001 37.574Q47.382000000000005 37.2 47.756 37.2H52.346000000000004Q52.720000000000006 37.2 52.788000000000004 37.574L57.752 60.558L57.786 60.694Q57.786 61.0 57.412000000000006 61.0H53.33200000000001Q52.92400000000001 61.0 52.89 60.626ZM48.43600000000001 53.486H51.496Q51.666000000000004 53.486 51.632000000000005 53.316L50.034000000000006 44.034Q50.0 43.932 49.932 43.932Q49.864000000000004 43.932 49.830000000000005 44.034L48.300000000000004 53.316Q48.300000000000004 53.486 48.43600000000001 53.486ZM73.358 44.408Q73.358 47.57 71.65800000000002 49.474000000000004Q69.95800000000001 51.378 67.20400000000001 51.378H64.65400000000001Q64.48400000000001 51.378 64.48400000000001 51.548V60.592Q64.48400000000001 60.762 64.36500000000001 60.881Q64.24600000000001 61.0 64.07600000000001 61.0H60.098000000000006Q59.92800000000001 61.0 59.80900000000001 60.881Q59.69000000000001 60.762 59.69000000000001 60.592V37.574Q59.69000000000001 37.403999999999996 59.80900000000001 37.285Q59.92800000000001 37.166 60.098000000000006 37.166H66.96600000000001Q68.83600000000001 37.166 70.298 38.083999999999996Q71.76 39.001999999999995 72.559 40.650999999999996Q73.358 42.3 73.358 44.408ZM68.56400000000001 44.51Q68.56400000000001 43.013999999999996 67.90100000000001 42.164Q67.23800000000001 41.314 66.15 41.314H64.65400000000001Q64.48400000000001 41.314 64.48400000000001 41.483999999999995V47.467999999999996Q64.48400000000001 47.638 64.65400000000001 47.638H66.15Q67.23800000000001 47.638 67.90100000000001 46.805Q68.56400000000001 45.972 68.56400000000001 44.51Z"/></svg><b>CLIENTES</b></div>
+    <div class="lg-logo"><img class="lg-marca" src="marca-gap.png" alt="GAP Engenharia" width="160" height="168"></div>
     <h1 id="sem-t">Seu acesso ainda não foi ligado a uma usina</h1>
     <p id="sem-p">Fale com a GAP pelo WhatsApp <b style="color:#f5c916">(31) 98510-1043</b> que a gente libera.</p>
     <a class="btn-y" href="https://wa.me/5531985101043" target="_blank" rel="noopener">Chamar no WhatsApp</a>
@@ -582,8 +622,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 <div id="s-app" hidden>
 <header class="top">
   <div class="top-in">
-    <svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#141414"/><rect x="10" y="10" width="80" height="80" fill="#f5c916"/><rect x="15" y="15" width="70" height="70" fill="#ffffff"/><rect x="39" y="10" width="22" height="17" fill="#141414"/><rect x="39" y="73" width="22" height="17" fill="#141414"/><path fill="#141414" d="M27.118 54.846V43.354Q27.118 40.43 28.970999999999997 38.679Q30.823999999999998 36.928 33.884 36.928Q36.944 36.928 38.814 38.696Q40.684 40.464 40.684 43.388V44.68Q40.684 44.849999999999994 40.565 44.968999999999994Q40.446 45.088 40.276 45.088H36.298Q36.128 45.088 36.009 44.968999999999994Q35.89 44.849999999999994 35.89 44.68V43.32Q35.89 42.3 35.346000000000004 41.671Q34.802 41.042 33.884 41.042Q33.0 41.042 32.456 41.671Q31.912 42.3 31.912 43.32V54.88Q31.912 55.9 32.456 56.528999999999996Q33.0 57.158 33.884 57.158Q34.802 57.158 35.346000000000004 56.528999999999996Q35.89 55.9 35.89 54.88V52.16Q35.89 51.99 35.72 51.99H34.224000000000004Q34.054 51.99 33.935 51.870999999999995Q33.816 51.751999999999995 33.816 51.582V48.556Q33.816 48.385999999999996 33.935 48.266999999999996Q34.054 48.147999999999996 34.224000000000004 48.147999999999996H40.276Q40.446 48.147999999999996 40.565 48.266999999999996Q40.684 48.385999999999996 40.684 48.556V54.846Q40.684 57.769999999999996 38.814 59.521Q36.944 61.272 33.884 61.272Q30.823999999999998 61.272 28.970999999999997 59.521Q27.118 57.769999999999996 27.118 54.846ZM52.89 60.626 52.346000000000004 57.362Q52.346000000000004 57.192 52.142 57.192H47.824000000000005Q47.620000000000005 57.192 47.620000000000005 57.362L47.07600000000001 60.626Q47.042 61.0 46.634 61.0H42.656000000000006Q42.214000000000006 61.0 42.316 60.558L47.31400000000001 37.574Q47.382000000000005 37.2 47.756 37.2H52.346000000000004Q52.720000000000006 37.2 52.788000000000004 37.574L57.752 60.558L57.786 60.694Q57.786 61.0 57.412000000000006 61.0H53.33200000000001Q52.92400000000001 61.0 52.89 60.626ZM48.43600000000001 53.486H51.496Q51.666000000000004 53.486 51.632000000000005 53.316L50.034000000000006 44.034Q50.0 43.932 49.932 43.932Q49.864000000000004 43.932 49.830000000000005 44.034L48.300000000000004 53.316Q48.300000000000004 53.486 48.43600000000001 53.486ZM73.358 44.408Q73.358 47.57 71.65800000000002 49.474000000000004Q69.95800000000001 51.378 67.20400000000001 51.378H64.65400000000001Q64.48400000000001 51.378 64.48400000000001 51.548V60.592Q64.48400000000001 60.762 64.36500000000001 60.881Q64.24600000000001 61.0 64.07600000000001 61.0H60.098000000000006Q59.92800000000001 61.0 59.80900000000001 60.881Q59.69000000000001 60.762 59.69000000000001 60.592V37.574Q59.69000000000001 37.403999999999996 59.80900000000001 37.285Q59.92800000000001 37.166 60.098000000000006 37.166H66.96600000000001Q68.83600000000001 37.166 70.298 38.083999999999996Q71.76 39.001999999999995 72.559 40.650999999999996Q73.358 42.3 73.358 44.408ZM68.56400000000001 44.51Q68.56400000000001 43.013999999999996 67.90100000000001 42.164Q67.23800000000001 41.314 66.15 41.314H64.65400000000001Q64.48400000000001 41.314 64.48400000000001 41.483999999999995V47.467999999999996Q64.48400000000001 47.638 64.65400000000001 47.638H66.15Q67.23800000000001 47.638 67.90100000000001 46.805Q68.56400000000001 45.972 68.56400000000001 44.51Z"/></svg>
-    <div class="marca"><b>GAP CLIENTES</b><small id="topoSub">Minha usina</small></div>
+    <img class="logo" src="icon-192.png" alt="">
+    <div class="marca"><b>GAP ENGENHARIA</b><small id="topoSub">Minha usina</small></div>
     <button type="button" class="avatar" id="avatar" data-ir="conta" aria-label="Minha conta">C</button>
   </div>
 </header>
@@ -626,7 +666,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
           <!-- (08/11 23h) 3 cenas (imagens do Gerson): on-grid, híbrido (caixa de cima = comuns, caixa de baixo = EPS) e off-grid. O SVG é montado por montaCena() -->
           <img class="c3-dia" id="imgDia" alt="" src="cena-ongrid-dia.webp">
           <img class="c3-noite" id="imgNoite" alt="" src="cena-ongrid-noite.webp" loading="lazy">
-          <svg class="c3-svg" id="cenaSvg" viewBox="0 0 560 419" aria-hidden="true"></svg>
+          <svg class="c3-svg" id="cenaSvg" viewBox="0 0 560 419" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg><!-- (13/11) slice = igual ao object-fit:cover da imagem: se a caixa não tiver a proporção exata (iPhone), os cabos continuam em cima da imagem -->
           <div class="c3 sol" id="cSol"><div class="v"><span id="vSol">0,00</span><em>kW</em></div><div class="l">Solar (placas)</div></div>
           <div class="c3 casa" id="cCasa" hidden><div class="v"><span id="vCasa">0,00</span><em>kW</em></div><div class="l" id="lCasa">Casa</div><div class="x" id="xCasa"></div></div>
           <div class="c3 eps" id="cEps" hidden><div class="v"><span id="vEps">0,00</span><em>kW</em></div><div class="l">Prioritárias (EPS)</div><div class="x" id="xEps"></div></div>
@@ -677,8 +717,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
 
         <div class="ini-dock" aria-label="Atalhos">
           <button type="button" class="q y" data-ir="geracao"><span class="cx-ic"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>Histórico</button>
-          <button type="button" class="q" style="--c:#3b82f6" data-ir="chamados"><span class="cx-ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-2.5z"/></svg></span>Chamado</button>
-          <button type="button" class="q" style="--c:#10b981" data-ir="inversores"><span class="cx-ic"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M7.5 13.5l2-2 2 2 2-2 2 2M10 17.5h4"/></svg></span>Equipamentos</button>
+          <button type="button" class="q" style="--c:#0ea5a4" data-ir="dados"><span class="cx-ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 2 5-7"/></svg></span>Dados</button>
+          <button type="button" class="q" style="--c:#10b981" data-ir="inversores"><span class="cx-ic"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M8 8h8M7.5 13.5l2-2 2 2 2-2 2 2M10 17.5h4"/></svg></span>Equipa&shy;mentos</button>
           <a class="q" style="--c:#22c55e" href="https://wa.me/5531985101043" target="_blank" rel="noopener"><span class="cx-ic"><svg viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg></span>Falar com a GAP</a>
         </div>
         <p class="nota-g" id="atualizado"></p>
@@ -788,6 +828,8 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     <div id="cxBody" class="cx-body"></div>
   </section>
 
+  <!-- (12/11 23h06) Dados do inversor (invdados.js, o mesmo do GAP Administração) -->
+  <section id="v-dados" hidden aria-label="Dados do inversor"><div id="dadosInv"></div></section>
   <section id="v-breve" hidden aria-labelledby="t-breve">
     <p class="olho">Em breve</p>
     <h1 class="t" id="t-breve">Esta parte ainda está sendo feita</h1>
@@ -805,6 +847,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   document.addEventListener('touchmove', function(e){ if(e.touches && e.touches.length > 1) e.preventDefault(); }, {passive: false});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="campo.js?v=1"></script>   <!-- (27/11) área Campo (instalador) -->
 <script>
 (function(){
   'use strict';
@@ -832,7 +875,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   }
 
   // ---------- estado ----------
-  let ADM = null, admF = null, admQ = '', admT = null;   // (09/11) GAP Clientes do Gerson/Adriano
+  let ADM = null, admF = null, admQ = '', admT = null;   // (09/11) GAP do Gerson/Adriano
   let sb = null, D = null, usinaSel = null, modo = 'pot', idx = null, mesK = null, diaSel = null, vista = 'inicio', ultCarga = 0, carregando = false;
   try{ usinaSel = localStorage.getItem('gapcli-usina') || null; }catch(_){}
 
@@ -845,10 +888,95 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     render: () => { if(D) render(); }};
   function toast(m){ const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 3200); }
 
+  // ---------- (12/11 22h56, Gerson) WhatsApp de quem atende: cliente do Adriano vê o número do Adriano; dos outros, o da GAP.
+  // Vem do cliente-dados (contato: {nome, wa}); fica guardado no aparelho para aparecer também na tela de entrar / esqueci a senha.
+  const WA0 = '5531985101043', WT0 = '(31) 98510-1043'; let WA_ATUAL = WA0, WT_ATUAL = WT0;
+  const waTxt = n => { const d = String(n).replace(/\D/g, '').replace(/^55/, ''); return d.length === 11 ? `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}` : d.length === 10 ? `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}` : n; };
+  function aplicaContato(c){
+    const wa = c && /^\d{12,13}$/.test(String(c.wa || '')) ? String(c.wa) : WA0, wt = wa === WA0 ? WT0 : waTxt(wa);
+    if(wa !== WA_ATUAL){
+      document.querySelectorAll('a[href*="wa.me/"]').forEach(a => { a.href = a.href.replace(/wa\.me\/\d+/, 'wa.me/' + wa); });
+      const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); const L = []; while(tw.nextNode()) if(tw.currentNode.nodeValue.includes(WT_ATUAL)) L.push(tw.currentNode);
+      L.forEach(n => { n.nodeValue = n.nodeValue.split(WT_ATUAL).join(wt); });
+      WA_ATUAL = wa; WT_ATUAL = wt;
+    }
+    try{ if(wa === WA0) localStorage.removeItem('gapcli-contato'); else localStorage.setItem('gapcli-contato', JSON.stringify({wa})); }catch(_){ }
+  }
+  try{ const c = JSON.parse(localStorage.getItem('gapcli-contato') || 'null'); if(c) aplicaContato(c); }catch(_){ }
+  // o número de quem cadastrou este cliente (SQL 57: meu_contato); sem função ou sem número → o da GAP
+  let contatoEm = 0;
+  async function buscaContato(){ if(Date.now() - contatoEm < 10 * 60000) return; contatoEm = Date.now();
+    try{ const {data, error} = await sb.rpc('meu_contato'); if(error) return; aplicaContato(data ? {wa: String(data)} : null); }catch(_){ } }
+
+  // ---------- (13/11 20h46, Gerson) números grandes: a letra diminui até caber no quadro (em vez de "4.843,0…")
+  let ajFila = 0;
+  function ajustaNums(){ ajFila = 0;
+    document.querySelectorAll('.ini-v').forEach(v => { if(!v.offsetParent) return; v.style.fontSize = ''; const base = parseFloat(getComputedStyle(v).fontSize) || 30; let s = base;
+      while(v.scrollWidth > v.clientWidth + 1 && s > 13){ s -= 1; v.style.fontSize = s + 'px'; }
+      const em = v.querySelector('em'); if(em) em.style.fontSize = s < base ? Math.max(11, Math.round(16 * s / base)) + 'px' : ''; }); }
+  const pedeAjuste = () => { if(!ajFila) ajFila = requestAnimationFrame(ajustaNums); };
+  new MutationObserver(ms => { if(ms.some(m => { const n = m.target.nodeType === 3 ? m.target.parentNode : m.target; return n && n.closest && (n.closest('.ini-v') || n.querySelector && n.querySelector('.ini-v')) || m.attributeName === 'hidden'; })) pedeAjuste(); })
+    .observe(document.body, {subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden']});
+  addEventListener('resize', pedeAjuste);
+
   // ---------- login ----------
   $('lg-ver').onclick = () => { const i = $('lg-senha'), v = i.type === 'password'; i.type = v ? 'text' : 'password'; $('lg-ver').textContent = v ? 'Ocultar' : 'Mostrar'; $('lg-ver').setAttribute('aria-label', v ? 'Ocultar a senha' : 'Mostrar a senha'); };
-  $('lg-esqueci').onclick = () => { $('lg-entrar').hidden = true; $('lg-esq').hidden = false; };
-  $('lg-voltar').onclick = () => { $('lg-esq').hidden = true; $('lg-entrar').hidden = false; $('lg-email').focus(); };
+  // (12/11 22h50) "Esqueci a senha": link por e-mail (Supabase manda pelo Resend) ou WhatsApp; a GAP também troca pelo site
+  // EMAIL_SENHA: liga quando o Resend com domínio próprio estiver no Supabase (senão o e-mail não chega no cliente)
+  const EMAIL_SENHA = false || window.__CX_EMAIL_SENHA === true;
+  const telaLg = id => { ['lg-entrar', 'lg-esq', 'lg-nova'].forEach(k => { $(k).hidden = k !== id; }); };
+  function abrirEsqueci(msgErro){
+    telaLg('lg-esq'); $('esq-mail').hidden = !EMAIL_SENHA;
+    $('esq-p').textContent = EMAIL_SENHA ? 'Digite o seu e-mail. Mandamos um link para você criar uma senha nova.' : 'Sem problema. Chame a GAP no WhatsApp que a gente cria uma senha nova para você.';
+    $('esq-email').value = $('lg-email').value.trim(); $('esq-erro').textContent = msgErro || ''; $('esq-msg').hidden = true; $('f-esq').hidden = false;
+    if(EMAIL_SENHA) setTimeout(() => $('esq-email').focus(), 30);
+  }
+  $('lg-esqueci').onclick = () => abrirEsqueci();
+  $('lg-voltar').onclick = () => { telaLg('lg-entrar'); $('lg-email').focus(); };
+  $('f-esq').addEventListener('submit', async ev => {
+    ev.preventDefault(); const er = $('esq-erro'); er.textContent = '';
+    const email = $('esq-email').value.trim().toLowerCase();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ er.textContent = 'Digite o seu e-mail.'; $('esq-email').focus(); return; }
+    const b = $('esq-ok'); b.disabled = true; b.textContent = 'Mandando…';
+    try{
+      const {error} = await sb.auth.resetPasswordForEmail(email, {redirectTo: location.origin + '/cliente/'});
+      if(error && /rate|limit|seconds/i.test(error.message || '')){ er.textContent = 'Já mandamos um link há pouco. Espere um minuto e tente de novo.'; return; }
+      if(error){ er.textContent = 'Não foi possível mandar agora (' + (error.message || 'sem conexão') + '). Tente de novo ou chame no WhatsApp.'; return; }
+      // a mesma resposta exista ou não o e-mail (não revela quem é cliente)
+      $('f-esq').hidden = true; const m = $('esq-msg'); m.hidden = false;
+      m.textContent = `Se ${email} tiver acesso ao app GAP, chega um e-mail em alguns minutos com o link para criar a senha nova. Olhe também a caixa de spam.`;
+    }catch(_){ er.textContent = 'Sem conexão com a internet. Tente de novo.'; }
+    finally{ b.disabled = false; b.textContent = 'Mandar o link'; }
+  });
+  $('f-nova').addEventListener('submit', async ev => {
+    ev.preventDefault(); const er = $('nova-erro'), a = $('nova-1').value, c = $('nova-2').value; er.textContent = '';
+    if(a.length < 8){ er.textContent = 'A senha precisa ter 8 caracteres ou mais.'; $('nova-1').focus(); return; }
+    if(a !== c){ er.textContent = 'As duas senhas estão diferentes.'; $('nova-2').focus(); return; }
+    const b = $('nova-ok'); b.disabled = true; b.textContent = 'Salvando…';
+    try{ const {error} = await sb.auth.updateUser({password: a}); if(error) throw error;
+      $('nova-1').value = $('nova-2').value = ''; $('f-nova').hidden = true; $('nova-p').hidden = true; $('nova-feita').hidden = false;
+      $('nova-dica').hidden = nativo(); $('nova-seguir').focus(); }
+    catch(e){ er.textContent = /same|different from the old/i.test((e && e.message) || '') ? 'Essa é a senha antiga. Escolha uma diferente.' : 'Não foi possível salvar (' + ((e && e.message) || 'sem conexão') + '). Peça outro link ou chame no WhatsApp.'; }
+    finally{ b.disabled = false; b.textContent = 'Salvar a senha nova'; }
+  });
+  $('nova-seguir').onclick = async () => { telaLg('lg-entrar'); await carregar(true); iniciarNativo(); };
+  // o link do e-mail volta com #access_token=…&type=recovery (ou #error=… se venceu)
+  async function veioDoLink(){
+    const h = new URLSearchParams(location.hash.slice(1)); if(!h.get('type') && !h.get('error') && !h.get('error_code')) return false;
+    const limpa = () => { try{ history.replaceState(null, '', location.pathname + location.search); }catch(_){ } };
+    if(h.get('type') === 'recovery' && h.get('access_token')){
+      const {error} = await sb.auth.setSession({access_token: h.get('access_token'), refresh_token: h.get('refresh_token') || ''}); limpa();
+      tela('login'); if(error){ abrirEsqueci('Este link venceu ou já foi usado. Peça outro.'); return true; }
+      telaLg('lg-nova'); $('f-nova').hidden = false; $('nova-p').hidden = false; $('nova-feita').hidden = true; setTimeout(() => $('nova-1').focus(), 30); return true;
+    }
+    if(h.get('error') || h.get('error_code')){ limpa(); tela('login'); abrirEsqueci('Este link venceu ou já foi usado. Peça outro.'); return true; }
+    // Entrou pelo site gapengenharia.com: o site manda o login aqui (no #, que não vai a nenhum servidor) e some do endereço na hora.
+    if(h.get('type') === 'gapsite' && h.get('access_token') && h.get('refresh_token')){
+      try{ await sb.auth.setSession({access_token: h.get('access_token'), refresh_token: h.get('refresh_token')}); }catch(_){ }
+      limpa(); return false;
+    }
+    return false;
+  }
   $('f-login').addEventListener('submit', async ev => {
     ev.preventDefault(); const er = $('lg-erro'); er.textContent = '';
     const email = $('lg-email').value.trim().toLowerCase(), senha = $('lg-senha').value;
@@ -863,7 +991,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     }catch(e){ er.textContent = 'Sem conexão com a internet. Tente de novo.'; }
     finally{ b.disabled = false; b.textContent = 'Entrar'; }
   });
-  document.addEventListener('click', async ev => { if(ev.target.closest('[data-sair]')){ try{ await sb.auth.signOut(); }catch(_){} D = null; ADM = null; admF = null; menu(false); try{ localStorage.removeItem('gapcli-usina'); }catch(_){} usinaSel = null; tela('login'); } });
+  document.addEventListener('click', async ev => { if(ev.target.closest('[data-sair]')){ try{ await sb.auth.signOut(); }catch(_){} if(window.GAP_CAMPO) GAP_CAMPO.reset(); D = null; ADM = null; admF = null; menu(false); try{ localStorage.removeItem('gapcli-usina'); }catch(_){} usinaSel = null; tela('login'); } });
 
   // ---------- "Atualizado há X min": hora da última leitura do inversor (o robô/API lê a cada 15 min) ----------
   function haQuanto(iso){
@@ -885,11 +1013,18 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   let resumoPedido = 0;
   function pedirResumo(){
     const em = ADM && ADM.resumoEm ? new Date(ADM.resumoEm).getTime() : 0;
+    // (27/11, Egress) o próprio servidor (cliente-dados) já refaz o resumo quando passa de 15 min: o app não pede mais (era cálculo em dobro)
+    if(!window.GAP_PEDIR_RESUMO) return;
     if(!ADM || !ADM.admin || !ADM.admin.email || Date.now() - em < 15 * 60000 || Date.now() - resumoPedido < 10 * 60000) return;
     resumoPedido = Date.now();
     sb.functions.invoke('usinas-resumo', {body: {email: ADM.admin.email}}).then(r => { if(r && !r.error && !D) carregar(false); }).catch(() => {});
   }
   async function carregar(mostrar){
+    // (12/11 13h18, Gerson no campo) na tela "Conectar inversor" o tablet fica no Wi-Fi do datalogger (sem internet):
+    // a atualização automática (voltar para o app, janela do Wi-Fi, rede trocando) não pode sair desta tela
+    if(!mostrar && vista === 'conectar') return;
+    // (27/11) área Campo: o instalador cai direto nela; Gerson/Adriano escolhem Campo ou Usinas ao abrir o app
+    if(window.GAP_CAMPO){ if(!mostrar && GAP_CAMPO.aberto()) return; if(mostrar && !GAP_CAMPO.decidido() && !carregando){ carregando = true; tela('carr', 'Abrindo…'); let tomou = false; try{ tomou = await GAP_CAMPO.decidir(sb); }catch(_){} carregando = false; if(tomou) return; } }
     if(carregando) return; carregando = true; textoAtual();
     if(mostrar) tela('carr', 'Carregando a sua usina…');
     try{
@@ -905,7 +1040,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
       if(data && data.lista){ ADM = data; usinaSel = null; ultCarga = Date.now(); menu(true); tela('app'); pedirResumo();
         if(!['usinas', 'chamados', 'conta', 'conectar'].includes(vista)){ if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); } else if(vista === 'usinas') renderAdm(); else ir(vista); return; }
       const trocou = !D || !D.usina || D.usina.id !== data.usina.id;
-      D = data; ultCarga = Date.now(); usinaSel = D.usina.id; try{ if(!D.admin) localStorage.setItem('gapcli-usina', usinaSel); }catch(_){}
+      D = data; ultCarga = Date.now(); usinaSel = D.usina.id; if(!D.admin) buscaContato(); try{ if(!D.admin) localStorage.setItem('gapcli-usina', usinaSel); }catch(_){}
       menu(!!D.admin || !!ADM);   // (12/11) cliente com "Conectar inversor" liberado: troca "Documentos" no menu
       if(D.admin){ if(!ADM) ADM = {admin: D.admin, lista: []}; menu(true); if(vista === 'usinas'){ if(location.hash !== '#inicio') location.hash = 'inicio'; else ir('inicio'); } }   // (09/11 16h47) endereço já em #inicio: abre direto (antes ficava na lista)
       // (08/11 13h12) off-grid (cadastro da GAP): a economia abre pelo consumo; on-grid e híbrido, pela geração. O cliente troca no botão
@@ -913,7 +1048,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
       tela('app'); render();
       if(vista === 'chamados' && window.GAP_CH_CLI) GAP_CH_CLI.abrir(true);   // (11/11) aberto pelo aviso: busca de novo agora que o login está pronto
     }catch(e){
-      if(D){ toast('Sem conexão agora. Mostrando os últimos dados.'); }
+      if(D || (ADM && !mostrar)){ if(vista !== 'conectar') toast('Sem conexão agora. Mostrando os últimos dados.'); }   // (12/11) administração já aberta: não troca a tela pelo erro
       else { tela('sem'); $('sem-t').textContent = 'Não foi possível carregar a sua usina'; $('sem-p').textContent = 'Verifique a internet e tente de novo. Se continuar, fale com a GAP.'; }
     }finally{ carregando = false; textoAtual(); }
   }
@@ -989,7 +1124,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   const PN = () => window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.PushNotifications;
   let fcmEspera = null, natIni = false;
   async function gravarFcm(token){
-    const {error} = await sb.from('push_inscricoes').upsert({endpoint: 'fcm:' + token, p256dh: 'fcm', auth: 'fcm', aparelho: 'App GAP Clientes (' + Capacitor.getPlatform() + ') ' + navigator.userAgent.slice(0, 120), app: 'cliente'}, {onConflict: 'endpoint'});
+    const {error} = await sb.from('push_inscricoes').upsert({endpoint: 'fcm:' + token, p256dh: 'fcm', auth: 'fcm', aparelho: 'App GAP (' + Capacitor.getPlatform() + ') ' + navigator.userAgent.slice(0, 120), app: 'cliente'}, {onConflict: 'endpoint'});
     if(error) throw error; try{ localStorage.setItem('gapcli-fcm', token); }catch(_){}
   }
   async function iniciarNativo(){
@@ -1017,7 +1152,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const est = $('avEst'), bt = $('avOn'); if(!est) return;
     if(nativo()){ let ok = false; try{ ok = (await PN().checkPermissions()).receive === 'granted' && !!localStorage.getItem('gapcli-fcm'); }catch(_){}
       est.textContent = ok ? '✓ Avisos ativados neste celular.' : ''; bt.hidden = false; bt.textContent = ok ? 'Ativar de novo' : 'Ativar avisos'; return; }
-    if(iphone()){ est.textContent = 'No iPhone: toque em Compartilhar › "Adicionar à Tela de Início", abra o app GAP Clientes por lá e ative aqui.'; bt.hidden = true; return; }
+    if(iphone()){ est.textContent = 'No iPhone: toque em Compartilhar › "Adicionar à Tela de Início", abra o app GAP por lá e ative aqui.'; bt.hidden = true; return; }
     if(!temPush()){ est.textContent = 'Este navegador não recebe avisos. Use o Chrome (Android) ou o app na Tela de Início (iPhone).'; bt.hidden = true; return; }
     if(Notification.permission === 'denied'){ est.textContent = 'Os avisos estão bloqueados nas configurações do celular para este app.'; bt.hidden = true; return; }
     const r = await regAv(), sub = r && r.pushManager ? await r.pushManager.getSubscription().catch(() => null) : null;
@@ -1205,20 +1340,20 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     // hora (com a data, se não for hoje)
     const quando = iso => { const d = new Date(iso), hj = diaBR() === diaBR(d); return (hj ? 'hoje às ' : d.toLocaleDateString('pt-BR', {timeZone: TZ, day: '2-digit', month: '2-digit'}) + ' às ') + d.toLocaleTimeString('pt-BR', {timeZone: TZ, hour: '2-digit', minute: '2-digit'}); };
     const quem = (c.nome || '').trim(), usinaTxt = u.nome + (u.kwp ? ' (' + f1(u.kwp) + ' kWp' + (u.cidade ? ', ' + u.cidade : '') + ')' : (u.cidade ? ' (' + u.cidade + ')' : ''));
-    const zap = t => 'https://wa.me/5531985101043?text=' + encodeURIComponent(t);
+    const zap = t => 'https://wa.me/' + WA_ATUAL + '?text=' + encodeURIComponent(t);
     if(est === 'alarme'){
       $('avisoT').textContent = 'Seu sistema está em alarme e parou de gerar';
       $('avisoP').textContent = 'A equipe GAP já está analisando o que aconteceu. Para resolver mais rápido, fale com a gente pelo WhatsApp e agende uma visita técnica.';
       $('avisoD').textContent = u.desde ? 'Em alarme desde ' + quando(u.desde) : '';
       $('avisoWaT').textContent = 'Agendar visita técnica';
-      $('avisoWa').href = zap('Olá, GAP! ' + (quem ? 'Sou ' + quem + '. ' : '') + 'O GAP Clientes mostra que a minha usina ' + usinaTxt + ' está em ALARME e parou de gerar' + (u.desde ? ' (desde ' + quando(u.desde) + ')' : '') + '. Quero agendar uma visita técnica.\nLogin: ' + c.email);
+      $('avisoWa').href = zap('Olá, GAP! ' + (quem ? 'Sou ' + quem + '. ' : '') + 'O app GAP mostra que a minha usina ' + usinaTxt + ' está em ALARME e parou de gerar' + (u.desde ? ' (desde ' + quando(u.desde) + ')' : '') + '. Quero agendar uma visita técnica.\nLogin: ' + c.email);
     }
     if(est === 'offline'){
       $('avisoT').textContent = 'Sua usina está offline';
       $('avisoP').textContent = 'O inversor parou de mandar os dados pela internet. Quase sempre é o Wi-Fi: roteador trocado, senha nova ou internet fora do ar. Enquanto estiver offline, não conseguimos acompanhar a geração nem avisar você se aparecer algum problema. Para colocar de volta online, agende uma visita com um dos nossos técnicos, que refaz a conexão do inversor. A visita técnica é um serviço contratado à parte.';
       $('avisoD').textContent = u.lidoEm ? 'Última leitura ' + quando(u.lidoEm) : '';
       $('avisoWaT').textContent = 'Agendar visita para religar';
-      $('avisoWa').href = zap('Olá, GAP! ' + (quem ? 'Sou ' + quem + '. ' : '') + 'O GAP Clientes mostra que a minha usina ' + usinaTxt + ' está OFFLINE (sem enviar dados' + (u.lidoEm ? ' desde ' + quando(u.lidoEm) : '') + '). Quero agendar uma visita técnica para colocar o inversor de volta na internet.\nLogin: ' + c.email);
+      $('avisoWa').href = zap('Olá, GAP! ' + (quem ? 'Sou ' + quem + '. ' : '') + 'O app GAP mostra que a minha usina ' + usinaTxt + ' está OFFLINE (sem enviar dados' + (u.lidoEm ? ' desde ' + quando(u.lidoEm) : '') + '). Quero agendar uma visita técnica para colocar o inversor de volta na internet.\nLogin: ' + c.email);
     }
     // números
     $('detHoje').textContent = est === 'noite' ? 'dia completo' : 'até agora';
@@ -1234,6 +1369,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     $('gerUsina').textContent = u.nome + (u.kwp ? ' · ' + f1(u.kwp) + ' kWp' : '');
     if(vista === 'geracao') mostrarGeracao();
     if(vista === 'inversores') mostrarInv();
+    if(vista === 'dados') mostrarDados();
   }
 
   // ---------- gráfico do dia (leituras reais de 15 em 15 min) ----------
@@ -1542,9 +1678,18 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const f = $('invPop').querySelector('[data-invx]'); if(f) f.focus();
   }
   function fecharInv(){ const p = $('invPop'); if(p && !p.hidden){ p.hidden = true; document.body.style.overflow = ''; } }
+  // (12/11 23h06) Dados do inversor: gráficos do dia (e dias anteriores) de cada inversor
+  let dadosSn = null, dadosDe = null;
+  function mostrarDados(){
+    if(!D || !window.GAP_INVDADOS) return; const u = D.usina, ch = u.id + '|' + (dadosSn || '');
+    if(dadosDe === ch && GAP_INVDADOS.ativo() && $('dadosInv').firstChild) return; dadosDe = ch;
+    GAP_INVDADOS.montar($('dadosInv'), {usina: u.id, titulo: u.nome, sub: u.nome + (u.cidade ? ' · ' + u.cidade : ''), sn: dadosSn,
+      chamar: async body => { const {data, error} = await sb.functions.invoke('inv-dados', {body}); if(error){ let j = null; try{ j = await error.context.json(); }catch(_){ } throw new Error((j && j.erro) || error.message); } return data; }});
+  }
+  document.addEventListener('click', ev => { const b = ev.target.closest('[data-ivdver]'); if(!b) return; dadosSn = b.dataset.ivdver; dadosDe = null; fecharInv(); if(location.hash !== '#dados') location.hash = 'dados'; else ir('dados'); });
   function abrirInv(k){
     const i = invs()[k]; if(!i) return; const a = i.aoVivo;
-    let h = '<div class="ph"><h2 id="invPopT">Inversor ' + (k + 1) + '</h2><button type="button" class="btn-o" data-invx>Fechar</button></div><small class="nota-g">' + esc([i.modelo, i.kw ? f1(i.kw) + ' kW' : '', 'nº ' + i.sn].filter(Boolean).join(' · ')) + ' · <span class="pill ' + (i.online ? 'on">online' : 'off">offline') + '</span></small>';
+    let h = '<div class="ph"><h2 id="invPopT">Inversor ' + (k + 1) + '</h2><span style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn-p" data-ivdver="' + esc(i.sn) + '">Ver gráficos</button><button type="button" class="btn-o" data-invx>Fechar</button></span></div><small class="nota-g">' + esc([i.modelo, i.kw ? f1(i.kw) + ' kW' : '', 'nº ' + i.sn].filter(Boolean).join(' · ')) + ' · <span class="pill ' + (i.online ? 'on">online' : 'off">offline') + '</span></small>';
     if(!a){ h += '<p class="nota-g">Ainda não temos a leitura detalhada deste inversor. Ela chega de 15 em 15 minutos, durante o dia.</p>'; }
     else {
       h += '<div class="inv-q' + (a.antigo ? ' velho' : '') + '">' + (a.antigo ? 'Leitura antiga: o inversor não mandou dados depois de <b>' + hm(a.em) + '</b>.' : 'Leitura das <b>' + (a.em ? hm(a.em) : '—') + '</b> · a próxima chega em até 15 min.') + '</div>';
@@ -1601,6 +1746,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   IC.usinas = '<path d="M4 20h16M6 20V9l6-5 6 5v11"/><path d="M9.5 13.5h5M9.5 16.5h5"/>';
   IC.conectar = '<path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01"/>';
   IC.adm = '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>';
+  IC.dados = '<path d="M3 3v18h18"/><path d="M7 15l3-4 3 2 5-7"/>';
   let menuAdm = null;
   function menu(adm){
     // (12/11 11h45, Gerson) cliente com "Conectar inversor" liberado (pelo site): ele entra no lugar de "Documentos" (em breve)
@@ -1608,10 +1754,11 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     if(menuAdm === chave) return; menuAdm = chave;
     const MC = lib ? MENU.map(x => x[0] === 'documentos' ? ['conectar', 'Wi-Fi do inversor', '#06b6d4'] : x) : MENU;
     const M = adm ? [['usinas', 'Usinas', '#22c55e'], ...MENU.slice(0, 3), ['conectar', 'Conectar inversor', '#06b6d4'], ...MENU.slice(3)] : MC;
-    let lado = '<div class="cx-marca"><b>' + (adm ? 'Administração' : 'Minha usina') + '</b><small>GAP Clientes</small></div>';
+    let lado = '<div class="cx-marca"><b>' + (adm ? 'Administração' : 'Minha usina') + '</b><small>GAP Engenharia</small></div>';
     M.forEach(([k, n, c]) => { if(k === 'chamados') lado += '<div class="cx-g">Atendimento</div>'; if(k === 'conta') lado += '<div class="cx-g">Conta</div>';
-      lado += '<button type="button" class="cx-it" data-ir="' + k + '">' + ic(k, c) + '<span>' + n + '</span>' + (k === 'documentos' ? '<small>em breve</small>' : '') + '</button>'; });
-    if(adm) lado += '<a class="cx-it cx-ext" href="https://gap-controle.pages.dev/" target="_blank" rel="noopener">' + ic('adm', '#94a3b8') + '<span>GAP Administração</span></a>';
+      lado += '<button type="button" class="cx-it" data-ir="' + k + '">' + ic(k, c) + '<span>' + n + '</span>' + (k === 'documentos' ? '<small>em breve</small>' : '') + '</button>';
+      if(k === 'geracao') lado += '<button type="button" class="cx-it" data-ir="dados">' + ic('dados', '#0ea5a4') + '<span>Dados do inversor</span></button>'; });
+    if(adm) lado += '<a class="cx-it cx-ext" href="https://admin.gapengenharia.com/" target="_blank" rel="noopener">' + ic('adm', '#94a3b8') + '<span>GAP Administração</span></a>';
     $('lado').innerHTML = lado;
     const B = adm ? M.filter(([k]) => k !== 'documentos' && k !== 'conectar') : M;   // (12/11) Conectar inversor: no menu do lado e no botão da tela Usinas
     $('baixo').innerHTML = B.map(([k, n, c]) => '<button type="button" data-ir="' + k + '">' + ic(k, c) + (k === 'conta' ? 'Conta' : n) + '</button>').join('');
@@ -1645,23 +1792,24 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const u = ev.target.closest('[data-admu]'); if(u){ usinaSel = u.dataset.admu; idx = null; curva = null; mesK = null; anoK = null; diaSel = null; porTotal = false; carregar(true); return; }
     if(ev.target.closest('#admVolta')){ usinaSel = null; if(location.hash !== '#usinas') location.hash = 'usinas'; else ir('usinas'); carregar(false); }
   });
-  const NOMES = {usinas: 'Usinas', inicio: 'Minha usina', geracao: 'Geração', chamados: 'Chamados', documentos: 'Documentos', conta: 'Minha conta', inversores: 'Equipamentos', conectar: 'Conectar inversor'};
+  const NOMES = {usinas: 'Usinas', inicio: 'Minha usina', geracao: 'Geração', chamados: 'Chamados', documentos: 'Documentos', conta: 'Minha conta', inversores: 'Equipamentos', conectar: 'Conectar inversor', dados: 'Dados do inversor'};
   function ir(v){
     // (11/11) aviso de chamado: #chamado=ID abre a lista e já o chamado
     const mch = String(v || '').match(/^chamado=([\w-]{1,64})$/); if(mch){ v = 'chamados'; if(window.GAP_CH_CLI) GAP_CH_CLI.verDepois(mch[1]); }
     // (12/11) "Conectar inversor": administração sempre; cliente só quando liberado pelo site (GAP_CONECTAR.cliente)
     if(!NOMES[v] || (v === 'usinas' && !ADM) || (v === 'conectar' && !ADM && !(window.GAP_CONECTAR && GAP_CONECTAR.cliente()))) v = 'inicio';
-    if(ADM && !D && ['inicio', 'geracao', 'inversores'].includes(v)) v = 'usinas';   // administração sem usina aberta: a lista
+    if(ADM && !D && ['inicio', 'geracao', 'inversores', 'dados'].includes(v)) v = 'usinas';   // administração sem usina aberta: a lista
     if(v === 'usinas' && location.hash !== '#usinas') try{ history.replaceState(null, '', '#usinas'); }catch(_){}   // endereço igual à tela
     vista = v;
-    const vv = ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'chamados', 'conectar'].includes(v) ? v : 'breve';
-    for(const k of ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'chamados', 'conectar', 'breve']) $('v-' + k).hidden = vv !== k;
+    const vv = ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'chamados', 'conectar', 'dados'].includes(v) ? v : 'breve';
+    for(const k of ['usinas', 'inicio', 'geracao', 'conta', 'inversores', 'chamados', 'conectar', 'dados', 'breve']) $('v-' + k).hidden = vv !== k;
     fecharInv(); fecharEscolhe();
     document.querySelectorAll('#lado [data-ir],#baixo [data-ir]').forEach(b => { if(b.dataset.ir === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
     $('topoSub').textContent = NOMES[v];
     if(v === 'usinas') renderAdm();
     if(v === 'geracao' && D) mostrarGeracao();
     if(v === 'inversores' && D) mostrarInv();
+    if(v === 'dados' && D) mostrarDados();
     if(v === 'chamados' && window.GAP_CH_CLI) GAP_CH_CLI.abrir();   // (10/11) chamados
     if(v === 'conectar' && window.GAP_CONECTAR) GAP_CONECTAR.abrir();   // (12/11) conectar inversor
     window.scrollTo(0, 0);
@@ -1675,22 +1823,23 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   // ---------- atualiza sozinho ----------
   // ATUALIZAÇÃO: com a tela aberta, busca de novo a cada 5 min; ao VOLTAR para o app/aba (ou a internet voltar),
   // busca na hora se a última busca tem mais de 1 min; o "há X min" anda sozinho a cada 30 s; tocar nele busca na hora.
-  setInterval(() => { if(D && !document.hidden) carregar(false); }, 5 * 60000);
+  setInterval(() => { if(D && !document.hidden) carregar(false); }, 10 * 60000);   // (27/11, Egress) 10 min (a leitura das usinas é de 15 em 15)
   setInterval(() => { if(!document.hidden) textoAtual(); }, 30000);
-  const aoVoltar = () => { if(document.hidden || (!D && !ADM)) return; textoAtual(); if(Date.now() - ultCarga > 60000) carregar(false); };
+  const aoVoltar = () => { if(document.hidden || (!D && !ADM)) return; textoAtual(); if(Date.now() - ultCarga > 3 * 60000) carregar(false); };
   document.addEventListener('visibilitychange', aoVoltar);
   window.addEventListener('pageshow', aoVoltar); window.addEventListener('focus', aoVoltar); window.addEventListener('online', aoVoltar);
   $('atualTxt').onclick = () => { if(D) carregar(false); };
 
   // ---------- partida ----------
   async function iniciar(){
-    if(!CFG.url || !CFG.anonKey || !window.supabase){ tela('sem'); $('sem-t').textContent = 'Não foi possível abrir o GAP Clientes'; $('sem-p').textContent = 'Verifique a internet e abra de novo.'; return; }
+    if(!CFG.url || !CFG.anonKey || !window.supabase){ tela('sem'); $('sem-t').textContent = 'Não foi possível abrir o app GAP'; $('sem-p').textContent = 'Verifique a internet e abra de novo.'; return; }
     sb = window.supabase.createClient(CFG.url, CFG.anonKey, {auth: {persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, storageKey: 'gap-cliente-auth'}});
+    if(await veioDoLink()) return;
     ir(location.hash.slice(1) || 'inicio');
     const {data: {session}} = await sb.auth.getSession();
     if(session){ carregar(true); iniciarNativo(); } else tela('login');
   }
-  window.GAP_CLI = {estado: () => ({D, vista, modo, usinaSel}), sol, render: () => D && render()};
+  window.GAP_CLI = {estado: () => ({D, vista, modo, usinaSel}), sol, render: () => D && render(), sb: () => sb, carregar: m => carregar(m)};   // (27/11) sb e carregar: área Campo
   iniciar();
 })();
 </script>
@@ -1850,7 +1999,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     J = {el, tecla}; conferir();
     setTimeout(() => { const f = $('[data-gxp="mes"]'); if(f) f.focus(); }, 30);
   }
-  window.GAP_EXPORTAR = {abrir, fechar, montar, porMes, porAno};
+  window.GAP_EXPORTAR = {abrir, fechar, montar, porMes, porAno, baixar, carregarXlsx};   // (12/11) baixar/carregarXlsx: planilha do Dados do inversor
 })();
 </script>
 <script>
@@ -2219,14 +2368,14 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
   const DA_USINA = {solarman: 'solarman', aiswei: 'solplanet', solplanet: 'solplanet', growatt: 'growatt', auxsol: 'auxsol', auxsolapp: 'auxsol', auxsolcloud: 'auxsol', elekeeper: 'saj', saj: 'saj', soliscloud: 'solis', solis: 'solis', goodwe: 'goodwe', sems: 'goodwe', semsplus: 'goodwe'};
   const PLAT = [
     {k: 'solarman', n: 'Solarman', d: 'Inversores Sofar e Deye (datalogger Wi-Fi)', ok: true},
-    {k: 'solplanet', n: 'Solplanet', d: 'Em breve'},
+    {k: 'solplanet', n: 'Solplanet', d: 'WiFi-Stick AISWEI (Wi-Fi, QR Code da etiqueta)', ok: true},
     {k: 'growatt', n: 'Growatt', d: 'Em breve'},
-    {k: 'auxsol', n: 'Auxsol', d: 'Em breve (Bluetooth)'},
+    {k: 'auxsol', n: 'Auxsol', d: 'Datalogger ASI-WIFI (pelo Bluetooth)', ok: true},
     {k: 'saj', n: 'SAJ (Elekeeper)', d: 'Em breve'},
-    {k: 'solis', n: 'Solis', d: 'Em breve'},
+    {k: 'solis', n: 'Solis', d: 'Datalogger Wi-Fi: antigo (AP_…, SN 4… ou 7…) e S3-WIFI-ST', ok: true},
     {k: 'goodwe', n: 'GoodWe', d: 'Em breve'},
   ];
-  const S = {plat: null, passo: 'plataforma', serial: '', atual: '', redes: [], rede: null, msg: '', ocupado: false, log: [], fimConf: 0, conf: null};
+  const S = {plat: null, passo: 'plataforma', serial: '', atual: '', redes: [], rede: null, msg: '', ocupado: false, log: [], fimConf: 0, conf: null, apSenha: '', senhaQR: '', entrando: false, wifis: null, todas: false, wsel: null};
   const plugin = () => window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.GapWifi;
   const temPlugin = () => !!(window.Capacitor && Capacitor.isNativePlatform && Capacitor.isNativePlatform() && plugin());
   const dados = () => { try{ return (window.__cli && __cli.D && __cli.D()) || null; }catch(_){ return null; } };
@@ -2246,7 +2395,9 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     if(S.log.length > 400) S.log = S.log.slice(-400);
   }
   async function conversa(passos){
-    const r = await plugin().sessao({host: HOST, porta: PORTA, passos});
+    // (12/11 13h28, campo) 1ª conversa logo depois de trocar de rede deu "ENETUNREACH": espera 1,5 s e tenta de novo uma vez
+    let r; try{ r = await plugin().sessao({host: HOST, porta: PORTA, passos}); }
+    catch(e){ S.log.push('! ' + String((e && e.message) || e) + ' (tentando de novo)'); await new Promise(ok => setTimeout(ok, 1500)); r = await plugin().sessao({host: HOST, porta: PORTA, passos}); }
     registra(passos, r); return (r.passos || []).map(p => p.respostas || []);
   }
   const cmd = (c, espera, fim) => ({envia: c + '\r\n', espera: espera || 2500, fim: fim == null ? FIM : fim});
@@ -2276,15 +2427,177 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     return {aberta: false, auth: a.includes('WPA2') ? 'WPA2PSK' : a.includes('WPA') ? 'WPAPSK' : 'WPA2PSK', enc: (c || '').includes('AES') ? 'AES' : (c || '').includes('TKIP') ? 'TKIP' : 'AES'};
   }
 
+  // ---------- (12/11 13h28, Gerson) o registro vai sozinho para a GAP (tabela conectar_registros) quando a internet volta ----------
+  // (24/11) a fila fica guardada no aparelho: se o app recarregar (voltou a internet, trocou de tela), o registro não se perde
+  const FILA = (() => { try{ return JSON.parse(localStorage.getItem('gap:conectar:fila') || '[]') || []; }catch(_){ return []; } })();
+  const salvaFila = () => { try{ localStorage.setItem('gap:conectar:fila', JSON.stringify(FILA.slice(-20))); }catch(_){ } };
+  let enviados = 0, enviando = false;
+  function guardaRegistro(resultado){
+    if(S.log.length <= enviados) return;
+    const linhas = S.log.slice(enviados); enviados = S.log.length;
+    FILA.push({plataforma: S.plat || null, serial: S.serial || null, rede: (S.rede && S.rede.ssid) || null, resultado, aparelho: (navigator.userAgent || '').slice(0, 160), registro: linhas.join('\n')});
+    salvaFila(); mandaFila();
+  }
+  async function mandaFila(){
+    if(enviando || !FILA.length) return; const sb = window.__cli && __cli.sb && __cli.sb(); if(!sb) return;
+    enviando = true;
+    try{ while(FILA.length){ const {error} = await sb.from('conectar_registros').insert(FILA[0]); if(error) break; FILA.shift(); salvaFila(); } }catch(_){ }
+    enviando = false;
+  }
+  addEventListener('online', mandaFila); setInterval(mandaFila, 20000); setTimeout(mandaFila, 3000);
+
+  // ---------- (12/11 12h46, Gerson) QR Code: etiqueta do datalogger ("SN,PWD") e Wi-Fi do cliente ("WIFI:S:…;T:WPA;P:…;;") ----------
+  // etiqueta Sofar/Solarman LSW3: "3188139848,e71c8322" (lido da foto do Gerson em 12/11) → Wi-Fi "AP_3188139848", senha "e71c8322"
+  // (26/11) etiqueta do WiFi-Stick Solplanet (AISWEI): {"SNO":"<SN>","MARK":"<Registration Code>"}; o MARK é a senha do Wi-Fi AISWEI-… (conferido pelo Gerson)
+  function lerEtiqueta(t){
+    try{ const j = JSON.parse(String(t || '').trim()); if(j && j.SNO) return {sn: String(j.SNO).trim(), pwd: String(j.MARK || '').trim(), aiswei: true}; }catch(_){ }
+    const m = String(t || '').trim().match(/^(\d{6,12})(?:\s*[,;]\s*([^,;\s]{4,64}))?/); return m ? {sn: m[1], pwd: m[2] || ''} : null; }
+  function lerWifiQR(t){
+    t = String(t || ''); if(!/^WIFI:/i.test(t)) return null; const o = {}; let k = '', v = '', emV = false, i = 5;
+    for(; i < t.length; i++){ const c = t[i];
+      if(c === '\\' && i + 1 < t.length){ v += t[++i]; continue; }
+      if(!emV && c === ':'){ emV = true; continue; }
+      if(c === ';'){ if(k) o[k.toUpperCase()] = v; k = ''; v = ''; emV = false; continue; }
+      if(emV) v += c; else k += c; }
+    if(k) o[k.toUpperCase()] = v;
+    if(!o.S) return null; const T = String(o.T || '').toUpperCase();
+    return {ssid: o.S, senha: o.P || '', seg: !T || T === 'NOPASS' ? 'OPEN/NONE' : T.includes('WEP') ? 'WEP/WEP' : 'WPA2PSK/AES'};
+  }
+  let jsqrP = null;
+  const carregaJsQR = () => jsqrP || (jsqrP = new Promise((ok, no) => { if(window.jsQR) return ok(); const sc = document.createElement('script'); sc.src = 'https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js'; sc.onload = () => ok(); sc.onerror = () => { jsqrP = null; no(new Error('jsQR')); }; document.head.appendChild(sc); }));
+  // câmera de trás em tela cheia; devolve o texto do QR (ou null se fechou)
+  function lerQR(titulo){
+    if(typeof window.__CX_QR_TESTE === 'string') return Promise.resolve(window.__CX_QR_TESTE);   // teste automático
+    return new Promise(async fim => {
+      const ov = document.createElement('div'); ov.className = 'cx-cam'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', titulo);
+      ov.innerHTML = '<video playsinline muted></video><div class="cx-mira"></div><p>' + esc(titulo) + '</p><button type="button" class="btn-o">Fechar</button>';
+      document.body.appendChild(ov);
+      const vid = ov.querySelector('video'); let st = null, vivo = true;
+      const sair = t => { if(!vivo) return; vivo = false; try{ st && st.getTracks().forEach(x => x.stop()); }catch(_){ } ov.remove(); fim(t); };
+      ov.querySelector('button').onclick = () => sair(null);
+      try{ st = await navigator.mediaDevices.getUserMedia({video: {facingMode: {ideal: 'environment'}}, audio: false}); vid.srcObject = st; await vid.play(); }
+      catch(e){ sair(null); toastCx('Não abri a câmera. Permita a câmera para o app GAP nas configurações do Android.'); return; }
+      let det = null; try{ if('BarcodeDetector' in window) det = new BarcodeDetector({formats: ['qr_code']}); }catch(_){ det = null; }
+      if(!det){ try{ await carregaJsQR(); }catch(_){ sair(null); toastCx('Não consegui ler QR Code agora (sem internet?). Digite à mão.'); return; } }
+      const cv = document.createElement('canvas'), cx = cv.getContext('2d', {willReadFrequently: true});
+      const passo = async () => { if(!vivo) return;
+        try{
+          if(vid.readyState >= 2){
+            if(det){ const L = await det.detect(vid); if(L && L[0] && L[0].rawValue) return sair(L[0].rawValue); }
+            else { const w = vid.videoWidth, h = vid.videoHeight, k = Math.min(1, 720 / Math.max(w, h)); cv.width = w * k; cv.height = h * k; cx.drawImage(vid, 0, 0, cv.width, cv.height);
+              const q = window.jsQR(cx.getImageData(0, 0, cv.width, cv.height).data, cv.width, cv.height); if(q && q.data) return sair(q.data); }
+          }
+        }catch(_){ }
+        setTimeout(passo, 180); };
+      passo();
+    });
+  }
+  const toastCx = m => { const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 4000); };
+  // ---------- (24/11 12h50, Gerson) o app procura os Wi-Fi por perto e mostra só os que têm cara de datalogger ----------
+  // senha: padrão conhecido da marca ('' = rede aberta); null = está na etiqueta (o técnico digita)
+  const MARCAS_AP = [
+    {re: /^AP_\d{6,}$/i, m: 'Solarman (Sofar/Deye) ou Solis antigo', senha: null, dica: 'Senha: a PWD da etiqueta (Sofar/Deye novos). Os antigos e o Solis antigo costumam ser abertos ou 12345678.'},
+    {re: /^(Solis|D)_?\w{6,}$/i, m: 'Solis', senha: '123456789'},
+    {re: /^Wifi_S[WX]/i, m: 'Solax', senha: null, dica: 'Senha: o Registration No. da etiqueta.'},
+    {re: /^Solar-WiFi/i, m: 'GoodWe', senha: '12345678'},
+    {re: /^AISWEI/i, m: 'Solplanet', senha: null, dica: 'Senha: o Registration Code da etiqueta (melhor: leia o QR Code dela).'},
+    {re: /^DTU[:_-]/i, m: 'SAJ antigo', senha: null},
+  ];
+  const marcaAP = ssid => MARCAS_AP.find(x => x.re.test(ssid)) || null;
+  const abertaAP = seg => !/WPA|WEP|SAE|PSK/i.test(seg || '');
+  // (24/11 15h43, Gerson) enquanto entra no Wi-Fi / conversa: quadro fixo com o que está acontecendo e os segundos, para ninguém ficar tocando de novo
+  let tmAviso = null;
+  function avisa(t, d){ S.aviso = {t, d: d || '', desde: Date.now()}; if(!tmAviso) tmAviso = setInterval(() => { const e = $('cxAvisoS'); if(!S.ocupado){ clearInterval(tmAviso); tmAviso = null; S.aviso = null; const q = $('cxAviso'); if(q) q.remove(); return; } if(e && S.aviso) e.textContent = Math.round((Date.now() - S.aviso.desde) / 1000) + ' s'; }, 1000); }
+  function quadroAviso(){
+    if(!S.ocupado) { S.aviso = null; return ''; }
+    const a = S.aviso || {t: 'Aguarde…', d: '', desde: Date.now()};
+    return '<div id="cxAviso" class="cx-aviso" role="status" aria-live="polite"><div class="cx-gira" aria-hidden="true"></div><div><b>' + esc(a.t) + '</b>' + (a.d ? '<small>' + esc(a.d) + '</small>' : '') + '<small id="cxAvisoS">' + Math.round((Date.now() - a.desde) / 1000) + ' s</small></div></div>';
+  }
+  async function buscarWifis(){
+    if(S.ocupado) return; S.ocupado = true; S.msg = ''; S.wsel = null; avisa('Procurando o Wi-Fi do datalogger…', 'Uns 8 s.'); tela();
+    try{
+      const r = await plugin().buscarWifi();
+      const vistos = new Map();
+      for(const w of (r && r.redes) || []){ const o = vistos.get(w.ssid); if(!o || w.dbm > o.dbm) vistos.set(w.ssid, w); }
+      S.wifis = [...vistos.values()].sort((a, b) => (!!marcaAP(b.ssid) - !!marcaAP(a.ssid)) || b.dbm - a.dbm);
+      S.semLocal = r && r.localizacao === false;
+      S.log.push('# busca Wi-Fi: ' + S.wifis.length + ' redes · datalogger: ' + S.wifis.filter(w => marcaAP(w.ssid)).map(w => w.ssid + ' (' + w.dbm + ' dBm, ' + (abertaAP(w.seg) ? 'aberta' : 'com senha') + ')').join(', '));
+    }catch(e){
+      const c = e && e.code;
+      S.msg = c === 'SEMPERM' ? 'O app precisa da permissão de "Dispositivos por perto" (ou Localização) para procurar o Wi-Fi. Toque de novo e permita.'
+        : c === 'WIFIOFF' ? 'Ligue o Wi-Fi do tablet e toque de novo.'
+        : /not implemented|UNIMPLEMENTED/i.test(String(e && (e.message || e.code) || '')) ? 'Esta busca precisa do app GAP 1.0.13. Atualize o app (ou entre no Wi-Fi à mão).'
+        : 'Não consegui procurar o Wi-Fi: ' + (e && e.message || e);
+    }finally{ S.ocupado = false; tela(); }
+  }
+  async function entrarWifi(w, senha){
+    const sn = (w.ssid.match(/(\d{6,})/) || [])[1] || '';
+    if(sn || S.plat !== 'solplanet') S.serial = sn; S.apSsid = w.ssid; S.apSenha = senha; S.msg = ''; S.ocupado = true; S.entrando = true; S.entrandoEm = w.ssid; avisa('Entrando no Wi-Fi ' + w.ssid + '…', 'Se o Android perguntar, toque em Conectar. Pode levar até 30 s: espere aqui.'); tela();
+    try{
+      await plugin().conectarWifi({ssid: w.ssid, senha, espera: 30000});
+      S.log.push('# entrou no Wi-Fi ' + w.ssid);
+      S.entrando = false; S.wsel = null; avisa('Entrou no Wi-Fi ' + w.ssid + '.', 'Agora conversando com o datalogger…'); tela(); await new Promise(ok => setTimeout(ok, 1500)); S.ocupado = false; return procurar();
+    }catch(err){
+      S.ocupado = false; S.entrando = false;
+      S.msg = err && err.code === 'ANTIGO' ? 'antigo' : 'Não entrei no Wi-Fi ' + w.ssid + '. ' + (senha || !abertaAP(w.seg) ? 'Confira a senha e ' : '') + 'chegue mais perto do datalogger. Se o Wi-Fi dele fica entrando e caindo, tire o datalogger do inversor, espere 10 s, coloque de novo e tente outra vez.';
+      tela();
+    }
+  }
+  function blocoBusca(){
+    if(!S.wifis) return '';
+    const dl = S.wifis.filter(w => marcaAP(w.ssid)), outras = S.wifis.filter(w => !marcaAP(w.ssid));
+    const item = (w, i) => { const mk = marcaAP(w.ssid); return '<button type="button" class="cx-rede' + (S.wsel === w.ssid ? ' cx-sel' : '') + '" data-cxap="' + i + '"' + (S.ocupado ? ' disabled' : '') + '><span><b>' + esc(w.ssid) + '</b><small>' + (mk ? esc(mk.m) + ' · ' : '') + (abertaAP(w.seg) ? 'aberta' : 'com senha') + (w.mhz > 4900 ? ' · 5 GHz' : '') + '</small></span>' + barras(sinalDe(w.dbm)) + '</button>'; };
+    let h = '<div class="cx-redes" aria-label="Wi-Fi de datalogger por perto">' + (dl.length ? dl.map(w => item(w, S.wifis.indexOf(w))).join('') : '<p class="nota-g">Nenhum Wi-Fi de datalogger por perto. Chegue mais perto, confira se o datalogger está ligado (de dia, com sol) e toque em "Procurar de novo". Se for outra marca, veja em "Outras redes".</p>') + '</div>';
+    if(S.semLocal) h += '<div class="cx-av">A localização do tablet está desligada: em alguns Android a lista vem vazia. Ligue a localização e procure de novo.</div>';
+    if(outras.length) h += '<details class="cx-mao"' + (S.todas ? ' open' : '') + ' data-cxtodas><summary>Outras redes (' + outras.length + ')</summary><div class="cx-redes">' + outras.map(w => item(w, S.wifis.indexOf(w))).join('') + '</div></details>';
+    const w = S.wsel && S.wifis.find(x => x.ssid === S.wsel);
+    if(w && !abertaAP(w.seg)){ const mk = marcaAP(w.ssid);
+      h += '<label class="cx-campo"><span>Senha do Wi-Fi <b>' + esc(w.ssid) + '</b></span><span class="cx-senha"><input id="cxApSenha" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" value="' + esc(mk && mk.senha || '') + '"><button type="button" class="btn-p" data-cxapentra' + (S.ocupado ? ' disabled' : '') + '>Entrar</button></span></label>'
+        + (mk && mk.dica ? '<p class="nota-g">' + esc(mk.dica) + '</p>' : mk && mk.senha ? '<p class="nota-g">Senha padrão da ' + esc(mk.m) + ' já preenchida.</p>' : '');
+    }
+    return h;
+  }
+  // dBm → 0–100 (a lista do datalogger usa %)
+  const sinalDe = dbm => Math.max(0, Math.min(100, Math.round(2 * (dbm + 100))));
+
+  // etiqueta lida → o próprio app entra no Wi-Fi do datalogger (Android 10+: só tocar em "Conectar") e já procura
+  async function qrEtiqueta(){
+    const t = await lerQR('Aponte para o QR Code da etiqueta do datalogger'); if(!t) return;
+    const e = lerEtiqueta(t); if(!e){ S.msg = 'qr-ruim'; tela(); return; }
+    S.serial = e.sn; S.apSenha = e.pwd; S.msg = ''; S.ocupado = true; S.entrando = true;
+    S.apSsid = S.entrandoEm = e.aiswei ? 'AISWEI-' + e.sn.slice(-4).toUpperCase() : 'AP_' + e.sn; avisa('Entrando no Wi-Fi ' + S.apSsid + '…', 'Se o Android perguntar, toque em Conectar. Pode levar até 30 s: espere aqui.'); tela();
+    try{
+      if(!e.pwd) throw {code: 'SEMSENHA'};
+      if(e.aiswei){ S.apSsid = S.entrandoEm = await apAiswei(e.sn); avisa('Entrando no Wi-Fi ' + S.apSsid + '…', 'Se o Android perguntar, toque em Conectar. Pode levar até 30 s: espere aqui.'); tela(); }
+      await plugin().conectarWifi({ssid: S.apSsid, senha: e.pwd, espera: 30000});
+      S.entrando = false; avisa('Entrou no Wi-Fi do datalogger.', 'Agora conversando com ele…'); tela(); await new Promise(ok => setTimeout(ok, 1500)); S.ocupado = false; return procurar();
+    }catch(err){
+      S.ocupado = false; S.entrando = false;
+      S.msg = err && err.code === 'ANTIGO' ? 'antigo' : err && err.code === 'SEMSENHA' ? 'semsenha' : 'nao-entrou';
+      tela();
+    }
+  }
+  // QR do Wi-Fi do cliente (etiqueta do roteador ou "Compartilhar Wi-Fi" do celular dele): já preenche a rede e a senha
+  async function qrCliente(){
+    const t = await lerQR('Aponte para o QR Code do Wi-Fi do cliente'); if(!t) return;
+    const w = lerWifiQR(t); if(!w){ S.msg = 'Esse QR Code não é de Wi-Fi. No celular do cliente: Wi-Fi › rede › Compartilhar (mostra o QR).'; tela(); return; }
+    const vista = S.redes.find(x => x.ssid === w.ssid);
+    S.rede = vista ? {...vista} : {manual: false, ssid: w.ssid, seg: w.seg, ch: '?', sinal: 0, doQR: true};
+    S.senhaQR = w.senha; S.passo = 'senha'; S.msg = vista || !S.redes.length ? '' : 'Atenção: o datalogger não está vendo a rede "' + w.ssid + '" (longe do roteador?). Dá para gravar mesmo assim.';
+    tela();
+  }
+
   async function procurar(){
-    if(S.ocupado) return; S.ocupado = true; S.msg = 'Procurando o datalogger…'; tela();
+    if(S.plat === 'solplanet') return procurarSP();
+    if(S.plat === 'auxsol') return redesDeNovo();
+    if(S.ocupado) return; S.ocupado = true; S.msg = 'Procurando o datalogger…'; avisa('Conversando com o datalogger…', 'Pedindo as redes Wi-Fi que ele enxerga. Leva uns 10 a 20 s.'); tela();
     try{
       const R = await conversa([...abre(), cmd('AT+WSSSID'), cmd('AT+WSCAN', 9000, '+ok\r\n\r\n'), {envia: 'AT+Q\r\n', espera: 200, fim: ''}]);
       if(!R[0].length){ S.msg = 'nao-achou'; S.passo = 'wifi'; return; }
       S.serial = serialDe(R[0]); S.atual = valor(R[2]) || ''; S.redes = lerScan(R[3]);
       S.msg = S.redes.length ? '' : 'O datalogger respondeu, mas não mandou a lista de redes. Toque em "Procurar de novo".';
       S.passo = 'redes';
-    }catch(e){ S.msg = 'Erro: ' + (e && e.message || e); }
+    }catch(e){ S.msg = 'Erro: ' + (e && e.message || e); S.log.push('! ' + S.msg); guardaRegistro('erro'); }
     finally{ S.ocupado = false; tela(); }
   }
 
@@ -2294,19 +2607,69 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
     const ssid = (S.rede.manual ? (($('cxSsid') && $('cxSsid').value) || '') : S.rede.ssid);
     if(!ssid.trim()){ S.msg = 'Digite o nome da rede.'; tela(); return; }
     if(!k.aberta && (senha.length < 8 || senha.length > 63)){ S.msg = 'A senha do Wi-Fi tem de 8 a 63 letras.'; tela(); return; }
-    S.rede.ssid = ssid;
-    S.ocupado = true; S.msg = 'Gravando no datalogger…'; tela();
+    S.rede.ssid = ssid; S.senhaQR = senha;   // só na memória desta tela (some ao concluir ou sair)
+    S.ocupado = true; S.msg = 'Gravando no datalogger…'; avisa('Gravando a rede ' + ssid + ' no datalogger…', S.plat === 'auxsol' ? 'Pelo Bluetooth. Depois o app mostra ao vivo se ele conectou.' : 'Depois ele reinicia e o app confere se conectou (até 3 min).'); tela();
+    if(S.plat === 'solplanet' || S.plat === 'auxsol'){
+      try{ await (S.plat === 'solplanet' ? gravarSP : gravarAX)(ssid, k.aberta ? '' : senha); }
+      catch(e){ S.msg = 'Erro: ' + (e && e.message || e); S.log.push('! ' + S.msg); guardaRegistro('erro'); }
+      finally{ S.ocupado = false; tela(); }
+      return;
+    }
     try{
-      const R = await conversa([...abre(), cmd('AT+WSSSID=' + ssid), cmd('AT+WSKEY=' + k.auth + ',' + k.enc + (k.aberta ? '' : ',' + senha))]);
+      // (12/11 13h18, campo) 1ª tentativa voltou sem resposta: espera mais e tenta de novo uma vez
+      const grava = () => conversa([...abre(), cmd('AT+WSSSID=' + ssid, 5000), cmd('AT+WSKEY=' + k.auth + ',' + k.enc + (k.aberta ? '' : ',' + senha), 5000), {envia: 'AT+Q\r\n', espera: 200, fim: ''}]);   // (12/11 13h33, registro do campo) sem o AT+Q o próximo "+ok" volta +ERR=-1
+      const solis = S.plat === 'solis', caiuRede = e => /ENETUNREACH|unreachable|ENONET|EHOSTUNREACH|timed? ?out|sem resposta/i.test(String(e && (e.message || e) || ''));
+      let R;
+      try{ R = await grava(); }
+      catch(e){
+        // (24/11, campo) o Solis antigo aplica a senha e reinicia na hora: o Wi-Fi dele some no meio da conversa. Para o Solis isso é "gravou".
+        if(solis && caiuRede(e) && S.log.some(l => /^← \+ok/.test(l) && S.log.indexOf(l) > S.log.lastIndexOf('→ AT+WSSSID=' + ssid))){ S.log.push('# o Wi-Fi do datalogger caiu logo depois da senha: no Solis isso é normal (ele reinicia na rede nova)'); return irNuvem(); }
+        throw e;
+      }
+      if(solis && R[0].length && valor(R[2]) != null && valor(R[3]) == null){ S.log.push('# sem resposta à senha: no Solis o datalogger reinicia na hora'); return irNuvem(); }
+      if(!R[0].length || valor(R[2]) == null || valor(R[3]) == null){ await new Promise(ok => setTimeout(ok, 1500)); R = await grava(); }
       if(!R[0].length){ S.msg = 'O datalogger não respondeu. Confira se o tablet ainda está no Wi-Fi AP_ dele.'; return; }
       const e1 = erro(R[2]), e2 = erro(R[3]);
       if(e1 || e2 || valor(R[2]) == null || valor(R[3]) == null){ S.msg = 'O datalogger recusou (' + (e1 ? 'rede: erro ' + e1 : e2 ? 'senha: erro ' + e2 : 'sem resposta') + '). Nada foi trocado: tente de novo.'; return; }
+      if(solis){ try{ await conversa([...abre(), {envia: 'AT+Z\r\n', espera: 600, fim: ''}]); }catch(_){ } return irNuvem(); }
       await conversa([...abre(), {envia: 'AT+Z\r\n', espera: 600, fim: ''}]);   // reinicia para usar a rede nova
       S.passo = 'conferir'; S.conf = null; S.fimConf = Date.now() + 180000; S.msg = '';
       setTimeout(conferir, 15000);
-    }catch(e){ S.msg = 'Erro: ' + (e && e.message || e); }
+    }catch(e){ S.msg = 'Erro: ' + (e && e.message || e); S.log.push('! ' + S.msg); guardaRegistro('erro'); }
     finally{ S.ocupado = false; tela(); }
   }
+
+  // ---------- (24/11, Gerson) Solis: o datalogger desliga o Wi-Fi dele ao entrar na rede da casa ----------
+  // A parte do app termina na gravação; depois o tablet volta para a internet e o app pergunta ao SolisCloud (função usinas-solis)
+  // a cada 30 s, por até 10 min, se esse datalogger voltou a mandar dados depois da gravação.
+  const NUVEM = {solis: {fn: 'usinas-solis', n: 'SolisCloud'}, solplanet: {fn: 'usinas-solplanet', n: 'Solplanet'}};
+  const nv = () => NUVEM[S.plat] || NUVEM.solis;
+  function irNuvem(){
+    S.passo = 'nuvem'; S.tGravou = Date.now(); S.fimNuvem = Date.now() + 600000; S.nuvem = null; S.msg = ''; S.nuvemBase = null;
+    S.senhaQR = ''; S.apSenha = '';
+    try{ plugin().desconectarWifi().catch(() => {}); }catch(_){ }
+    setTimeout(nuvem, 20000);
+  }
+  async function nuvem(){
+    if(S.passo !== 'nuvem') return;
+    const sb = window.__cli && __cli.sb && __cli.sb();
+    try{
+      if(!sb) throw new Error('sem conexão');
+      const {data, error} = await sb.functions.invoke(nv().fn, {body: {logger: S.serial}});
+      if(error || !data || !data.ok) throw new Error((data && data.erro) || (error && error.message) || 'sem resposta');
+      const I = data.inversores || [], marca = I.map(i => i.em || '').join('|');
+      // (26/11) Solplanet: a hora da última comunicação pode vir em outro fuso: também vale "online e a hora mudou depois da gravação"
+      const novos = I.filter(i => i.online && i.em && Date.parse(i.em) >= S.tGravou - 30000);
+      if(S.plat === 'solplanet' && S.nuvemBase != null && marca !== S.nuvemBase && I.some(i => i.online)) novos.push(...I.filter(i => i.online));
+      if(S.nuvemBase == null) S.nuvemBase = marca;
+      S.nuvem = {internet: true, achou: !!data.achou, online: data.online != null ? !!data.online : I.some(i => i.online), ultima: I.map(i => i.em).filter(Boolean).sort().pop() || null};
+      S.log.push('# ' + nv().n + ': ' + (data.achou ? (data.online != null ? (data.online ? 'datalogger online' : 'datalogger offline') + ' · ' : '') + I.map(i => (i.online ? 'online' : 'offline') + ' ' + (i.em || '')).join(' | ') : 'datalogger ' + S.serial + ' não está no ' + nv().n + ' da GAP'));
+      if(novos.length){ S.nuvem.em = novos.map(i => i.em).sort().pop(); S.passo = 'pronto'; guardaRegistro('conectado'); tela(); return; }
+    }catch(e){ S.nuvem = {internet: false, erro: String(e && e.message || e)}; }
+    if(Date.now() > S.fimNuvem){ S.passo = 'nuvem-falhou'; guardaRegistro('nao_conectou'); tela(); return; }
+    tela(); setTimeout(nuvem, 30000);
+  }
+  const hhmm = iso => { try{ return new Date(iso).toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'}); }catch(_){ return ''; } };
 
   // depois do AT+Z: pergunta a cada 6 s (até 3 min) se ligou na rede do cliente
   async function conferir(){
@@ -2317,20 +2680,217 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
         const lk = valor(R[2]) || '', ip = (valor(R[3]) || '').split(','), alvo = S.rede && S.rede.ssid;
         const ligado = alvo && lk.startsWith(alvo + '(') && ip[1] && ip[1] !== '0.0.0.0';
         S.conf = {resposta: true, lk, ip: ip[1] || ''};
-        if(ligado){ S.passo = 'pronto'; tela(); return; }
+        if(ligado){ S.passo = 'pronto'; guardaRegistro('conectado'); S.senhaQR = ''; S.apSenha = ''; try{ plugin().desconectarWifi(); }catch(_){ } tela(); return; }
       }else S.conf = {resposta: false};
     }catch(_){ S.conf = {resposta: false}; }
-    if(Date.now() > S.fimConf){ S.passo = 'falhou'; tela(); return; }
+    // o datalogger reiniciou e o Wi-Fi AP_ caiu: o app entra de novo sozinho (a cada 30 s, se veio pelo QR Code)
+    if(S.conf && !S.conf.resposta && S.apSenha && S.serial && Date.now() - (S.reentrou || 0) > 30000){
+      S.reentrou = Date.now(); try{ await plugin().conectarWifi({ssid: 'AP_' + S.serial, senha: S.apSenha, espera: 20000}); }catch(_){ }
+    }
+    if(Date.now() > S.fimConf){ S.passo = 'falhou'; guardaRegistro('nao_conectou'); tela(); return; }
     tela(); setTimeout(conferir, 6000);
+  }
+
+
+  // ---------- (26/11, Gerson) redes do cliente pela busca do próprio Android (Solplanet e Auxsol: o datalogger não manda a lista) ----------
+  const canal = mhz => mhz >= 2412 && mhz <= 2472 ? Math.round((mhz - 2407) / 5) : mhz === 2484 ? 14 : 0;
+  async function redesAndroid(){
+    try{
+      const r = await plugin().buscarWifi(), por = new Map();
+      for(const w of (r && r.redes) || []){ if(!w.ssid || marcaAP(w.ssid) || w.mhz > 4900) continue; const o = por.get(w.ssid); if(!o || w.dbm > o.dbm) por.set(w.ssid, w); }
+      S.redes = [...por.values()].sort((a, b) => b.dbm - a.dbm).map(w => ({ch: canal(w.mhz), ssid: w.ssid, seg: abertaAP(w.seg) ? 'OPEN/NONE' : 'WPA2PSK/AES', sinal: sinalDe(w.dbm)}));
+      S.log.push('# redes por perto (Android): ' + S.redes.length);
+      if(!S.redes.length) S.msg = 'Não achei redes de 2,4 GHz por perto' + (r && r.localizacao === false ? ' (a localização do tablet está desligada: ligue e procure de novo)' : '') + '. Toque em "Procurar de novo" ou em "Outra rede" para digitar o nome.';
+    }catch(e){ S.redes = []; S.msg = 'Não consegui listar as redes (' + (e && e.message || e) + '). Toque em "Outra rede" para digitar o nome.'; }
+  }
+  async function redesDeNovo(){ if(S.ocupado) return; S.ocupado = true; S.msg = ''; avisa('Procurando as redes Wi-Fi por perto…', 'Uns 8 s.'); tela(); try{ await redesAndroid(); S.passo = 'redes'; }finally{ S.ocupado = false; tela(); } }
+
+  // ---------- (26/11, Gerson) Solplanet: WiFi-Stick AISWEI, página local http://160.190.0.1:8484 (gravado no campo em 26/11) ----------
+  // GET /getdev.cgi (dados do stick) → POST /wlanset.cgi {"action":"station","value":{"ssid","psw"}} → o stick reinicia e derruba o Wi-Fi dele
+  // → o app confere na nuvem (função usinas-solplanet {logger}). A API da Solplanet não troca Wi-Fi: só por aqui, perto do inversor.
+  const SP = 'http://160.190.0.1:8484';
+  const spPede = (cam, o) => plugin().http(Object.assign({url: SP + cam, metodo: 'GET', espera: 8000}, o || {}));
+  const jsonDe = t => { try{ return JSON.parse(t); }catch(_){ return null; } };
+  // nada de senha/chave no registro
+  const mascara = o => o && typeof o === 'object' ? JSON.stringify(o, (k, v) => /key|ps(w|d)|pwd|pass|mark|token|secret/i.test(k) && typeof v !== 'object' ? '••' : v).slice(0, 400) : String(o || '').replace(/("?(?:key|psw|pwd|pass\w*|mark)"?\s*[:=]\s*"?)[^",}&\s]*/gi, '$1••').slice(0, 400);
+  async function apAiswei(sn){
+    let L = S.wifis; if(!L){ try{ const r = await plugin().buscarWifi(); L = (r && r.redes) || []; }catch(_){ L = []; } }
+    const fim = String(sn || '').slice(-4).toUpperCase(), ais = L.filter(w => /^AISWEI/i.test(w.ssid)).sort((a, b) => b.dbm - a.dbm);
+    const m = ais.find(w => w.ssid.toUpperCase().endsWith(fim)) || ais.find(w => w.ssid.toUpperCase().includes(fim)) || (ais.length === 1 ? ais[0] : null);
+    return m ? m.ssid : 'AISWEI-' + fim;
+  }
+  async function procurarSP(){
+    if(S.ocupado) return; S.ocupado = true; S.msg = ''; avisa('Conversando com o datalogger…', 'Uns 5 a 15 s.'); tela();
+    try{
+      let r; try{ r = await spPede('/getdev.cgi'); }catch(e){ S.log.push('! ' + String(e && e.message || e) + ' (tentando de novo)'); await new Promise(ok => setTimeout(ok, 1500)); r = await spPede('/getdev.cgi'); }
+      S.log.push('→ GET /getdev.cgi'); S.log.push('← ' + r.status + ' ' + mascara(jsonDe(r.corpo) || r.corpo));
+      if(r.status !== 200){ S.msg = 'nao-achou'; S.passo = 'wifi'; return; }
+      const j = jsonDe(r.corpo) || {}, sn = j.psn || j.sn || j.dsn || '';
+      if(sn) S.serial = String(sn).trim();
+      try{ const w = await spPede('/wlanget.cgi?info=4', {espera: 10000}); S.log.push('→ GET /wlanget.cgi?info=4'); S.log.push('← ' + w.status + ' ' + mascara(jsonDe(w.corpo) || w.corpo)); }catch(_){ }
+      S.atual = ''; avisa('Procurando as redes Wi-Fi por perto…', 'Uns 8 s.'); tela();
+      await redesAndroid(); S.passo = 'redes';
+    }catch(e){ S.log.push('! ' + String(e && e.message || e)); S.msg = 'nao-achou'; S.passo = 'wifi'; }
+    finally{ S.ocupado = false; tela(); }
+  }
+  async function gravarSP(ssid, senha){
+    S.log.push('→ POST /wlanset.cgi {"action":"station","value":{"ssid":' + JSON.stringify(ssid) + ',"psw":"••••••"}}');
+    let r;
+    try{ r = await spPede('/wlanset.cgi', {metodo: 'POST', cabecalhos: {'Content-Type': 'application/json; charset=UTF-8'}, corpo: JSON.stringify({action: 'station', value: {ssid, psw: senha}}), espera: 10000}); }
+    catch(e){
+      const m = String(e && e.message || e); S.log.push('! ' + m);
+      // (26/11, campo) o app da Solplanet também viu "conexão abortada": o stick grava e reinicia na hora
+      if(/abort|reset|EOF|closed|unexpected end|timed? ?out|Software caused/i.test(m)){ S.log.push('# o Wi-Fi do datalogger caiu logo depois de gravar: na Solplanet é normal (ele reinicia na rede nova)'); return irNuvem(); }
+      S.msg = 'Não consegui falar com o datalogger: confira se o tablet ainda está no Wi-Fi ' + (S.apSsid || 'AISWEI-…') + ' e tente de novo.'; guardaRegistro('erro'); return;
+    }
+    S.log.push('← ' + r.status + ' ' + String(r.corpo || '').replace(/\s+/g, ' ').trim().slice(0, 80));
+    if(r.status !== 200){ S.msg = 'O datalogger recusou (HTTP ' + r.status + '). Nada foi trocado: tente de novo.'; guardaRegistro('erro'); return; }
+    return irNuvem();
+  }
+
+  // ---------- (26/11, Gerson) Auxsol: datalogger ASI-WIFI pelo Bluetooth (BLE, serviço 0x0077, característica 0x7701) ----------
+  // Decifrado do registro HCI do tablet (26/11, docs/teste-reconexao-sofar.md). Quadro: 02 00 00 + tamanho (2 bytes) + carga + CRC-16/X-25 (LSB primeiro) sobre tamanho+carga.
+  // Carga: c0 <tags> = ler; c4 <TLVs> = resposta; c1 <TLVs> = gravar (resposta c5 0000). TLV = tag (2) + tipo (1; 0x0a = texto) + tamanho (1) + valor.
+  // Gravar Wi-Fi: c1 001e 12 02 028a + 7001 (rede) + 7002 (senha). Estado: c0 7007 → 08 tentando · 0a entrou no roteador · 0e online no servidor da Auxsol.
+  const AX_SVC = '00000077-0000-1000-8000-00805f9b34fb', AX_CAR = '00007701-0000-1000-8000-00805f9b34fb';
+  const ble = () => window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.BluetoothLe;
+  function x25(b){ let c = 0xffff; for(const x of b){ c ^= x; for(let i = 0; i < 8; i++) c = c & 1 ? (c >>> 1) ^ 0x8408 : c >>> 1; } return (c ^ 0xffff) & 0xffff; }
+  function quadroAX(carga){ const n = carga.length + 2, corpo = [n >> 8 & 255, n & 255].concat(carga), c = x25(corpo); return [0x02, 0x00, 0x00].concat(corpo, [c & 255, c >> 8 & 255]); }
+  const tlvTexto = (tag, t) => { const b = [...new TextEncoder().encode(t)]; return [tag >> 8, tag & 255, 0x0a, b.length].concat(b); };
+  const cargaGravarAX = (ssid, senha) => [0xc1, 0x00, 0x1e, 0x12, 0x02, 0x02, 0x8a].concat(tlvTexto(0x7001, ssid), tlvTexto(0x7002, senha));
+  function lerQuadrosAX(buf){
+    const q = []; let i = 0;
+    while(i < buf.length){
+      if(buf[i] !== 0x02){ i++; continue; }
+      if(buf.length - i < 5) break;
+      const n = buf[i + 3] << 8 | buf[i + 4], tot = 5 + n;
+      if(n < 3 || n > 1024){ i++; continue; }
+      if(buf.length - i < tot) break;
+      const f = buf.slice(i, i + tot);
+      if(x25(f.slice(3, tot - 2)) === (f[tot - 2] | f[tot - 1] << 8)){ q.push(f.slice(5, tot - 2)); i += tot; } else i++;
+    }
+    return {quadros: q, resto: buf.slice(i)};
+  }
+  function tlvs(p, ini){ const o = []; let i = ini; while(i + 4 <= p.length){ const n = p[i + 3]; if(i + 4 + n > p.length) break; o.push({tag: p[i] << 8 | p[i + 1], tp: p[i + 2], v: p.slice(i + 4, i + 4 + n)}); i += 4 + n; } return o; }
+  const hexAX = a => a.map(x => x.toString(16).padStart(2, '0')).join('');
+  const bytesAX = h => (String(h || '').replace(/[^0-9a-f]/gi, '').match(/../g) || []).map(x => parseInt(x, 16));
+  const textoAX = v => String.fromCharCode(...v.filter(x => x >= 32 && x < 127));
+  function descAX(p){
+    if(p[0] === 0xc4) return 'c4 ' + tlvs(p, 1).map(t => t.tag.toString(16).padStart(4, '0') + '=' + (t.tp === 0x0a ? JSON.stringify(textoAX(t.v)) : hexAX(t.v))).join(' ');
+    return hexAX(p);
+  }
+  function estadoAX(e){ return e == null ? 'Esperando o datalogger responder…' : e === 0x08 ? 'Datalogger tentando entrar na rede…' : e === 0x0a ? 'Entrou no roteador! Esperando chegar no servidor da Auxsol…' : e === 0x0e ? 'Online no servidor da Auxsol.' : 'Estado ' + hexAX([e]) + '…'; }
+  const AX = {id: null, buf: [], esperas: [], ouvinte: null, ultEstado: null};
+  function axChegou(b){
+    AX.buf = AX.buf.concat(b); const r = lerQuadrosAX(AX.buf); AX.buf = r.resto;
+    r.quadros.forEach(p => {
+      const estado = p[0] === 0xc4 && p[1] === 0x70 && p[2] === 0x07;
+      if(!estado || p.join() !== AX.ultEstado) S.log.push('← ' + descAX(p));
+      if(estado) AX.ultEstado = p.join();
+      const k = AX.esperas.findIndex(e => e.casa(p)); if(k >= 0){ const e = AX.esperas.splice(k, 1)[0]; clearTimeout(e.tm); e.ok(p); }
+    });
+  }
+  async function axConectar(id){
+    const B = ble();
+    if(AX.ouvinte){ try{ await AX.ouvinte.remove(); }catch(_){ } AX.ouvinte = null; }
+    if(AX.id === id){ try{ await B.disconnect({deviceId: id}); }catch(_){ } }
+    await B.connect({deviceId: id, timeout: 15000});
+    AX.id = id; AX.buf = [];
+    AX.ouvinte = await B.addListener('notification|' + id + '|' + AX_SVC + '|' + AX_CAR, ev => axChegou(bytesAX(ev && ev.value)));
+    await B.startNotifications({deviceId: id, service: AX_SVC, characteristic: AX_CAR});
+  }
+  async function axSair(){
+    const B = ble(), id = AX.id; AX.esperas.splice(0).forEach(e => { clearTimeout(e.tm); e.ok(null); });
+    if(!B || !id) return; AX.id = null;
+    try{ await B.stopNotifications({deviceId: id, service: AX_SVC, characteristic: AX_CAR}); }catch(_){ }
+    if(AX.ouvinte){ try{ await AX.ouvinte.remove(); }catch(_){ } AX.ouvinte = null; }
+    try{ await B.disconnect({deviceId: id}); }catch(_){ }
+  }
+  // manda um quadro e espera a resposta que "casa" (null se não veio em ms)
+  function axPede(carga, casa, ms, desc){
+    return new Promise((ok, no) => {
+      const e = {casa, ok, tm: setTimeout(() => { const i = AX.esperas.indexOf(e); if(i >= 0) AX.esperas.splice(i, 1); ok(null); }, ms)};
+      AX.esperas.push(e); if(desc) S.log.push('→ ' + desc);
+      Promise.resolve().then(() => ble().write({deviceId: AX.id, service: AX_SVC, characteristic: AX_CAR, value: hexAX(quadroAX(carga))}))
+        .catch(err => { clearTimeout(e.tm); const i = AX.esperas.indexOf(e); if(i >= 0) AX.esperas.splice(i, 1); no(err); });
+    });
+  }
+  async function axBuscar(){
+    const B = ble();
+    if(!B || !temPlugin()){ S.msg = 'Esta parte precisa do app GAP para Android (versão 1.0.12 ou mais nova), com o Bluetooth.'; tela(); return; }
+    if(S.ocupado) return; S.ocupado = true; S.msg = ''; S.bts = null; await axSair(); avisa('Procurando o datalogger pelo Bluetooth…', 'Uns 6 s. Fique perto do inversor.'); tela();
+    let L = null;
+    try{
+      await B.initialize({androidNeverForLocation: true});
+      const en = await B.isEnabled().catch(() => null); if(en && en.value === false) throw {code: 'BTOFF'};
+      const vistos = new Map();
+      L = await B.addListener('onScanResult', r => {
+        const d = r && r.device; if(!d || !d.deviceId) return; const nome = r.localName || d.name || '';
+        const ehAux = (r.uuids || []).some(u => String(u).toLowerCase() === AX_SVC) || /^A\d{10,}$/i.test(nome);
+        if(!ehAux) return; const o = vistos.get(d.deviceId), rssi = r.rssi == null ? -100 : r.rssi;
+        if(!o || rssi > o.rssi) vistos.set(d.deviceId, {id: d.deviceId, nome: nome || d.deviceId, rssi});
+      });
+      await B.requestLEScan({allowDuplicates: false});
+      await new Promise(ok => setTimeout(ok, 6000));
+      S.bts = [...vistos.values()].sort((a, b) => b.rssi - a.rssi);
+      S.log.push('# Bluetooth: ' + (S.bts.map(x => x.nome + ' (' + x.rssi + ' dBm)').join(', ') || 'nenhum datalogger Auxsol'));
+    }catch(e){
+      const m = String(e && (e.message || e.code) || e);
+      S.msg = e && e.code === 'BTOFF' || /disabled|not enabled|desligado/i.test(m) ? 'Ligue o Bluetooth do tablet e toque de novo.'
+        : /permiss|denied/i.test(m) ? 'O app precisa da permissão de Bluetooth ("Dispositivos por perto"). Toque de novo e permita.'
+        : 'Não consegui procurar pelo Bluetooth: ' + m;
+    }finally{
+      try{ await B.stopLEScan(); }catch(_){ } if(L){ try{ await L.remove(); }catch(_){ } }
+      S.ocupado = false; tela();
+    }
+  }
+  async function axEntrar(d){
+    S.ocupado = true; S.msg = ''; avisa('Conectando no datalogger ' + d.nome + '…', 'Pelo Bluetooth. Uns 5 a 15 s.'); tela();
+    try{
+      await axConectar(d.id); S.serial = d.nome; S.log.push('# conectou no Bluetooth ' + d.nome);
+      const p = await axPede([0xc0, 0x00, 0x03, 0x00, 0x07, 0x00, 0x0a, 0x00, 0x18], q => q[0] === 0xc4, 4000, 'c0 0003 0007 000a 0018 (dados do datalogger)');
+      if(!p) S.log.push('! o datalogger não respondeu à leitura (segue mesmo assim)');
+      avisa('Procurando as redes Wi-Fi por perto…', 'Uns 8 s.'); tela();
+      await redesAndroid(); S.passo = 'redes';
+    }catch(e){ S.msg = 'Não conectei no datalogger pelo Bluetooth. Chegue mais perto e tente de novo. (' + (e && e.message || e) + ')'; S.log.push('! ' + S.msg); await axSair(); }
+    finally{ S.ocupado = false; tela(); }
+  }
+  async function gravarAX(ssid, senha){
+    const b1 = new TextEncoder().encode(ssid).length, b2 = new TextEncoder().encode(senha).length;
+    if(b1 > 32 || b2 > 64){ S.msg = 'Nome da rede ou senha grande demais para o datalogger.'; return; }
+    const carga = cargaGravarAX(ssid, senha), casa = q => q[0] === 0xc5, desc = 'c1 gravar rede ' + JSON.stringify(ssid) + ' (senha ••••••)';
+    let p;
+    try{ p = await axPede(carga, casa, 6000, desc); }
+    catch(e){ S.log.push('! ' + String(e && e.message || e) + ' (conectando de novo)'); await axConectar(AX.id || (S.bts && S.bts[0] && S.bts[0].id)); p = await axPede(carga, casa, 6000, desc); }
+    if(!p){ p = await axPede(carga, casa, 6000, desc); }
+    if(!p){ S.msg = 'O datalogger não respondeu pelo Bluetooth. Chegue mais perto e toque em "Gravar" de novo.'; guardaRegistro('erro'); return; }
+    if(p[1] || p[2]){ S.msg = 'O datalogger recusou (código ' + hexAX(p.slice(1)) + '). Nada foi trocado: tente de novo.'; guardaRegistro('erro'); return; }
+    S.passo = 'bt-conf'; S.axEstado = null; S.axSem = 0; AX.ultEstado = null; S.fimConf = Date.now() + 90000; S.msg = '';
+    setTimeout(axConferir, 1000);
+  }
+  // (26/11, registro do campo) depois de gravar, o datalogger às vezes para de responder uns segundos: o app conecta de novo sozinho
+  async function axConferir(){
+    if(S.passo !== 'bt-conf') return;
+    let p = null;
+    try{ p = await axPede([0xc0, 0x70, 0x07], q => q[0] === 0xc4 && q[1] === 0x70 && q[2] === 0x07, 2000, null); }catch(_){ p = null; }
+    if(p){
+      S.axSem = 0; const t = tlvs(p, 1).find(x => x.tag === 0x7007), e = t && t.v.length ? t.v[0] : null;
+      if(e !== S.axEstado) S.log.push('# estado: ' + estadoAX(e));
+      S.axEstado = e;
+      if(e === 0x0e){ S.passo = 'pronto'; S.senhaQR = ''; guardaRegistro('conectado'); await axSair(); tela(); return; }
+    }else if(++S.axSem >= 4 && AX.id){ S.axSem = 0; S.log.push('# sem resposta: conectando de novo no Bluetooth'); try{ await axConectar(AX.id); }catch(_){ } }
+    if(Date.now() > S.fimConf){ S.passo = 'falhou'; guardaRegistro('nao_conectou'); tela(); return; }
+    if(S.passo === 'bt-conf'){ tela(); setTimeout(axConferir, 1000); }
   }
 
   // ---------- telas ----------
   const barras = n => { const b = n >= 70 ? 4 : n >= 50 ? 3 : n >= 30 ? 2 : 1; return '<span class="cx-bar" aria-label="sinal ' + n + '">' + [1, 2, 3, 4].map(i => '<i class="' + (i <= b ? 'on' : '') + '" style="height:' + (i * 4 + 2) + 'px"></i>').join('') + '</span>'; };
+  const ICO_QR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM18 18h3v3h-3zM14 20h2M20 14v2"/></svg>';
   const passoT = (n, t) => '<p class="olho">Passo ' + n + ' de 4</p><h2 class="cx-h">' + t + '</h2>';
   function tela(){
     const box = $('cxBody'); if(!box) return;
-    let h = '';
-    if(!temPlugin()) h += '<div class="cx-av">Esta parte só funciona dentro do app <b>GAP Clientes para Android</b> (versão 1.0.12 ou mais nova). No navegador dá para ver as telas, mas não conversa com o datalogger.</div>';
+    let h = quadroAviso();
+    if(!temPlugin()) h += '<div class="cx-av">Esta parte só funciona dentro do app <b>GAP para Android</b> (versão 1.0.12 ou mais nova). No navegador dá para ver as telas, mas não conversa com o datalogger.</div>';
     const lista = ehCliente() ? platsCliente() : PLAT;
     if(S.passo === 'plataforma' && ehCliente() && lista.filter(p => p.ok).length === 1){ S.plat = lista.find(p => p.ok).k; S.passo = 'antes'; }   // cliente com uma plataforma só: direto
     if(S.passo === 'plataforma'){
@@ -2343,19 +2903,44 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
           + '<ol class="cx-ol"><li>Deixe <b>esta tela aberta</b>. Sem internet o app não abre de novo, então não feche.</li>'
           + '<li>Se o tablet tiver chip, <b>desligue os dados móveis</b>.</li>'
           + '<li>Tenha a <b>senha do Wi-Fi do cliente</b> (você digita aqui; ela vai só para o datalogger).</li>'
-          + '<li>Na etiqueta do datalogger: o <b>SN</b> e a <b>senha</b> (PWD) do Wi-Fi dele.</li></ol>'
-          + '<button type="button" class="btn-p" data-cxir="wifi">Continuar</button>';
+          + (S.plat === 'solis' ? '<li>Na etiqueta do datalogger: o número (<b>SN</b>). O Wi-Fi dele tem esse número no nome.</li></ol>'
+            : S.plat === 'solplanet' ? '<li>Na etiqueta do datalogger: o <b>QR Code</b>. Ele traz o número e a senha do Wi-Fi dele (o <b>Registration Code</b>).</li></ol>'
+            : S.plat === 'auxsol' ? '<li>Ligue o <b>Bluetooth</b> do tablet e fique perto do inversor (até uns 5 m).</li><li>O nome do datalogger no Bluetooth é o <b>SN</b> da etiqueta dele.</li></ol>'
+            : '<li>Na etiqueta do datalogger: o <b>SN</b> e a <b>senha</b> (PWD) do Wi-Fi dele.</li></ol>')
+          + '<button type="button" class="btn-p" data-cxir="' + (S.plat === 'auxsol' ? 'bt' : 'wifi') + '">Continuar</button>';
+      }else if(S.passo === 'bt'){
+        h += passoT(2, 'Conecte no datalogger pelo Bluetooth')
+          + (S.msg && !S.ocupado ? '<div class="cx-err">' + esc(S.msg) + '</div>' : '')
+          + '<button type="button" class="btn-p" data-cxbt' + (S.ocupado ? ' disabled' : '') + '>' + (S.bts ? 'Procurar de novo' : 'Procurar o datalogger pelo Bluetooth') + '</button>'
+          + (S.bts ? (S.bts.length ? '<p class="nota-g">Toque no datalogger com o <b>SN</b> da etiqueta:</p><div class="cx-redes" aria-label="Datalogger Auxsol por perto">' + S.bts.map((d, i) => '<button type="button" class="cx-rede" data-cxbtd="' + i + '"' + (S.ocupado ? ' disabled' : '') + '><span><b>' + esc(d.nome) + '</b><small>Auxsol · Bluetooth</small></span>' + barras(sinalDe(d.rssi)) + '</button>').join('') + '</div>'
+            : '<p class="nota-g">Nenhum datalogger Auxsol por perto. Chegue mais perto do inversor, confira se ele está ligado (de dia, com sol) e procure de novo. Se o app da Auxsol estiver aberto e conectado nele, feche o app da Auxsol.</p>') : '');
       }else if(S.passo === 'wifi'){
+        const ERRS = {'nao-achou': 'O datalogger não respondeu. Confira se o tablet está no Wi-Fi <b>' + (S.plat === 'solplanet' ? 'AISWEI-…' : 'AP_…') + '</b> (e não na rede do cliente) e tente de novo.',
+          'qr-ruim': 'Esse QR Code não é o da etiqueta do datalogger (SN e PWD). Tente de novo ou entre no Wi-Fi à mão.',
+          'nao-entrou': 'Não entrei no Wi-Fi <b>' + esc(S.apSsid || 'AP_' + S.serial) + '</b>. Chegue mais perto do datalogger e tente de novo, ou entre à mão (senha <b>' + esc(S.apSenha) + '</b>).',
+          'antigo': 'Neste Android o app não entra sozinho: abra o Wi-Fi do tablet e entre em <b>' + esc(S.apSsid || 'AP_' + S.serial) + '</b> com a senha <b>' + esc(S.apSenha) + '</b>. Depois toque em "Já conectei".',
+          'semsenha': 'Li o número <b>' + esc(S.serial) + '</b>, mas sem a senha. Entre à mão no Wi-Fi <b>AP_' + esc(S.serial) + '</b> com a <b>PWD</b> da etiqueta.'};
         h += passoT(2, 'Entre no Wi-Fi do datalogger')
-          + '<p class="nota-g">Nas configurações de Wi-Fi do tablet, conecte na rede <b>AP_</b> seguida do número do datalogger (ex.: AP_2900368496). A senha é a <b>PWD</b> da etiqueta.<br>Se o Android avisar que a rede não tem internet, escolha <b>manter conectado</b>. Depois volte para cá.</p>'
-          + (S.msg === 'nao-achou' ? '<div class="cx-err">O datalogger não respondeu. Confira se o tablet está no Wi-Fi <b>AP_…</b> (e não na rede do cliente) e tente de novo.</div>' : '')
-          + '<div class="cx-bts"><button type="button" class="btn-o" data-cxwifi>Abrir Wi-Fi do tablet</button><button type="button" class="btn-p" data-cxprocura' + (S.ocupado ? ' disabled' : '') + '>' + (S.ocupado ? 'Procurando…' : 'Já conectei: procurar') + '</button></div>';
+          + (ERRS[S.msg] ? '<div class="cx-err">' + ERRS[S.msg] + '</div>' : S.msg && !S.ocupado ? '<div class="cx-err">' + esc(S.msg) + '</div>' : '')
+          + (S.entrando ? '<p class="cx-st">Entrando no Wi-Fi <b>' + esc(S.entrandoEm || S.apSsid || 'AP_' + S.serial) + '</b>… se o Android perguntar, toque em <b>Conectar</b>.</p><div class="cx-gira" aria-hidden="true"></div>' : '')
+          + '<button type="button" class="btn-p" data-cxbusca' + (S.ocupado ? ' disabled' : '') + '>' + (S.ocupado && !S.entrando && !S.wifis ? 'Procurando o Wi-Fi…' : S.wifis ? 'Procurar de novo' : 'Procurar o Wi-Fi do datalogger') + '</button>'
+          + '<p class="nota-g">Toque no Wi-Fi do datalogger na lista: o app entra nele sozinho.</p>'
+          + blocoBusca()
+          + (S.plat === 'solis' ? '' : '<p class="nota-g">ou</p><button type="button" class="btn-o cx-qr" data-cxqr="etiqueta"' + (S.ocupado ? ' disabled' : '') + '>' + ICO_QR + 'Ler QR Code da etiqueta</button>')   // (24/11) a etiqueta do datalogger Solis não tem QR
+          + '<details class="cx-mao"' + (S.mao || ['nao-entrou', 'antigo', 'semsenha', 'nao-achou'].includes(S.msg) ? ' open' : '') + '><summary>' + (S.plat === 'solis' ? 'Entrar à mão' : 'Entrar à mão (sem QR Code)') + '</summary>'
+          + (S.plat === 'solis'
+            ? '<p class="nota-g">Nas configurações de Wi-Fi do tablet, conecte no Wi-Fi do datalogger: no <b>antigo</b> é <b>AP_</b> + o número (ex.: AP_4039426974), quase sempre aberto (ou 12345678); no <b>S3-WIFI-ST</b> é o Wi-Fi com o número de série dele, senha <b>123456789</b>. Se o Android avisar que a rede não tem internet, escolha <b>manter conectado</b>.</p>'
+            : S.plat === 'solplanet' ? '<p class="nota-g">Nas configurações de Wi-Fi do tablet, conecte na rede <b>AISWEI-</b> com o fim do número do datalogger (ex.: AISWEI-0F6B). A senha é o <b>Registration Code</b> da etiqueta. Se o Android avisar que a rede não tem internet, escolha <b>manter conectado</b>.</p>'
+            : '<p class="nota-g">Nas configurações de Wi-Fi do tablet, conecte na rede <b>AP_</b> seguida do número do datalogger (ex.: AP_2900368496). A senha é a <b>PWD</b> da etiqueta. Se o Android avisar que a rede não tem internet, escolha <b>manter conectado</b>.</p>')
+          + '<div class="cx-bts"><button type="button" class="btn-o" data-cxwifi>Abrir Wi-Fi do tablet</button><button type="button" class="btn-p" data-cxprocura' + (S.ocupado ? ' disabled' : '') + '>' + (S.ocupado && !S.entrando ? 'Procurando…' : 'Já conectei: procurar') + '</button></div></details>';
       }else if(S.passo === 'redes'){
         h += passoT(3, 'Escolha a rede do cliente')
-          + '<p class="cx-ok">Datalogger <b>' + esc(S.serial || '?') + '</b> encontrado.' + (S.atual ? ' Rede gravada nele agora: <b>' + esc(S.atual) + '</b>.' : '') + '</p>'
+          + '<p class="cx-ok">Datalogger <b>' + esc(S.serial || '?') + '</b> ' + (S.plat === 'auxsol' ? 'conectado pelo Bluetooth.' : 'encontrado.') + (S.atual ? ' Rede gravada nele agora: <b>' + esc(S.atual) + '</b>.' : '') + '</p>'
           + (S.msg && !S.ocupado ? '<div class="cx-err">' + esc(S.msg) + '</div>' : '')
-          + '<div class="cx-redes">' + S.redes.map((r, i) => '<button type="button" class="cx-rede" data-cxrede="' + i + '"><span><b>' + esc(r.ssid) + '</b><small>' + (chaveDe(r.seg).aberta ? 'aberta, sem senha' : 'com senha') + ' · canal ' + r.ch + '</small></span>' + barras(r.sinal) + '<em>' + r.sinal + '</em></button>').join('')
+          + '<button type="button" class="btn-o cx-qr" data-cxqr="cliente">' + ICO_QR + 'Ler QR do Wi-Fi do cliente</button><p class="nota-g">ou toque na rede:</p>'
+          + '<div class="cx-redes">' + S.redes.map((r, i) => '<button type="button" class="cx-rede" data-cxrede="' + i + '"><span><b>' + esc(r.ssid) + '</b><small>' + (chaveDe(r.seg).aberta ? 'aberta, sem senha' : 'com senha') + (r.ch ? ' · canal ' + r.ch : '') + '</small></span>' + barras(r.sinal) + '<em>' + r.sinal + '</em></button>').join('')
           + '<button type="button" class="cx-rede cx-manual" data-cxrede="manual"><span><b>Outra rede (oculta)</b><small>digitar o nome</small></span></button></div>'
+          + (S.plat === 'solplanet' || S.plat === 'auxsol' ? '<p class="nota-g">Só aparecem redes de 2,4 GHz: o datalogger não funciona em 5 GHz.</p>' : '')
           + '<button type="button" class="btn-o" data-cxprocura' + (S.ocupado ? ' disabled' : '') + '>' + (S.ocupado ? 'Procurando…' : 'Procurar de novo') + '</button>';
       }else if(S.passo === 'senha'){
         const r = S.rede, k = chaveDe(r.seg);
@@ -2364,6 +2949,7 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
           + (k.aberta ? '<p class="nota-g">Rede aberta: não precisa de senha.</p>'
             : '<label class="cx-campo"><span>Senha do Wi-Fi do cliente</span><span class="cx-senha"><input id="cxSenha" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="63"><button type="button" class="btn-o" data-cxver aria-label="Mostrar a senha">Ver</button></span></label>'
               + '<p class="nota-g">A senha não fica guardada no app nem na GAP: vai só para o datalogger.</p>')
+          + (S.senhaQR ? '<p class="cx-ok">Senha lida do QR Code.</p>' : '')
           + (S.msg && !S.ocupado ? '<div class="cx-err">' + esc(S.msg) + '</div>' : '')
           + '<div class="cx-bts"><button type="button" class="btn-o" data-cxir="redes">Voltar</button><button type="button" class="btn-p" data-cxgrava' + (S.ocupado ? ' disabled' : '') + '>' + (S.ocupado ? 'Gravando…' : 'Gravar no datalogger') + '</button></div>';
       }else if(S.passo === 'conferir'){
@@ -2373,6 +2959,35 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
           + '<div class="cx-gira" aria-hidden="true"></div>'
           + (S.conf ? '<p class="cx-st">' + (S.conf.resposta ? 'Datalogger respondeu: ' + esc(S.conf.lk || 'ainda sem rede') + (S.conf.ip && S.conf.ip !== '0.0.0.0' ? ' · IP ' + esc(S.conf.ip) : '') : 'Aguardando o datalogger voltar…') + '</p>' : '')
           + '<button type="button" class="btn-o" data-cxwifi>Abrir Wi-Fi do tablet</button>';
+      }else if(S.passo === 'nuvem'){
+        const seg = Math.max(0, Math.round((S.fimNuvem - Date.now()) / 1000)), n = S.nuvem;
+        h += passoT(4, 'Gravado! Conferindo no ' + nv().n + '…')
+          + '<div class="cx-fim ok"><b>A rede ' + esc(S.rede.ssid) + ' foi gravada no datalogger.</b><p>Ele reiniciou e desligou o Wi-Fi dele (é normal ' + (S.plat === 'solis' ? 'no Solis' : 'nesta marca') + '). A parte do app terminou.</p></div>'
+          + '<p class="nota-g">Agora o tablet volta para a internet e o app pergunta ao ' + nv().n + ' se o datalogger <b>' + esc(S.serial || '') + '</b> voltou a mandar dados. Costuma levar de 2 a 5 minutos (mais ' + Math.floor(seg / 60) + ' min ' + (seg % 60) + ' s).</p>'
+          + '<div class="cx-gira" aria-hidden="true"></div>'
+          + '<p class="cx-st">' + (!n ? 'Esperando o datalogger reiniciar…' : !n.internet ? 'Esperando a internet do tablet voltar… (se ele continuar no Wi-Fi do datalogger, troque para a internet normal)' : !n.achou ? 'Este datalogger não aparece no ' + nv().n + ' da GAP: confira lá se a usina está cadastrada com esse número.' : n.online ? 'Online no ' + nv().n + ', esperando o primeiro dado depois da gravação…' : 'No ' + nv().n + ' ainda está offline' + (n.ultima ? ' (último dado às ' + esc(hhmm(n.ultima)) + ')' : '') + '…') + '</p>'
+          + '<p class="nota-g">Se o Wi-Fi <b>' + esc(S.apSsid || 'AP_' + (S.serial || '…')) + '</b> voltar a aparecer, o datalogger não conseguiu entrar na rede (senha errada?): toque em "Tentar de novo".</p>'
+          + '<div class="cx-bts"><button type="button" class="btn-o" data-cxir="wifi">Tentar de novo</button></div>';
+      }else if(S.passo === 'nuvem-falhou'){
+        h += '<div class="cx-fim erro"><b>Ainda não chegou dado no ' + nv().n + '</b><p>A rede <b>' + esc(S.rede.ssid) + '</b> foi gravada, mas em 10 minutos o datalogger não mandou dado novo. Se o Wi-Fi <b>' + esc(S.apSsid || 'AP_' + (S.serial || '…')) + '</b> voltou a aparecer, a senha deve estar errada. Se não, o roteador pode estar longe ou com 2,4 GHz desligado.</p></div>'
+          + '<div class="cx-bts"><button type="button" class="btn-p" data-cxnuvem>Conferir de novo</button><button type="button" class="btn-o" data-cxir="wifi">Tentar de novo</button></div>';
+      }else if(S.passo === 'pronto' && S.plat === 'auxsol'){
+        h += '<div class="cx-fim ok"><b>Conectado!</b><p>O datalogger <b>' + esc(S.serial) + '</b> entrou na rede <b>' + esc(S.rede.ssid) + '</b> e já está online no servidor da Auxsol. No nosso monitoramento aparece na próxima leitura (até 15 min).</p></div>'
+          + '<button type="button" class="btn-p" data-cxvolta>Concluir</button>';
+      }else if(S.passo === 'falhou' && S.plat === 'auxsol'){
+        h += '<div class="cx-fim erro"><b>Não conectou</b><p>' + (S.axEstado === 0x0a ? 'O datalogger entrou na rede <b>' + esc(S.rede.ssid) + '</b>, mas não chegou no servidor da Auxsol. Confira se a internet desse roteador está funcionando.' : 'Em 90 segundos o datalogger não entrou na rede <b>' + esc(S.rede.ssid) + '</b>. O mais comum é <b>senha errada</b>, ou o roteador longe demais (sinal fraco).') + '</p></div>'
+          + '<div class="cx-bts"><button type="button" class="btn-p" data-cxir="senha">Digitar a senha de novo</button><button type="button" class="btn-o" data-cxprocura>Escolher outra rede</button></div>';
+      }else if(S.passo === 'bt-conf'){
+        const seg = Math.max(0, Math.round((S.fimConf - Date.now()) / 1000)), e = S.axEstado;
+        const linha = (feito, t) => '<li class="' + (feito ? 'on' : '') + '">' + (feito ? '✓ ' : '… ') + t + '</li>';
+        h += passoT(4, 'Conferindo a conexão…')
+          + '<p class="nota-g">O datalogger está entrando na rede <b>' + esc(S.rede.ssid) + '</b>. O app pergunta a ele pelo Bluetooth a cada segundo (mais ' + seg + ' s). Fique perto do inversor.</p>'
+          + '<div class="cx-gira" aria-hidden="true"></div>'
+          + '<ol class="cx-ol cx-est">' + linha(true, 'Rede e senha gravadas') + linha(e === 0x0a || e === 0x0e, 'Entrou no roteador do cliente') + linha(e === 0x0e, 'Online no servidor da Auxsol') + '</ol>'
+          + '<p class="cx-st">' + esc(estadoAX(e)) + '</p>';
+      }else if(S.passo === 'pronto' && (S.plat === 'solis' || S.plat === 'solplanet')){
+        h += '<div class="cx-fim ok"><b>Conectado!</b><p>O datalogger entrou na rede <b>' + esc(S.rede.ssid) + '</b>: o ' + nv().n + ' recebeu dado novo às <b>' + esc(hhmm(S.nuvem && S.nuvem.em)) + '</b>. No nosso monitoramento aparece na próxima leitura (até 15 min).</p></div>'
+          + '<button type="button" class="btn-p" data-cxvolta>Concluir</button>';
       }else if(S.passo === 'pronto'){
         h += '<div class="cx-fim ok"><b>Conectado!</b><p>O datalogger entrou na rede <b>' + esc(S.rede.ssid) + '</b> (IP ' + esc(S.conf.ip) + '). Em até 5 minutos os dados voltam no portal da Solarman.</p></div>'
           + '<p class="nota-g">Pode voltar o tablet para a internet normal.</p><button type="button" class="btn-p" data-cxvolta>Concluir</button>';
@@ -2380,24 +2995,312 @@ button.dia:hover .d1{color:var(--sol)}button.dia:focus-visible{outline:3px solid
         h += '<div class="cx-fim erro"><b>Não conectou</b><p>Em 3 minutos o datalogger não entrou na rede <b>' + esc(S.rede.ssid) + '</b>' + (S.conf && S.conf.resposta ? ' (ele respondeu: ' + esc(S.conf.lk || 'sem rede') + ')' : '') + '. O mais comum é <b>senha errada</b>, ou o roteador longe demais.</p></div>'
           + '<div class="cx-bts"><button type="button" class="btn-p" data-cxir="senha">Digitar a senha de novo</button><button type="button" class="btn-o" data-cxprocura>Escolher outra rede</button></div>';
       }
-      if(S.log.length) h += '<details class="cx-log"><summary>Registro da conversa (' + S.log.length + ')</summary><pre>' + esc(S.log.join('\n')) + '</pre></details>';
+      if(S.log.length) h += '<details class="cx-log"' + (S.logAberto ? ' open' : '') + '><summary>Registro da conversa (' + S.log.length + ')</summary>'
+        + '<p class="nota-g">Vai sozinho para a GAP quando a internet voltar (sem a senha).' + (FILA.length ? ' Aguardando internet…' : '') + '</p>'
+        + '<button type="button" class="btn-o" data-cxcopia>Copiar registro</button><pre>' + esc(S.log.join('\n')) + '</pre></details>';
     }
     box.innerHTML = h;
+    if(S.passo === 'senha' && S.senhaQR){ const i = $('cxSenha'); if(i && !i.value) i.value = S.senhaQR; }
+    // sem leitor de QR do próprio Android: já baixa o leitor enquanto ainda tem internet (no Wi-Fi do datalogger não tem)
+    if(S.passo === 'antes' && !('BarcodeDetector' in window)) carregaJsQR().catch(() => {});
   }
 
+  // (12/11 13h28, Gerson) "Entrar à mão" e o registro não fecham sozinhos quando a tela se redesenha (procurando…)
+  document.addEventListener('toggle', ev => { const d = ev.target; if(!d || !d.classList) return; if(d.classList.contains('cx-mao')){ if(d.hasAttribute('data-cxtodas')) S.todas = d.open; else S.mao = d.open; } if(d.classList.contains('cx-log')) S.logAberto = d.open; }, true);
   document.addEventListener('click', ev => {
     const t = ev.target; if(!t.closest || !t.closest('#v-conectar')) return;
+    if(t.closest('[data-cxcopia]')){ const txt = S.log.join('\n'), b = t.closest('[data-cxcopia]');
+      (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => { b.textContent = 'Copiado ✓'; }).catch(() => { const pre = b.parentElement.querySelector('pre'); const rg = document.createRange(); rg.selectNodeContents(pre); const sl = getSelection(); sl.removeAllRanges(); sl.addRange(rg); b.textContent = 'Selecionado: copie'; }); return; }
     const pl = t.closest('[data-cxplat]'); if(pl){ S.plat = pl.dataset.cxplat; S.passo = 'antes'; S.msg = ''; tela(); return; }
-    if(t.closest('[data-cxvolta]')){ S.passo = 'plataforma'; S.msg = ''; S.rede = null; tela(); return; }
+    if(t.closest('[data-cxbt]')){ axBuscar(); return; }
+    const bd = t.closest('[data-cxbtd]'); if(bd && S.bts){ const d = S.bts[+bd.dataset.cxbtd]; if(d && !S.ocupado) axEntrar(d); return; }
+    if(t.closest('[data-cxvolta]')){ axSair(); S.bts = null; S.senhaQR = ''; S.apSenha = ''; S.apSsid = ''; if(temPlugin()) plugin().desconectarWifi().catch(() => {}); S.passo = 'plataforma'; S.msg = ''; S.rede = null; tela(); return; }
     const ir = t.closest('[data-cxir]'); if(ir){ S.passo = ir.dataset.cxir; S.msg = ''; tela(); return; }
     if(t.closest('[data-cxwifi]')){ if(temPlugin()) plugin().abrirWifi().catch(() => {}); return; }
-    if(t.closest('[data-cxprocura]')){ if(!temPlugin()){ S.msg = 'nao-achou'; S.passo = 'wifi'; tela(); return; } procurar(); return; }
+    if(t.closest('[data-cxprocura]') && S.plat === 'auxsol'){ if(S.passo === 'falhou'){ S.passo = 'redes'; tela(); } redesDeNovo(); return; }
+    if(t.closest('[data-cxprocura]')){ if(!temPlugin()){ S.msg = 'nao-achou'; S.passo = 'wifi'; tela(); return; }
+      // entrou à mão: solta o Wi-Fi que o app tinha pedido pelo QR (se tinha), para usar o Wi-Fi em que o tablet está
+      if(S.passo === 'wifi'){ S.ocupado = true; tela(); plugin().desconectarWifi().catch(() => {}).then(() => { S.ocupado = false; procurar(); }); return; }
+      procurar(); return; }
     const rd = t.closest('[data-cxrede]'); if(rd){ S.rede = rd.dataset.cxrede === 'manual' ? {manual: true, ssid: '', seg: 'WPA2PSK/AES'} : {...S.redes[+rd.dataset.cxrede]}; S.passo = 'senha'; S.msg = ''; tela(); setTimeout(() => { const i = $('cxSsid') || $('cxSenha'); if(i) i.focus(); }, 50); return; }
     if(t.closest('[data-cxver]')){ const i = $('cxSenha'); if(i){ i.type = i.type === 'password' ? 'text' : 'password'; t.closest('[data-cxver]').textContent = i.type === 'password' ? 'Ver' : 'Esconder'; } return; }
+    const qr = t.closest('[data-cxqr]'); if(qr){ if(!temPlugin()){ S.msg = 'Só no app Android.'; tela(); return; } (qr.dataset.cxqr === 'etiqueta' ? qrEtiqueta : qrCliente)(); return; }
+    if(t.closest('[data-cxnuvem]')){ S.passo = 'nuvem'; S.fimNuvem = Date.now() + 300000; S.nuvem = null; tela(); nuvem(); return; }
+    if(t.closest('[data-cxbusca]')){ if(!temPlugin()){ S.msg = 'Só no app Android.'; tela(); return; } buscarWifis(); return; }
+    const ap = t.closest('[data-cxap]'); if(ap && S.wifis){ const w = S.wifis[+ap.dataset.cxap]; if(!w || S.ocupado) return;
+      if(abertaAP(w.seg)) entrarWifi(w, ''); else { S.wsel = w.ssid; S.msg = ''; tela(); setTimeout(() => { const i = $('cxApSenha'); if(i) i.focus(); }, 50); } return; }
+    if(t.closest('[data-cxapentra]')){ const w = S.wifis && S.wifis.find(x => x.ssid === S.wsel); const sv = ($('cxApSenha') && $('cxApSenha').value) || ''; if(w) entrarWifi(w, sv); return; }
     if(t.closest('[data-cxgrava]')){ if(!temPlugin()){ S.msg = 'Só no app Android.'; tela(); return; } gravar(); }
   });
 
-  window.GAP_CONECTAR = {abrir: () => tela(), cliente: clienteLiberado, _t: {linhaRede, lerScan, chaveDe, serialDe, valor, erro}};
+  window.GAP_CONECTAR = {abrir: () => tela(), cliente: clienteLiberado, _t: {linhaRede, lerScan, chaveDe, serialDe, valor, erro, lerEtiqueta, lerWifiQR, quadroAX, cargaGravarAX, lerQuadrosAX}};
+})();
+</script>
+<script>
+// =============== DADOS DO INVERSOR (12/11/2026, Gerson 23h06) — o mesmo módulo no app GAP Clientes e no GAP Administração ===============
+// Prévia aprovada em 09/11 (artifact "Dados do inversor"): inversor, "Agora", filtros (Dados CC, Dados CA, Bateria, Temperatura:
+// no celular viram botões que abrem uma janela; no computador ficam ao lado do gráfico), gráfico com até 2 unidades (escala de cada
+// lado), trecho sem leitura marcado, ‹ dia › e "Hoje", tabela de hora em hora e planilha com todas as leituras.
+// Os dados vêm da função inv-dados ({usina, dia}): dias recentes do banco (15 dias), mais antigos do arquivo no R2.
+// Uso: GAP_INVDADOS.montar(el, {usina, titulo, sub, sn, chamar: async body => json, voltar: fn|null})
+(function(){
+  'use strict';
+  const e = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+  const CORES = ['#e0a100', '#2f6fdb', '#1f8a4c', '#c8352b', '#8a4fd1', '#0e9aa7', '#d9622b', '#5b6b7a', '#b8327a', '#6b8e23'];
+  const hojeBR = () => new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
+  const soma = (d, n) => { const x = new Date(d + 'T12:00:00Z'); x.setUTCDate(x.getUTCDate() + n); return x.toISOString().slice(0, 10); };
+  const fdia = d => d.split('-').reverse().join('/');
+  const hm = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(Math.round(m % 60)).padStart(2, '0');
+  const nf = (v, u) => v == null || isNaN(v) ? '—' : (u === 'W' && Math.abs(v) >= 1000 ? (v / 1000).toLocaleString('pt-BR', {maximumFractionDigits: 2}) + ' kW' : (+v).toLocaleString('pt-BR', {maximumFractionDigits: u === 'Hz' ? 2 : 1}) + ' ' + u);
+  const n1 = v => v == null || isNaN(v) ? '—' : (+v).toLocaleString('pt-BR', {maximumFractionDigits: 1});
+
+  // ---------- contas (sem tela; testadas em test/invdados-test.js)
+  // linhas [[hora ISO, d]] → pontos {m (minutos do dia em Brasília), v1, a1, w1, …, cc, f1v, f1a, f1w, …, sa, hz, t, iso, soc, bw}
+  function pontos(linhas, dia){
+    const ini = Date.parse(dia + 'T00:00:00-03:00');
+    return (linhas || []).map(([em, d]) => { const p = {m: (Date.parse(em) - ini) / 60000}; d = d || {};
+      for(const x of d.pv || []){ const n = x[0]; p['v' + n] = x[1]; p['a' + n] = x[2]; p['w' + n] = x[3]; }
+      for(const x of d.ca || []){ const f = x[0]; p['f' + f + 'v'] = x[1]; p['f' + f + 'a'] = x[2]; p['f' + f + 'w'] = x[3]; }
+      for(const k of ['cc', 'sa', 'hz', 't', 'iso']) if(d[k] != null) p[k] = d[k];
+      if(Array.isArray(d.b)){ p.soc = d.b[0]; p.bw = d.b[1]; }
+      return p; }).filter(p => p.m >= 0 && p.m < 1440).sort((a, b) => a.m - b.m);
+  }
+  // grupos de curvas: só o que o inversor manda (bateria e temperatura só quando existem)
+  function grupos(P){
+    const tem = k => P.some(p => p[k] != null), mppt = [...new Set(P.flatMap(p => Object.keys(p).filter(k => /^v\d+$/.test(k)).map(k => +k.slice(1))))].sort((a, b) => a - b);
+    const fases = [...new Set(P.flatMap(p => Object.keys(p).filter(k => /^f.+v$/.test(k)).map(k => k.slice(1, -1))))].sort();
+    const nomeF = f => /^\d$/.test(f) ? 'L' + f : f;
+    const G = [
+      {id: 'cc', c: 'Dados CC', g: 'Placas (entradas CC)', s: [...mppt.flatMap(n => [{k: 'v' + n, n: `MPPT ${n} · tensão`, u: 'V'}, {k: 'a' + n, n: `MPPT ${n} · corrente`, u: 'A'}, {k: 'w' + n, n: `MPPT ${n} · potência`, u: 'W'}]), ...(tem('cc') ? [{k: 'cc', n: 'Placas · total', u: 'W'}] : [])]},
+      {id: 'ca', c: 'Dados CA', g: 'Saída (CA)', s: [...fases.flatMap(f => [{k: `f${f}v`, n: `Fase ${nomeF(f)} · tensão`, u: 'V'}, {k: `f${f}a`, n: `Fase ${nomeF(f)} · corrente`, u: 'A'}, {k: `f${f}w`, n: `Fase ${nomeF(f)} · potência`, u: 'W'}]), ...(tem('sa') ? [{k: 'sa', n: 'Saída · potência', u: 'W'}] : []), ...(tem('hz') ? [{k: 'hz', n: 'Frequência', u: 'Hz'}] : [])]},
+      {id: 'bat', c: 'Bateria', g: 'Bateria', s: [...(tem('soc') ? [{k: 'soc', n: 'Carga da bateria', u: '%'}] : []), ...(tem('bw') ? [{k: 'bw', n: 'Bateria · potência (− carregando)', u: 'W'}] : [])]},
+      {id: 'temp', c: 'Temperatura', g: 'Inversor', s: [...(tem('t') ? [{k: 't', n: 'Temperatura', u: '°C'}] : []), ...(tem('iso') ? [{k: 'iso', n: 'Isolamento', u: 'kΩ'}] : [])]}
+    ].filter(g => g.s.length);
+    let i = 0; G.forEach(g => g.s.forEach(s => { s.cor = CORES[i++ % CORES.length]; }));
+    return G;
+  }
+  // padrão: tensões dos MPPT (como na prévia); sem MPPT, a potência de saída
+  function padrao(G){ const S = G.flatMap(g => g.s), v = S.filter(s => /^v\d+$/.test(s.k)).map(s => s.k); return v.length ? v : S.slice(0, 1).map(s => s.k); }
+  // trechos sem leitura (mais de 25 min entre duas leituras, ou o começo/fim do dia com o sol): [[de, até]] em minutos
+  function buracos(P, fim){ const L = []; let ant = 0; for(const p of P){ if(p.m - ant > 25) L.push([ant, p.m]); ant = p.m; } if(fim - ant > 25) L.push([ant, fim]); return L; }
+  // escala de cada unidade
+  function escala(P, on, u){
+    const v = P.flatMap(p => on.filter(s => s.u === u).map(s => p[s.k])).filter(x => x != null && !isNaN(x)); if(!v.length) return {u, lo: 0, hi: 1};
+    let lo = Math.min(0, ...v), hi = Math.max(...v);
+    if(u === 'V'){ const alto = v.filter(x => x > 50); if(alto.length && Math.min(...alto) > 100) lo = Math.floor(Math.min(...alto) * 0.9 / 10) * 10; }
+    if(u === 'Hz'){ lo = Math.min(59.5, ...v); hi = Math.max(60.5, ...v); } if(u === '%'){ lo = 0; hi = 100; }
+    if(hi === lo) hi = lo + 1; const pad = u === '%' || u === 'Hz' ? 0 : (hi - lo) * 0.08; return {u, lo, hi: hi + pad};
+  }
+
+  // ---------- tela
+  let V = null;
+  const CSS = `.ivd{--iv-bg:#f3f2ee;--iv-p:#fff;--iv-p2:#f7f6f2;--iv-ink:#18181a;--iv-mut:#6c6a64;--iv-lin:#e3e1da;--iv-y:#f5c518;--iv-grid:#e9e7e0;container-type:inline-size;color:var(--iv-ink);display:grid;gap:12px;font:15px/1.45 inherit}
+@media (prefers-color-scheme: dark){.ivd.ivd-esc{--iv-bg:#111112;--iv-p:#1b1b1d;--iv-p2:#222225;--iv-ink:#f2f0ea;--iv-mut:#a3a09a;--iv-lin:#2e2e32;--iv-grid:#2a2a2e}}
+.ivd *{box-sizing:border-box}
+.ivd-cab{display:flex;align-items:flex-start;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.ivd-cab h2{margin:0;font-family:var(--display,inherit);font-size:28px;line-height:1.1}
+.ivd-cab small{display:block;color:var(--iv-mut);font-size:13.5px;margin-top:2px}
+.ivd-card{background:var(--iv-p);border:1px solid var(--iv-lin);border-radius:16px;padding:14px;min-width:0}
+.ivd-lb{font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--iv-mut)}
+.ivd select,.ivd input[type=date]{height:40px;border:1px solid var(--iv-lin);border-radius:10px;background:var(--iv-p2);color:var(--iv-ink);font:inherit;padding:0 10px;max-width:100%;min-width:0}
+.ivd-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ivd-now{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:8px}
+.ivd-now>div{background:var(--iv-p2);border-radius:12px;padding:10px 12px;min-width:0}
+.ivd-now small{color:var(--iv-mut);font-size:12px;display:block}.ivd-now b{font-family:var(--display,inherit);font-size:24px;display:block;line-height:1.2}
+.ivd-lay{display:grid;gap:12px}
+@container (min-width:860px){.ivd-lay{grid-template-columns:300px minmax(0,1fr)}.ivd-fbar{display:none!important}}
+@container (max-width:859px){.ivd-ser{display:none}}
+.ivd-grp{display:grid;gap:6px;margin-top:10px}.ivd-grp h3{margin:0;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.ivd-sr{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 10px 0 8px;border-radius:99px;border:1px solid var(--iv-lin);background:var(--iv-p2);color:var(--iv-ink);font:500 13px inherit;cursor:pointer}
+.ivd-sr i{width:12px;height:12px;border-radius:3px;background:var(--iv-lin)}
+.ivd-sr[aria-pressed=true]{border-color:var(--sc);background:color-mix(in srgb,var(--sc) 14%,var(--iv-p))}.ivd-sr[aria-pressed=true] i{background:var(--sc)}
+.ivd-dn{display:flex;align-items:center;gap:6px}
+.ivd-dn button{min-width:38px;height:38px;border:1px solid var(--iv-lin);border-radius:10px;background:var(--iv-p2);color:var(--iv-ink);font-size:20px;line-height:1;cursor:pointer}
+.ivd-dn button:disabled{opacity:.35;cursor:default}.ivd-dn .ivd-hj{font-size:14px;font-weight:700;padding:0 12px}.ivd-dn input{width:150px}
+.ivd-fbar{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.ivd-fb{min-height:34px;padding:0 12px;border-radius:99px;border:1px solid var(--iv-lin);background:var(--iv-p2);color:var(--iv-ink);font:600 13px inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.ivd-fb em{font-style:normal;background:var(--iv-y);color:#141414;border-radius:99px;min-width:20px;height:20px;display:inline-grid;place-items:center;font-size:12px;padding:0 5px}
+.ivd-fb small{color:var(--iv-mut);font-weight:500}
+.ivd-off{display:inline-flex;gap:6px;align-items:center;font-size:12.5px;color:var(--iv-mut)}.ivd-off i{width:22px;height:10px;background:repeating-linear-gradient(90deg,var(--iv-grid) 0 4px,transparent 4px 7px);border-radius:2px}
+.ivd-g{position:relative;width:100%;height:320px}.ivd-g svg{display:block;width:100%;height:100%}
+.ivd-tip{position:absolute;pointer-events:none;background:#141414;color:#f2f0ea;border-radius:10px;padding:8px 10px;font-size:12px;line-height:1.5;min-width:150px;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:2}
+.ivd-tip span{display:flex;gap:6px;align-items:center}.ivd-tip span i{width:8px;height:8px;border-radius:2px}
+.ivd-leg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--iv-mut);margin-top:8px}.ivd-leg span{display:inline-flex;gap:6px;align-items:center}.ivd-leg i{width:14px;height:3px;border-radius:2px}
+.ivd-acts{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;margin-top:10px}
+.ivd-bt{min-height:40px;padding:0 16px;border-radius:10px;border:0;background:var(--iv-y);color:#141414;font:700 14px inherit;cursor:pointer}
+.ivd-bt.sec{background:var(--iv-p2);color:var(--iv-ink);border:1px solid var(--iv-lin)}
+.ivd-nota{font-size:13px;color:var(--iv-mut)}
+.ivd-tb{overflow-x:auto;margin-top:6px}.ivd-tb table{border-collapse:collapse;font-size:13px;min-width:520px;width:100%}
+.ivd-tb th,.ivd-tb td{padding:6px 8px;border-bottom:1px solid var(--iv-lin);text-align:right;white-space:nowrap}.ivd-tb th:first-child,.ivd-tb td:first-child{text-align:left}.ivd-tb th{color:var(--iv-mut);font-weight:600}
+.ivd-vazio{padding:30px 10px;text-align:center;color:var(--iv-mut)}
+.ivd-sh{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:120}
+.ivd-sh-c{background:var(--iv-p,#fff);color:var(--iv-ink,#18181a);width:100%;max-width:520px;border-radius:18px 18px 0 0;padding:16px;padding-bottom:max(16px,env(safe-area-inset-bottom,0px));max-height:80vh;overflow:auto}
+.ivd-sh-c h3{margin:0 0 4px;font-size:22px}
+.ivd-ck{display:flex;align-items:center;gap:10px;padding:11px 4px;border-bottom:1px solid var(--iv-lin,#e3e1da);font-size:15px;cursor:pointer}.ivd-ck input{width:20px;height:20px;accent-color:#d4a800}.ivd-ck i{width:12px;height:12px;border-radius:3px}
+.ivd-ov{position:fixed;inset:0;z-index:95;background:var(--bg,#f3f2ee);overflow:auto;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
+.ivd-ov>.ivd{max-width:1150px;margin:0 auto}
+.ivd-spin{width:28px;height:28px;border:3px solid var(--iv-lin);border-top-color:var(--iv-y);border-radius:50%;animation:ivdg 1s linear infinite;margin:30px auto}@keyframes ivdg{to{transform:rotate(360deg)}}`;
+  function poeCss(){ if(document.getElementById('ivd-css')) return; const s = document.createElement('style'); s.id = 'ivd-css'; s.textContent = CSS; document.head.appendChild(s); }
+
+  function montar(el, o){
+    poeCss(); const hoje = hojeBR();
+    V = {el, o, dia: o.dia || hoje, hoje, cache: {}, sn: o.sn || null, on: null, tab: false, carr: false, erro: ''};
+    el.innerHTML = `<div class="ivd${o.escuro === false ? '' : ' ivd-esc'}" id="ivd-raiz"></div>`; carregar();
+  }
+  async function carregar(){
+    if(!V) return; const dia = V.dia;
+    if(V.cache[dia]){ desenhaTudo(); return; }
+    V.carr = true; V.erro = ''; desenhaTudo();
+    try{ const j = await V.o.chamar({usina: V.o.usina, dia}); if(!j || j.ok === false) throw new Error((j && j.erro) || 'sem resposta'); if(V && V.dia === dia){ V.cache[dia] = j; if(j.hoje) V.hoje = j.hoje; } }
+    catch(err){ if(V) V.erro = String((err && err.message) || err); }
+    if(V){ V.carr = false; desenhaTudo(); }
+  }
+  const dados = () => V && V.cache[V.dia];
+  function invAtual(){ const d = dados(); const L = (d && d.inversores) || []; if(!V.sn || !L.some(i => i.sn === V.sn)) V.sn = (L.find(i => d.series && d.series[i.sn]) || L[0] || {}).sn || Object.keys((d && d.series) || {})[0] || null; return V.sn; }
+  function estado(){
+    const d = dados(); if(!d) return {P: [], G: [], S: [], on: []};
+    const sn = invAtual(), P = pontos((d.series || {})[sn] || [], V.dia), G = grupos(P), S = G.flatMap(g => g.s);
+    // padrão (tensões dos MPPT) só na 1ª vez, ou quando as curvas escolhidas não existem neste inversor.
+    // (16/11, Gerson) lista vazia = a pessoa desligou tudo: não religa as tensões sozinho
+    // dia sem leituras (S vazio): não mexe na escolha
+    if(S.length && (!V.on || (V.on.length && !V.on.some(k => S.some(s => s.k === k))))) V.on = padrao(G);
+    return {P, G, S, on: S.filter(s => (V.on || []).includes(s.k))};
+  }
+  function desenhaTudo(){
+    const r = V && document.getElementById('ivd-raiz'); if(!r) return;
+    const d = dados(), o = V.o, L = (d && d.inversores) || [];
+    const sn = d ? invAtual() : V.sn, inv = L.find(i => i.sn === sn);
+    let h = `<div class="ivd-cab"><div><h2>Dados do inversor</h2><small>${e(o.sub || '')}${inv ? ` · ${e([inv.modelo, inv.kw ? n1(inv.kw) + ' kW' : '', 'nº …' + String(inv.sn).slice(-6)].filter(Boolean).join(' · '))}` : ''}</small></div>${o.voltar ? '<button type="button" class="ivd-bt sec" data-ivdvolta>‹ Voltar</button>' : ''}</div>`;
+    if(L.length > 1) h += `<div class="ivd-card ivd-row"><label class="ivd-lb" for="ivd-inv">Inversor</label><select id="ivd-inv" data-ivdinv>${L.map((i, k) => `<option value="${e(i.sn)}"${i.sn === sn ? ' selected' : ''}>Inversor ${k + 1}${i.modelo ? ' · ' + e(i.modelo) : ''}${i.kw ? ' ' + n1(i.kw) + ' kW' : ''} · nº …${e(String(i.sn).slice(-6))}</option>`).join('')}</select></div>`;
+    const {P, G, on} = estado(), ult = P[P.length - 1];
+    if(ult) h += `<div class="ivd-card"><span class="ivd-lb">${V.dia === V.hoje ? 'Agora (leitura das ' + hm(ult.m).replace(':', 'h') + ')' : 'Última leitura de ' + fdia(V.dia) + ' (' + hm(ult.m).replace(':', 'h') + ')'}</span><div class="ivd-now">${agora(ult, G)}</div></div>`;
+    const dnav = `<div class="ivd-dn"><button type="button" data-ivddia="-1" aria-label="Dia anterior">‹</button><input type="date" data-ivddt value="${V.dia}" max="${V.hoje}" aria-label="Escolher o dia"><button type="button" data-ivddia="1" aria-label="Próximo dia"${V.dia >= V.hoje ? ' disabled' : ''}>›</button>${V.dia !== V.hoje ? '<button type="button" class="ivd-hj" data-ivdhoje>Hoje</button>' : ''}</div>`;
+    let graf;
+    if(V.carr) graf = '<div class="ivd-spin" role="status" aria-label="Carregando"></div>';
+    else if(V.erro) graf = `<div class="ivd-vazio">Não consegui ler os dados: ${e(V.erro)}</div>`;
+    else if(!P.length) graf = `<div class="ivd-vazio">Sem leituras deste inversor em ${fdia(V.dia)}.<br><small>As leituras começaram a ser guardadas em 10/11/2026. Inversor desligado (ou repetindo o último valor) não é gravado.</small></div>`;
+    else graf = `<div class="ivd-fbar">${G.map(g => { const n = g.s.filter(s => V.on.includes(s.k)).length; return `<button type="button" class="ivd-fb" data-ivdg="${g.id}">${g.c}${n ? `<em>${n}</em>` : '<small>nenhum</small>'}</button>`; }).join('')}</div>
+      <span class="ivd-off"><i></i>sem leitura (inversor desligado ou repetindo o último valor: não é gravado)</span>
+      <div class="ivd-g" id="ivd-g"><svg id="ivd-svg" role="img" aria-label="Gráfico dos dados do inversor"></svg><div class="ivd-tip" id="ivd-tip" hidden></div></div>
+      <div class="ivd-leg" id="ivd-leg"></div>
+      <div class="ivd-acts"><span class="ivd-nota">${P.length} leituras de 15 em 15 min · ${on.length} curva${on.length === 1 ? '' : 's'}${dados() && dados().fonte === 'arquivo' ? ' · do arquivo' : ''}</span>
+        <div class="ivd-row"><button type="button" class="ivd-bt sec" data-ivdtab>${V.tab ? 'Esconder tabela' : 'Ver tabela'}</button><button type="button" class="ivd-bt" data-ivdxls>Baixar planilha (Excel)</button></div></div>
+      ${V.tab ? `<div class="ivd-tb">${tabela(P, on)}</div>` : ''}`;
+    const ser = P.length && !V.carr ? `<div class="ivd-card ivd-ser"><span class="ivd-lb">Filtros: o que mostrar no gráfico</span><div class="ivd-nota" style="margin-top:4px">Toque para ligar e desligar cada curva. Unidades diferentes (V, A, W, %) ganham uma escala de cada lado (até 2 juntas).</div>
+      ${G.map(g => `<div class="ivd-grp"><h3>${e(g.g)}</h3><div class="ivd-row">${g.s.map(s => `<button type="button" class="ivd-sr" data-ivds="${s.k}" aria-pressed="${V.on.includes(s.k)}" style="--sc:${s.cor}"><i></i>${e(s.n)}</button>`).join('')}</div></div>`).join('')}</div>` : '';
+    h += `<div class="ivd-lay">${ser}<div class="ivd-card" style="min-width:0;${ser ? '' : 'grid-column:1/-1'}"><div class="ivd-row" style="justify-content:space-between"><span class="ivd-lb">${V.dia === V.hoje ? 'Curvas de hoje' : 'Curvas de ' + fdia(V.dia)}</span>${dnav}</div>${graf}</div></div>`;
+    const foco = document.activeElement && r.contains(document.activeElement) ? (document.activeElement.dataset.ivds ? `[data-ivds="${document.activeElement.dataset.ivds}"]` : document.activeElement.dataset.ivddia ? `[data-ivddia="${document.activeElement.dataset.ivddia}"]` : null) : null;
+    r.innerHTML = h; grafico(P, on);
+    if(foco){ const f = r.querySelector(foco); if(f && !f.disabled) f.focus(); }
+  }
+  function agora(p, G){
+    const t = (a, b, c) => `<div><small>${a}</small><b>${b}</b>${c ? `<small>${c}</small>` : ''}</div>`, M = [...new Set(Object.keys(p).filter(k => /^v\d+$/.test(k)).map(k => k.slice(1)))];
+    let h = '';
+    if(p.cc != null || M.length) h += t('Placas (total)', nf(p.cc ?? M.reduce((s, n) => s + (+p['w' + n] || 0), 0), 'W'), M.map(n => `MPPT ${n}: ${nf(p['w' + n], 'W')}`).join('<br>'));
+    if(M.length <= 3) M.forEach(n => { h += t('MPPT ' + n, n1(p['v' + n]) + ' V', n1(p['a' + n]) + ' A'); });
+    else h += t('MPPTs', M.length + ' entradas', M.map(n => `${n}: ${n1(p['v' + n])} V · ${n1(p['a' + n])} A`).join('<br>'));
+    const F = [...new Set(Object.keys(p).filter(k => /^f.+v$/.test(k)).map(k => k.slice(1, -1)))];
+    if(p.sa != null || F.length) h += t('Saída', nf(p.sa, 'W'), F.map(f => `${/^\d$/.test(f) ? 'L' + f : f} ${n1(p['f' + f + 'v'])} V`).join(' · '));
+    if(p.soc != null) h += t('Bateria', n1(p.soc) + ' %', p.bw != null ? (p.bw < 0 ? 'carregando ' : 'descarregando ') + nf(Math.abs(p.bw), 'W') : '');
+    if(p.t != null) h += t('Temperatura', n1(p.t) + ' °C', p.hz != null ? 'frequência ' + nf(p.hz, 'Hz') : '');
+    else if(p.hz != null) h += t('Frequência', nf(p.hz, 'Hz'), 'da rede / saída');
+    return h;
+  }
+  function tabela(P, on){
+    const L = P.filter((p, i) => i === 0 || Math.floor(p.m / 60) !== Math.floor(P[i - 1].m / 60));
+    return `<table><thead><tr><th>Hora</th>${on.map(s => `<th>${e(s.n)} (${s.u})</th>`).join('')}</tr></thead><tbody>${L.map(p => `<tr><td>${hm(p.m)}</td>${on.map(s => `<td>${p[s.k] == null ? '—' : (+p[s.k]).toLocaleString('pt-BR')}</td>`).join('')}</tr>`).join('')}</tbody></table><div class="ivd-nota" style="margin-top:6px">Na tela, de hora em hora; a planilha leva todas as leituras de 15 em 15 min.</div>`;
+  }
+  let geo = null;
+  function grafico(P, on){
+    const svg = document.getElementById('ivd-svg'); if(!svg) return; geo = null;
+    const us = [...new Set(on.map(s => s.u))];
+    const W = svg.clientWidth || 700, H = svg.clientHeight || 320, L = 54, R = us.length > 1 ? 54 : 16, T = 16, B = 30, w = W - L - R, h = H - T - B;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const css = v => getComputedStyle(svg).getPropertyValue(v).trim() || '#999', mut = css('--iv-mut'), grid = css('--iv-grid');
+    if(!on.length){ svg.innerHTML = `<text x="${W / 2}" y="${H / 2}" text-anchor="middle" fill="${mut}" font-size="14">Escolha ao menos uma curva</text>`; document.getElementById('ivd-leg').innerHTML = ''; return; }
+    const esc = us.map(u => escala(P, on, u)), x = m => L + m / 1440 * w, y = (v, i) => { const s = esc[i]; return T + h - (Math.max(s.lo, Math.min(s.hi, v)) - s.lo) / (s.hi - s.lo) * h; };
+    let o = '';
+    for(let k = 0; k <= 4; k++){ const yy = T + h * k / 4; o += `<line x1="${L}" x2="${L + w}" y1="${yy}" y2="${yy}" stroke="${grid}"/>`;
+      esc.forEach((s, i) => { const v = s.hi - (s.hi - s.lo) * k / 4; o += `<text x="${i ? L + w + 6 : L - 6}" y="${yy + 4}" text-anchor="${i ? 'start' : 'end'}" font-size="11" fill="${mut}">${v.toLocaleString('pt-BR', {maximumFractionDigits: s.u === 'Hz' ? 2 : 0})}</text>`; }); }
+    esc.forEach((s, i) => { o += `<text x="${i ? W - 4 : 4}" y="${T - 4}" text-anchor="${i ? 'end' : 'start'}" font-size="11" font-weight="700" fill="${mut}">${s.u}</text>`; });
+    for(let hh = 0; hh <= 24; hh += 3) o += `<text x="${x(hh * 60)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="${mut}">${hh}h</text>`;
+    const fim = V.dia === V.hoje ? Math.min(1440, (Date.now() - Date.parse(V.dia + 'T00:00:00-03:00')) / 60000) : 1440;
+    for(const [a, b] of buracos(P, fim)) o += `<rect x="${x(a)}" y="${T}" width="${Math.max(0, x(b) - x(a))}" height="${h}" fill="${grid}" opacity=".55"/>`;
+    for(const s of on){ const i = us.indexOf(s.u); let d = '', ant = null;
+      for(const p of P){ const v = p[s.k]; if(v == null || isNaN(v)){ ant = null; continue; } d += (ant == null || p.m - ant > 25 ? 'M' : 'L') + x(p.m).toFixed(1) + ' ' + y(v, i).toFixed(1); ant = p.m; }
+      o += `<path d="${d}" fill="none" stroke="${s.cor}" stroke-width="2" stroke-linejoin="round"/>`; }
+    o += `<line id="ivd-cur" x1="0" x2="0" y1="${T}" y2="${T + h}" stroke="${mut}" stroke-dasharray="3 3" visibility="hidden"/>`;
+    svg.innerHTML = o; geo = {L, w, on, P};
+    document.getElementById('ivd-leg').innerHTML = on.map(s => `<span><i style="background:${s.cor}"></i>${e(s.n)}${us.length > 1 ? ' · escala ' + (us.indexOf(s.u) ? 'direita' : 'esquerda') : ''}</span>`).join('');
+  }
+  function mover(ev){
+    const svg = document.getElementById('ivd-svg'), tip = document.getElementById('ivd-tip'); if(!geo || !svg || !tip) return;
+    const r = svg.getBoundingClientRect(), px = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left, sx = px * (svg.viewBox.baseVal.width / r.width);
+    const m = Math.max(0, Math.min(1, (sx - geo.L) / geo.w)) * 1440; let p = null, dm = 1e9; for(const q of geo.P){ const dd = Math.abs(q.m - m); if(dd < dm){ dm = dd; p = q; } } if(!p) return;
+    const cur = document.getElementById('ivd-cur'), cx = geo.L + p.m / 1440 * geo.w; cur.setAttribute('x1', cx); cur.setAttribute('x2', cx); cur.setAttribute('visibility', 'visible');
+    tip.hidden = false; tip.innerHTML = `<b>${hm(p.m)}</b>` + (dm > 25 ? '<div>sem leitura nesta hora</div>' : geo.on.map(s => `<span><i style="background:${s.cor}"></i>${e(s.n)}: <b>${nf(p[s.k], s.u)}</b></span>`).join(''));
+    const tw = tip.offsetWidth; tip.style.left = Math.min(r.width - tw - 4, Math.max(4, px + 12)) + 'px'; tip.style.top = '8px';
+  }
+  document.addEventListener('mousemove', ev => { if(ev.target.closest && ev.target.closest('#ivd-svg')) mover(ev); });
+  document.addEventListener('touchmove', ev => { if(ev.target.closest && ev.target.closest('#ivd-svg')) mover(ev); }, {passive: true});
+  document.addEventListener('touchstart', ev => { if(ev.target.closest && ev.target.closest('#ivd-svg')) mover(ev); }, {passive: true});
+  document.addEventListener('mouseout', ev => { if(ev.target.closest && ev.target.closest('#ivd-svg') && !(ev.relatedTarget && ev.relatedTarget.closest && ev.relatedTarget.closest('#ivd-svg'))){ const t = document.getElementById('ivd-tip'), c = document.getElementById('ivd-cur'); if(t) t.hidden = true; if(c) c.setAttribute('visibility', 'hidden'); } });
+  let tRes = 0; addEventListener('resize', () => { clearTimeout(tRes); tRes = setTimeout(() => { if(V && document.getElementById('ivd-svg')){ const s = estado(); grafico(s.P, s.on); } }, 150); });
+
+  function liga(k){ const {S} = estado(), s = S.find(x => x.k === k); if(!s) return;
+    if(V.on.includes(k)){ V.on = V.on.filter(x => x !== k); return; }
+    const us = new Set(S.filter(x => V.on.includes(x.k)).map(x => x.u)); us.add(s.u);
+    if(us.size > 2){ const fora = V.on.map(k => S.find(z => z.k === k)).filter(x => x && x.u !== s.u); const manter = fora.length ? fora[fora.length - 1].u : null; /* fica a unidade ligada por último */ V.on = V.on.filter(x => { const y = S.find(z => z.k === x); return y && (y.u === manter); }); aviso('Até 2 unidades juntas (ex.: V e A): desliguei as de outra unidade.'); }
+    V.on.push(k);
+  }
+  function aviso(t){ if(window.toast) return toast(t); let b = document.getElementById('ivd-toast'); if(!b){ b = document.createElement('div'); b.id = 'ivd-toast'; b.setAttribute('role', 'status'); b.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#141414;color:#f2f0ea;padding:10px 16px;border-radius:12px;font-size:14px;z-index:130;max-width:calc(100% - 32px)'; document.body.appendChild(b); } b.textContent = t; b.hidden = false; clearTimeout(b._t); b._t = setTimeout(() => { b.hidden = true; }, 3200); }
+  function janela(gid){
+    const {G} = estado(), g = G.find(x => x.id === gid); if(!g) return;
+    const sh = document.createElement('div'); sh.className = 'ivd-sh'; sh.id = 'ivd-sh';
+    sh.innerHTML = `<div class="ivd-sh-c ivd${V.o.escuro === false ? '' : ' ivd-esc'}" role="dialog" aria-modal="true" aria-labelledby="ivd-sht"><h3 id="ivd-sht">${e(g.c)}</h3><div class="ivd-nota">Marque o que quer ver no gráfico (até 2 unidades juntas, ex.: V e A).</div>
+      ${g.s.map(s => `<label class="ivd-ck"><input type="checkbox" data-ivdck="${s.k}"${V.on.includes(s.k) ? ' checked' : ''}><i style="background:${s.cor}"></i>${e(s.n)}</label>`).join('')}
+      <div class="ivd-acts"><button type="button" class="ivd-bt sec" data-ivdshx>Cancelar</button><button type="button" class="ivd-bt" data-ivdshok>OK</button></div></div>`;
+    document.body.appendChild(sh); const i = sh.querySelector('input'); if(i) i.focus();
+  }
+  function fechaJanela(){ const s = document.getElementById('ivd-sh'); if(s) s.remove(); }
+  async function planilha(){
+    const d = dados(); if(!d) return; const {P, S} = estado(), sn = V.sn;
+    const linhas = [['Hora', ...S.map(s => `${s.n} (${s.u})`)], ...P.map(p => [hm(p.m), ...S.map(s => p[s.k] == null ? null : +p[s.k])])];
+    const nome = `Dados do inversor ${String(V.o.titulo || '').replace(/[\\/:*?"<>|]/g, '').slice(0, 40)} ${V.dia} (${String(sn).slice(-6)}).xlsx`.replace(/\s+/g, ' ');
+    try{ if(!window.GAP_EXPORTAR || !GAP_EXPORTAR.baixar) throw new Error('sem o módulo de planilha'); await GAP_EXPORTAR.carregarXlsx(); GAP_EXPORTAR.baixar({nome: window.GAP_NOME_SEM_ACENTO ? GAP_NOME_SEM_ACENTO(nome) : nome, abas: [{nome: 'Leituras', linhas, larg: [8, ...S.map(() => 16)]}]}); aviso('Planilha pronta: ' + P.length + ' leituras de ' + fdia(V.dia)); }
+    catch(err){ aviso('Não consegui gerar a planilha: ' + ((err && err.message) || err)); }
+  }
+  document.addEventListener('click', ev => {
+    const t = ev.target; if(!t.closest || !V) return;
+    if(t.closest('#ivd-sh')){
+      if(t.closest('[data-ivdshx]') || t === document.getElementById('ivd-sh')){ fechaJanela(); return; }
+      if(t.closest('[data-ivdshok]')){ const {S} = estado(); const marc = [...document.querySelectorAll('#ivd-sh [data-ivdck]')]; const gk = marc.map(i => i.dataset.ivdck);
+        V.on = V.on.filter(k => !gk.includes(k)); marc.filter(i => i.checked).forEach(i => liga(i.dataset.ivdck)); fechaJanela(); desenhaTudo(); void S; }
+      return; }
+    if(!t.closest('#ivd-raiz')) return;
+    const s = t.closest('[data-ivds]'); if(s){ liga(s.dataset.ivds); desenhaTudo(); return; }
+    const g = t.closest('[data-ivdg]'); if(g){ janela(g.dataset.ivdg); return; }
+    const dd = t.closest('[data-ivddia]'); if(dd){ const n = soma(V.dia, +dd.dataset.ivddia); if(n <= V.hoje){ V.dia = n; carregar(); } return; }
+    if(t.closest('[data-ivdhoje]')){ V.dia = V.hoje; carregar(); return; }
+    if(t.closest('[data-ivdtab]')){ V.tab = !V.tab; desenhaTudo(); return; }
+    if(t.closest('[data-ivdxls]')){ planilha(); return; }
+    if(t.closest('[data-ivdvolta]') && V.o.voltar){ V.o.voltar(); return; }
+  });
+  document.addEventListener('change', ev => { if(!V || !ev.target.closest) return;
+    if(ev.target.closest('[data-ivddt]')){ const v = ev.target.value; if(/^\d{4}-\d{2}-\d{2}$/.test(v)){ V.dia = v > V.hoje ? V.hoje : v; carregar(); } return; }
+    if(ev.target.closest('[data-ivdinv]')){ V.sn = ev.target.value; V.on = null; desenhaTudo(); } });
+  document.addEventListener('keydown', ev => { if(ev.key === 'Escape' && document.getElementById('ivd-sh')){ ev.preventDefault(); fechaJanela(); } });
+
+  // ---------- janela de tela cheia (GAP Administração)
+  function abrirTela(o){
+    poeCss(); fecharTela(); const ov = document.createElement('div'); ov.className = 'ivd-ov'; ov.id = 'ivd-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Dados do inversor');
+    document.body.appendChild(ov); document.body.style.overflow = 'hidden';
+    montar(ov, {...o, voltar: () => fecharTela()});
+  }
+  function fecharTela(){ const ov = document.getElementById('ivd-ov'); if(ov){ ov.remove(); document.body.style.overflow = ''; if(V && V.el === ov) V = null; } }
+  document.addEventListener('keydown', ev => { if(ev.key === 'Escape' && !document.getElementById('ivd-sh') && document.getElementById('ivd-ov')) fecharTela(); });
+
+  window.GAP_INVDADOS = {montar, abrirTela, fecharTela, ativo: () => !!V, _t: {pontos, grupos, padrao, buracos, escala}};
 })();
 </script>
 <script>

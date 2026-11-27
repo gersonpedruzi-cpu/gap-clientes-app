@@ -1,6 +1,6 @@
 {
   "appId": "br.com.gapengenharia.clientes",
-  "appName": "GAP Clientes",
+  "appName": "GAP",
   "webDir": "www",
   "android": {
     "allowMixedContent": false

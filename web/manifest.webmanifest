@@ -1,7 +1,7 @@
 {
-  "name": "GAP Clientes",
-  "short_name": "GAP Clientes",
-  "description": "Acompanhe a geração da sua usina solar — GAP Engenharia",
+  "name": "GAP",
+  "short_name": "GAP",
+  "description": "App da GAP Engenharia: sua usina solar, chamados e campo",
   "lang": "pt-BR",
   "start_url": "/cliente/",
   "scope": "/cliente/",
